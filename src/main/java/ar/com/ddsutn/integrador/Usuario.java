@@ -12,7 +12,7 @@ public class Usuario {
 	
 	public Double imc ()
 	 {
-	  Double cuadrado = Math.pow(altura, 2);
-	  return peso/cuadrado;
+	  Double cuadradoAltura = Math.pow(altura, 2);
+	  return peso/cuadradoAltura;
 	 }
 }
