@@ -5,6 +5,9 @@ public class Usuario {
 	private Double altura;
 	private Double peso;
 	
+	public Usuario()
+	{super();}
+	
 	public Usuario (Double altura, Double peso){
 	this.altura = altura;
 	this.peso = peso;
