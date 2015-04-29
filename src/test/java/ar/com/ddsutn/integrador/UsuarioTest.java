@@ -32,5 +32,10 @@ public class UsuarioTest {
 	{
 		assertEquals ((Double)50.0 , fede.imc());
 	}
+	@Test
+	public void imcSeCalculaBienParaNico()
+	{
+		assertEquals ((Double)15.0 , nico.imc());
+	}
 
 }
