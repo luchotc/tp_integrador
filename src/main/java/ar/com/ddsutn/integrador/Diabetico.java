@@ -1,11 +1,20 @@
 package ar.com.ddsutn.integrador;
 
-public class Diabetico implements Condiciones{
+public class Diabetico implements Condicion{
 
-	public void validar(Usuario usuario)
+	@Override
+	public void validarBasico(Usuario usuario)
 	{usuario.validarSexo();
 	 usuario.validarPreferencia();
 	}
+	
+
+	@Override
+	public void validarRutinaSaludable(Usuario usuario)
+	{
+		//
+	}
+
 	
 	
 }

@@ -2,6 +2,8 @@ package ar.com.ddsutn.integrador;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 public class Usuario {
 
@@ -10,14 +12,15 @@ public class Usuario {
 	private LocalDate fechaNacimiento;
 	private Collection <String> preferenciasAlimenticias;
 	private Collection <String> palabrasDisgustan;
+	private Collection <Condicion> condiciones;
 	
-	private Double altura;
-	private Double peso;
+	protected Double altura; //PARA LA IMPLEMENTACION DEL MOCK, DESPUES CAMBIAR
+	protected Double peso;
 	
 	public Usuario()
 	{super();}
 	
-	public Usuario (String nombre,String sexo, LocalDate fechaNacimiento, Double altura, Double peso,Collection<String> preferenciasAlimentacias,Collection<String>palabrasDisgustan){
+	public Usuario (String nombre,String sexo, LocalDate fechaNacimiento, Double altura, Double peso,Collection<String> preferenciasAlimentacias,Collection<String>palabrasDisgustan, Collection<Condicion>condiciones){
 		this.nombre = nombre;
 		this.sexo = sexo;
 		this.fechaNacimiento = fechaNacimiento;
@@ -25,6 +28,26 @@ public class Usuario {
 		this.peso = peso;
 		this.preferenciasAlimenticias = preferenciasAlimentacias;
 		this.palabrasDisgustan = palabrasDisgustan;
+		this.condiciones = condiciones;
+	}
+	
+	public boolean esValidoElUsuario()
+	{	//APLICAR LAMBDA this.condiciones.validarBasico(this);
+		return true;
+	}
+	
+	public void validarNombre()
+	{if (nombre.length() > 4) 
+	{//VER SI CONVIENEN QUE SEAN VOID ESTAS FUNCIONES	
+	}
+	}
+	
+	public void validarVeganidad()
+	{
+		if(true )
+		{//funcionQueValidaQueEnLaColleccionBLABLALBA;
+			
+		}
 	}
 	
 	public void validarSexo()
@@ -37,8 +60,8 @@ public class Usuario {
 	
 	public void validarPreferencia()
 	{
-		if(sexo == null )
-		{//funcionQuePideQueSeIngreseSexo;
+		if(true)
+		{//funcionQueCheckeaLasPreferencias;
 			
 		}
 	}  //VER DE HACER ESTOS METODOS POLIMORFICOS A FUTURO
