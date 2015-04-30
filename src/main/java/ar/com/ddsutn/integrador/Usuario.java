@@ -27,6 +27,22 @@ public class Usuario {
 		this.palabrasDisgustan = palabrasDisgustan;
 	}
 	
+	public void validarSexo()
+	{
+		if(sexo == null )
+		{//funcionQuePideQueSeIngreseSexo;
+			
+		}
+	}
+	
+	public void validarPreferencia()
+	{
+		if(sexo == null )
+		{//funcionQuePideQueSeIngreseSexo;
+			
+		}
+	}  //VER DE HACER ESTOS METODOS POLIMORFICOS A FUTURO
+	
 	public Double imc ()
 	 {
 	  Double cuadradoAltura = Math.pow(altura, 2);

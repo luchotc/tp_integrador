@@ -15,14 +15,12 @@ public class UsuarioTest {
 	@Before
 	
 	public void setUp() {
-	lucho = new Usuario(1.80 , 81.0);
-	fede = new Usuario(1.20, 72.0);
-	nico = new Usuario(2.00, 60.0);
-	nicoLuis = new Usuario(1.70, 57.8);
+	lucho = new UsuarioMock(1.80 , 81.0);
+	fede = new UsuarioMock(1.20, 72.0);
+	nico = new UsuarioMock(2.00, 60.0);
+	nicoLuis = new UsuarioMock(1.70, 57.8);
 	
 	}
-	
-	//Rama batata
 	
 	@Test
 	
