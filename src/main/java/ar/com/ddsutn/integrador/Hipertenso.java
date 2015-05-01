@@ -1,10 +1,11 @@
 package ar.com.ddsutn.integrador;
 
-public class Hipertenso implements Condicion{
+public class Hipertenso extends Usuario implements Condicion{
 
 	@Override
-	public void validarBasico(Usuario usuario)
-	{ usuario.validarPreferencia();
+	public boolean esValidoPorCondicion(Usuario usuario)
+	{
+		return !usuario.preferenciasAlimenticias.isEmpty();
 	}
 	
 	@Override

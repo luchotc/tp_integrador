@@ -29,7 +29,7 @@ public class UsuarioTest {
 	lucho = new Usuario("lucho",  81.0, 1.80, null, null, null);
 	fede = new Usuario("fede", 72.0, 1.20, null, null, null);
 	nico = new Usuario("nico", 60.0, 2.00, null, null, null);
-	nicoLuis = new Usuario("nicoLuis", 57.8 , 1.70, LocalDate.of(1995,6,24) , "unaRutina", null);
+	nicoLuis = new Usuario("nicoLuis", 57.8 , 1.70, LocalDate.of(1995,6,24) , "Masculino", null);
 	nicoLuis.setRutina("unaRutina");
 	}
 	

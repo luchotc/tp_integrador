@@ -1,10 +1,16 @@
 package ar.com.ddsutn.integrador;
 
-public class Vegano implements Condicion{
 
+public class Vegano extends Usuario implements Condicion{
+
+	
 	@Override
-	public void validarBasico(Usuario usuario)
-	{ usuario.validarVeganidad();
+	public boolean esValidoPorCondicion(Usuario usuario)
+	{
+		return !(usuario.preferenciasAlimenticias.contains("pollo") &&
+				usuario.preferenciasAlimenticias.contains("carne") &&
+				usuario.preferenciasAlimenticias.contains("chivito") &&
+				usuario.preferenciasAlimenticias.contains("chori") );
 	}
 	
 	@Override

@@ -8,9 +8,9 @@ import java.util.Set;
 public class Usuario {
 
 	private String nombre;
-	private String sexo;
+	protected String sexo;
 	private LocalDate fechaNacimiento;
-	private Collection <String> preferenciasAlimenticias;
+	protected Collection <String> preferenciasAlimenticias;
 	private Collection <String> palabrasDisgustan;
 	private Collection <Condicion> condiciones;
 	
@@ -103,19 +103,19 @@ public class Usuario {
 	del return de esValidoPorCampos() */
 
 	public boolean esValidoPorCampos() {
-		return (this.nombre != null && 
+		return  this.nombre != null && 
 				this.peso != null && 
 				this.altura != null && 
 				this.fechaNacimiento != null && 
 				this.rutina != null &&
 				esValidoPorNombre() &&
-				esValidoPorFecha() );
+				esValidoPorFecha();
 	}
 	
 	public boolean esValido() {
-		return (esValidoPorCampos());
+		return esValidoPorCampos() ;
 		/* Para probar los test quedo asi, pero deberia ser algo como: 
-		 return (esValidoPorCampos() && esValidoPorCondicion());
+		 return esValidoPorCampos() && this.condiciones.allMatch(esValidoPorCondicion(this));
 		 donde esValidoPorCondicion() iria en cada clase condicion (hipertenso, diabetico, etc) */
 	}
 	
