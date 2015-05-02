@@ -4,15 +4,17 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+import java.util.HashSet;
 
 public class Usuario {
 
 	private String nombre;
 	protected String sexo;
 	private LocalDate fechaNacimiento;
-	protected Collection <String> preferenciasAlimenticias;
-	private Collection <String> palabrasDisgustan;
-	private Collection <Condicion> condiciones;
+	protected Collection <String> preferenciasAlimenticias = new HashSet<String>();
+	private Collection <String> palabrasDisgustan = new HashSet<String>();
+	protected Collection <Condicion> condiciones = new HashSet<Condicion>();
+	// Revisar si es correcto el uso de HashSet<String>(), o si hay otra forma
 	
 	private String rutina;		// ------ es String?? ------ <----<----<----<---- Revisar
 	
@@ -28,16 +30,18 @@ public class Usuario {
 	public Usuario()
 	{super();}
 	
-	public Usuario (String nombre, Double peso, Double altura, LocalDate fechaNacimiento, String sexo, Collection<Condicion>condiciones){
+	public Usuario (String nombre, Double peso, Double altura, LocalDate fechaNacimiento, String rutina, String sexo){
 		this.nombre = nombre;
 		this.peso = peso;
 		this.altura = altura;
 		this.fechaNacimiento = fechaNacimiento;
 		this.sexo = sexo;
-		this.condiciones = condiciones;
+		this.rutina = rutina;
 		/* elimine a this.preferenciasAlimenticias = preferenciasAlimentacias del constructor
 		 elimine a this.palabrasDisgustan = palabrasDisgustan del constructor
-		 => demasiados campos (creo que condiciones y sexo tambien deberian setearse fuera del contructor y rutina dentro)
+		 elimine a this.condiciones = condiciones del constructor
+		 agregue rutina
+		 => demasiados campos
 		 Modifique los campos para que tengan el orden que se pide en el enunciado */
 	}
 	
@@ -113,7 +117,10 @@ public class Usuario {
 	}
 	
 	public boolean esValido() {
-		return esValidoPorCampos() ;
+		if( this.condiciones == null || this.condiciones.isEmpty() ){ 
+			return esValidoPorCampos(); }
+		else { 
+			return esValidoPorCampos() && this.condiciones.stream().allMatch(usuario -> usuario.esValidoPorCondicion(this)); }
 		/* Para probar los test quedo asi, pero deberia ser algo como: 
 		 return esValidoPorCampos() && this.condiciones.allMatch(esValidoPorCondicion(this));
 		 donde esValidoPorCondicion() iria en cada clase condicion (hipertenso, diabetico, etc) */
@@ -130,6 +137,10 @@ public class Usuario {
 	public void setPreferenciasAlimenticias(Collection <String> preferenciasAlimenticias) {
 		this.preferenciasAlimenticias = preferenciasAlimenticias;
 	}
+	
+	public void aniadirPreferencia(String preferencia){
+		this.preferenciasAlimenticias.add(preferencia);
+	}
 
 	public Collection <String> getPalabrasDisgustan() {
 		return this.palabrasDisgustan;
@@ -140,11 +151,7 @@ public class Usuario {
 		this.palabrasDisgustan = palabrasDisgustan;
 	}
 	
-	public String getRutina() {
-		return this.rutina;
-	}
-
-	public void setRutina(String rutina) {
-		this.rutina = rutina;
+	public void aniadirPalabrasDisgustan(String palabrasDisgustan) {
+		this.palabrasDisgustan.add(palabrasDisgustan);
 	}
 }

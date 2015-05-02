@@ -1,7 +1,9 @@
 package ar.com.ddsutn.integrador;
 
-public class Diabetico extends Usuario implements Condicion{
+public class Diabetico implements Condicion{
 
+	public Diabetico(){}
+	
 	@Override
 	public boolean esValidoPorCondicion(Usuario usuario)
 	{

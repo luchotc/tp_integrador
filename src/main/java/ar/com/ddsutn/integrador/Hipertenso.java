@@ -1,7 +1,9 @@
 package ar.com.ddsutn.integrador;
 
-public class Hipertenso extends Usuario implements Condicion{
+public class Hipertenso implements Condicion{
 
+	public Hipertenso(){}
+	
 	@Override
 	public boolean esValidoPorCondicion(Usuario usuario)
 	{
