@@ -17,6 +17,17 @@ public class Diabetico implements Condicion{
 	{
 		return !usuario.rutinaSedentaria() || usuario.getPeso() <= 70;
 	}
+	
+	@Override
+	public boolean esAdecuada(Usuario usuario, Receta receta) 
+	{
+		return true;
+	}
+	
+	public Stream<Condimento> getAzucar(Usuario usuario, Receta receta) 
+	{
+		return receta.getCondimentos().stream().filter( condimento -> condimento.getNombre().equals("Azucar"));
+	}
 
 	
 	

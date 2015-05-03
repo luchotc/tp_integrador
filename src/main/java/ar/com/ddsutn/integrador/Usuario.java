@@ -35,11 +35,9 @@ public class Usuario {
 	     return peso/cuadradoAltura (el ayudante ya habia tirado que declarar una variable solo para esto no esta bien) */
 	 }
 	
-	
 	public boolean esValido() {
 		return esValidoPorCampos() && this.condiciones.stream().allMatch(usuario -> usuario.esValidoPorCondicion(this));
 	}
-
 	public boolean esValidoPorCampos() {
 		return  this.nombre != null && 
 				this.peso != null && 
@@ -49,11 +47,9 @@ public class Usuario {
 				esValidoPorNombre() &&
 				esValidoPorFecha();
 	}
-	
 	public boolean esValidoPorNombre(){
 		return this.nombre.length() > 4;
 	}
-	
 	public boolean esValidoPorFecha(){
 		return LocalDate.now().isAfter(this.fechaNacimiento);
 	}
@@ -65,45 +61,38 @@ public class Usuario {
 	decidan cual prefieren*/
 	
 	public boolean sigueRutinaSaludable(){
-		return  18 < this.imc() && 
+		return  this.imc() > 18 && 
 				this.imc() < 30 &&
 				this.condiciones.stream().allMatch(usuario -> usuario.lograSubsanar(this));
 	}
 	
-
-	
+	public boolean esInadecuada(Receta receta){
+		return !this.condiciones.stream().allMatch(usuario -> usuario.esAdecuada(this, receta));
+	}
 	
 	/*	setters y getters	*/
 	
-	public Collection <String> getPreferenciasAlimenticias() {
-		return this.preferenciasAlimenticias;
-	}
-	public void setPreferenciasAlimenticias(Collection <String> preferenciasAlimenticias) {
-		this.preferenciasAlimenticias = preferenciasAlimenticias;
-	}
+	public Collection <String> getPreferenciasAlimenticias() 
+	{	return this.preferenciasAlimenticias;	}
+	public void setPreferenciasAlimenticias(Collection <String> preferenciasAlimenticias)
+	{	this.preferenciasAlimenticias = preferenciasAlimenticias;	}
 	public void aniadirPreferencia(String preferenciasAlimenticias){
 		this.preferenciasAlimenticias.add(preferenciasAlimenticias);
 	}
 
-	public Collection <String> getPalabrasDisgustan() {
-		return this.palabrasDisgustan;
-	}
-	public void setPalabrasDisgustan(Collection <String> palabrasDisgustan) {
-		this.palabrasDisgustan = palabrasDisgustan;
-	}
-	public void aniadirPalabrasDisgustan(String palabrasDisgustan) {
-		this.palabrasDisgustan.add(palabrasDisgustan);
-	}
+	public Collection <String> getPalabrasDisgustan() 
+	{	return this.palabrasDisgustan;	}
+	public void setPalabrasDisgustan(Collection <String> palabrasDisgustan) 
+	{	this.palabrasDisgustan = palabrasDisgustan;	}
+	public void aniadirPalabrasDisgustan(String palabrasDisgustan) 
+	{	this.palabrasDisgustan.add(palabrasDisgustan);	}
 	
-	public Double getPeso(){
-		return this.peso;
-	}
-	public String getSexo(){
-		return this.sexo;
-	}
-	public String getRutina(){
-		return this.rutina;
-	}
+	public Double getPeso()
+	{	return this.peso;	}
+	public String getSexo()
+	{	return this.sexo;	}
+	public String getRutina()
+	{	return this.rutina;	}
 	
 	public boolean rutinaSedentaria(){
 		return this.rutina.equals("LEVE") ||

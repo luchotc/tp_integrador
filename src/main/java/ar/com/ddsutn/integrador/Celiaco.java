@@ -16,4 +16,11 @@ public class Celiaco implements Condicion {
 		return true;
 	}
 
+	@Override
+	public boolean esAdecuada(Usuario usuario, Receta receta) 
+	{
+		return true;
+	}
+
+
 }
