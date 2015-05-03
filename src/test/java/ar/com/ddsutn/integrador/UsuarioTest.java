@@ -4,6 +4,10 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import condicionesExistentes.Diabetico;
+import condicionesExistentes.Hipertenso;
+import condicionesExistentes.Vegano;
+
 import java.time.LocalDate;
 
 public class UsuarioTest {

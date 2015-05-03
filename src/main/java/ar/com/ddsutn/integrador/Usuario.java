@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 
+import condicionesExistentes.Condicion;
+
 public class Usuario {
 
 	private String nombre;
