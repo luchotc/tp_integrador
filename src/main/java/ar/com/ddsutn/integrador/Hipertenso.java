@@ -7,13 +7,13 @@ public class Hipertenso implements Condicion{
 	@Override
 	public boolean esValidoPorCondicion(Usuario usuario)
 	{
-		return !usuario.preferenciasAlimenticias.isEmpty();
+		return !usuario.getPreferenciasAlimenticias().isEmpty();
 	}
 	
 	@Override
-	public void validarRutinaSaludable(Usuario usuario)
+	public boolean lograSubsanar(Usuario usuario) 
 	{
-		//
+		return usuario.getRutina().equals("INTENSIVO");
 	}
 	
 }

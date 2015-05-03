@@ -2,30 +2,19 @@ package ar.com.ddsutn.integrador;
 
 import java.time.LocalDate;
 import java.util.Collection;
-import java.util.List;
-import java.util.Set;
 import java.util.HashSet;
 
 public class Usuario {
 
 	private String nombre;
-	protected String sexo;
+	private String sexo;
 	private LocalDate fechaNacimiento;
-	protected Collection <String> preferenciasAlimenticias = new HashSet<String>();
+	private Collection <String> preferenciasAlimenticias = new HashSet<String>();
 	private Collection <String> palabrasDisgustan = new HashSet<String>();
-	protected Collection <Condicion> condiciones = new HashSet<Condicion>();
-	// Revisar si es correcto el uso de HashSet<String>(), o si hay otra forma
-	
-	private String rutina;		// ------ es String?? ------ <----<----<----<---- Revisar
-	
-	/*
-	protected Double altura; //PARA LA IMPLEMENTACION DEL MOCK, DESPUES CAMBIAR
-	protected Double peso;
-	(Le tienen que explicar a nico luis como es el tema del mock)
-	*/
-	
+	protected Collection <Condicion> condiciones = new HashSet<Condicion>();	// Revisar si es correcto el uso de HashSet<String>(), o si hay otra forma
 	private Double altura;
 	private Double peso;
+	private String rutina;		// ------ es String?? ------ <----<----<----<---- Revisar
 	
 	public Usuario()
 	{super();}
@@ -37,74 +26,19 @@ public class Usuario {
 		this.fechaNacimiento = fechaNacimiento;
 		this.sexo = sexo;
 		this.rutina = rutina;
-		/* elimine a this.preferenciasAlimenticias = preferenciasAlimentacias del constructor
-		 elimine a this.palabrasDisgustan = palabrasDisgustan del constructor
-		 elimine a this.condiciones = condiciones del constructor
-		 agregue rutina
-		 => demasiados campos
-		 Modifique los campos para que tengan el orden que se pide en el enunciado */
 	}
 	
 	public Double imc ()
 	 {
-	  Double cuadradoAltura = Math.pow(altura, 2);
-	  return peso/cuadradoAltura;
-	  /* hace falta hacer Double cuadradoAltura? no seria mejor:
-	   public Double imc () { return peso/Math.pow(altura, 2) } ?
-	   o es mejor la expresividad de cuadradoAltura? */
+	  return peso/Math.pow(altura, 2);
+	  /* habia un Double cuadradoAltura = Math.pow(altura, 2);
+	     return peso/cuadradoAltura (el ayudante ya habia tirado que declarar una variable solo para esto no esta bien) */
 	 }
 	
 	
-	/*	IMPLEMENTACION ANTERIOR POR LUCHO
-	
-	public boolean esValidoElUsuario()
-	{	//APLICAR LAMBDA this.condiciones.validarBasico(this);
-		return true;
+	public boolean esValido() {
+		return esValidoPorCampos() && this.condiciones.stream().allMatch(usuario -> usuario.esValidoPorCondicion(this));
 	}
-	
-	public void validarNombre()
-	{if (nombre.length() > 4) 
-	{//VER SI CONVIENEN QUE SEAN VOID ESTAS FUNCIONES	
-	}
-	}
-	
-	public void validarVeganidad()
-	{
-		if(true )
-		{//funcionQueValidaQueEnLaColleccionBLABLALBA;
-			
-		}
-	}
-	
-	public void validarSexo()
-	{
-		if(sexo == null )
-		{//funcionQuePideQueSeIngreseSexo;
-			
-		}
-	}
-	
-	public void validarPreferencia()
-	{
-		if(true)
-		{//funcionQueCheckeaLasPreferencias;
-			
-		}
-	}  //VER DE HACER ESTOS METODOS POLIMORFICOS A FUTURO
-	*/
-	
-	//  NUEVA IMPLEMENTACION
-	public boolean esValidoPorNombre(){
-		return this.nombre.length() > 4;
-	}
-	
-	public boolean esValidoPorFecha(){
-		return LocalDate.now().isAfter(this.fechaNacimiento);
-	}
-	
-	/* esValidoPorNombre() y esValidoPorFecha() las hice solo por expresividad
-	pero se podria incluir directamente el valor de retorno dentro
-	del return de esValidoPorCampos() */
 
 	public boolean esValidoPorCampos() {
 		return  this.nombre != null && 
@@ -116,42 +50,66 @@ public class Usuario {
 				esValidoPorFecha();
 	}
 	
-	public boolean esValido() {
-		if( this.condiciones == null || this.condiciones.isEmpty() ){ 
-			return esValidoPorCampos(); }
-		else { 
-			return esValidoPorCampos() && this.condiciones.stream().allMatch(usuario -> usuario.esValidoPorCondicion(this)); }
-		/* Para probar los test quedo asi, pero deberia ser algo como: 
-		 return esValidoPorCampos() && this.condiciones.allMatch(esValidoPorCondicion(this));
-		 donde esValidoPorCondicion() iria en cada clase condicion (hipertenso, diabetico, etc) */
+	public boolean esValidoPorNombre(){
+		return this.nombre.length() > 4;
 	}
 	
+	public boolean esValidoPorFecha(){
+		return LocalDate.now().isAfter(this.fechaNacimiento);
+	}
+	
+	/* esValidoPorNombre() y esValidoPorFecha() las hice solo por expresividad
+	pero se podria incluir directamente el valor de retorno dentro
+	del return de esValidoPorCampos() 
+	return  this.nombre != null && ... && this.nombre.length() > 4 && LocalDate.now().isAfter(this.fechaNacimiento);
+	decidan cual prefieren*/
+	
+	public boolean sigueRutinaSaludable(){
+		return  18 < this.imc() && 
+				this.imc() < 30 &&
+				this.condiciones.stream().allMatch(usuario -> usuario.lograSubsanar(this));
+	}
+	
+
 	
 	
+	/*	setters y getters	*/
 	
 	public Collection <String> getPreferenciasAlimenticias() {
 		return this.preferenciasAlimenticias;
-		// cambie return preferenciasAlimenticias por return this.preferenciasAlimenticias;
 	}
-
 	public void setPreferenciasAlimenticias(Collection <String> preferenciasAlimenticias) {
 		this.preferenciasAlimenticias = preferenciasAlimenticias;
 	}
-	
-	public void aniadirPreferencia(String preferencia){
-		this.preferenciasAlimenticias.add(preferencia);
+	public void aniadirPreferencia(String preferenciasAlimenticias){
+		this.preferenciasAlimenticias.add(preferenciasAlimenticias);
 	}
 
 	public Collection <String> getPalabrasDisgustan() {
 		return this.palabrasDisgustan;
-		// cambie return palabrasDisgustan por return this.palabrasDisgustan;
 	}
-
 	public void setPalabrasDisgustan(Collection <String> palabrasDisgustan) {
 		this.palabrasDisgustan = palabrasDisgustan;
 	}
-	
 	public void aniadirPalabrasDisgustan(String palabrasDisgustan) {
 		this.palabrasDisgustan.add(palabrasDisgustan);
 	}
+	
+	public Double getPeso(){
+		return this.peso;
+	}
+	public String getSexo(){
+		return this.sexo;
+	}
+	public String getRutina(){
+		return this.rutina;
+	}
+	
+	public boolean rutinaSedentaria(){
+		return this.rutina.equals("LEVE") ||
+			   this.rutina.equals("NADA") ||
+			   this.rutina.equals("MEDIANO");
+	}
+	
 }
+

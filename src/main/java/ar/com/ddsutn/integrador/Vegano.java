@@ -8,16 +8,16 @@ public class Vegano extends Usuario implements Condicion{
 	@Override
 	public boolean esValidoPorCondicion(Usuario usuario)
 	{
-		return  !(usuario.preferenciasAlimenticias.contains("pollo") ||
-				usuario.preferenciasAlimenticias.contains("carne") ||
-				usuario.preferenciasAlimenticias.contains("chivito") ||
-				usuario.preferenciasAlimenticias.contains("chori") );
+		return  !(usuario.getPreferenciasAlimenticias().contains("pollo") ||
+				usuario.getPreferenciasAlimenticias().contains("carne") ||
+				usuario.getPreferenciasAlimenticias().contains("chivito") ||
+				usuario.getPreferenciasAlimenticias().contains("chori") );
 	}
 	
 	@Override
-	public void validarRutinaSaludable(Usuario usuario)
+	public boolean lograSubsanar(Usuario usuario) 
 	{
-		//
+		return usuario.getPreferenciasAlimenticias().contains("frutas");
 	}
 	
 }

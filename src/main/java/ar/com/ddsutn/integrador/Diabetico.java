@@ -7,15 +7,15 @@ public class Diabetico implements Condicion{
 	@Override
 	public boolean esValidoPorCondicion(Usuario usuario)
 	{
-		return  usuario.sexo != null &&
-				!usuario.preferenciasAlimenticias.isEmpty() ;
+		return  usuario.getSexo() != null &&
+				!usuario.getPreferenciasAlimenticias().isEmpty() ;
 	}
 	
 
 	@Override
-	public void validarRutinaSaludable(Usuario usuario)
+	public boolean lograSubsanar(Usuario usuario) 
 	{
-		//
+		return !usuario.rutinaSedentaria() || usuario.getPeso() <= 70;
 	}
 
 	
