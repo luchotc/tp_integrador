@@ -15,5 +15,11 @@ public class Hipertenso implements Condicion{
 	{
 		return usuario.getRutina().equals("INTENSIVO");
 	}
+
+	@Override
+	public boolean esAdecuada(Usuario usuario, Receta receta) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

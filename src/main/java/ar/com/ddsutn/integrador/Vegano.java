@@ -28,7 +28,8 @@ public class Vegano extends Usuario implements Condicion{
 	@Override
 	public boolean esAdecuada(Usuario usuario, Receta receta) 
 	{
-		return !this.tieneComidaNoDeseada( receta.getCondimentos().stream().map( condimento -> condimento.getNombre() ) );
+		//return !this.tieneComidaNoDeseada( receta.getCondimentos().stream().map( condimento -> condimento.getNombre() ) );
+		return false;
 	}
 
 	

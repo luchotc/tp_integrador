@@ -1,5 +1,7 @@
 package ar.com.ddsutn.integrador;
 
+import java.util.stream.Stream;
+
 public class Diabetico implements Condicion{
 
 	public Diabetico(){}
