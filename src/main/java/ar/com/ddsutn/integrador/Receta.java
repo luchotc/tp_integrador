@@ -27,7 +27,6 @@ public class Receta {
 		return usuarioQueLaCargo.esInadecuada(this);
 	}
 	
-	
 	/*	setters y getters	*/
 	public void addIngrediente(String ingrediente)
 	{	this.ingredientes.add(ingrediente);		}
