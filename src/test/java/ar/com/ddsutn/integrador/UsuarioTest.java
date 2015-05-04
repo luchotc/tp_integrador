@@ -59,8 +59,8 @@ public class UsuarioTest {
 	
 		fede.setCondiciones(new ArrayList<Condicion>());
 		fede.setPreferenciasAlimenticias(new ArrayList<String>());
-		fede.aniadirCondicion(new Vegano());  //revisar si new Vegano() es correcto
-		fede.aniadirPreferencia("Pollo");
+		fede.addCondicion(new Vegano());  //revisar si new Vegano() es correcto
+		fede.addPreferencia("Pollo");
 		assertEquals ((boolean)false , fede.esValido());
 	}
 	@Test
@@ -83,10 +83,10 @@ public class UsuarioTest {
 
 		lucho.setCondiciones(new ArrayList<Condicion>());
 		lucho.setPreferenciasAlimenticias(new ArrayList<String>());
-		lucho.aniadirCondicion(new Diabetico());
-		lucho.aniadirCondicion(new Vegano());
+		lucho.addCondicion(new Diabetico());
+		lucho.addCondicion(new Vegano());
 
-		lucho.aniadirPreferencia("frutas");
+		lucho.addPreferencia("frutas");
 		assertEquals ((boolean)true , lucho.sigueRutinaSaludable());		
 	}
 	@Test
@@ -94,7 +94,7 @@ public class UsuarioTest {
 
 
 	{
-		nicoLuis.aniadirCondicion(new Vegano());
+		nicoLuis.addCondicion(new Vegano());
 
 		assertEquals ((boolean)false , nicoLuis.sigueRutinaSaludable());		
 	}
@@ -103,10 +103,18 @@ public class UsuarioTest {
 	{	
 
 		fede.setCondiciones(new ArrayList<Condicion>());
-		fede.aniadirCondicion(new Hipertenso());
+		fede.addCondicion(new Hipertenso());
 
 		assertEquals ((boolean)false , fede.sigueRutinaSaludable());		
 	}
 	
+	/*@Test
+	public void elUsuarioAgregaRecetaPeroNoEsValida()
+	{
+		Receta recetaInvalida = new Receta("Recetin", 25000, lucho);
+		lucho.setRecetas(new ArrayList<>());
+		assertEquals ( (boolean)false, lucho.addReceta(recetaInvalida) );
+	}
+	*/
 	
 }

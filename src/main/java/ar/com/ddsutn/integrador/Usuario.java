@@ -79,7 +79,7 @@ public class Usuario {
 	{	return this.condiciones;	}
 	public void setCondiciones(Collection <Condicion> condiciones)
 	{	this.condiciones = condiciones;	}
-	public void aniadirCondicion(Condicion condicion){
+	public void addCondicion(Condicion condicion){
 		this.condiciones.add(condicion);
 	}
 	
@@ -87,7 +87,7 @@ public class Usuario {
 	{	return this.preferenciasAlimenticias;	}
 	public void setPreferenciasAlimenticias(Collection <String> preferenciasAlimenticias)
 	{	this.preferenciasAlimenticias = preferenciasAlimenticias;	}
-	public void aniadirPreferencia(String preferenciasAlimenticias){
+	public void addPreferencia(String preferenciasAlimenticias){
 		this.preferenciasAlimenticias.add(preferenciasAlimenticias);
 	}
 
@@ -95,7 +95,7 @@ public class Usuario {
 	{	return this.palabrasDisgustan;	}
 	public void setPalabrasDisgustan(Collection <String> palabrasDisgustan) 
 	{	this.palabrasDisgustan = palabrasDisgustan;	}
-	public void aniadirPalabrasDisgustan(String palabrasDisgustan) 
+	public void addPalabrasDisgustan(String palabrasDisgustan) 
 	{	this.palabrasDisgustan.add(palabrasDisgustan);	}
 	
 	public Collection <Receta> getRecetas() 
@@ -104,12 +104,14 @@ public class Usuario {
 	public void setRecetas(Collection <Receta> recetas) 
 	{	this.recetas = recetas;	}
 	
-	public void aniadirRecetas(Receta receta) 
-	{	if(receta.esValida())
-	
-	{	this.recetas.add(receta);}
-	
-		else {System.out.println("la receta no es valida");}
+	public boolean addReceta(Receta receta) 
+	{	
+		boolean retorno = receta.esValida();
+		if(retorno)
+		{
+		  recetas.add(receta);
+		}
+		return retorno;
 	}
 	
 	public Double getPeso()
