@@ -31,7 +31,7 @@ public class UsuarioTest {
 	
 	public void setUp() {
 		
-	lucho = new Usuario("lucho",  81.0, 1.80, LocalDate.of(1995,1,18), "INSTENSIVO", null);
+	lucho = new Usuario("lucho",  81.0, 1.80, LocalDate.of(1995,1,18), "INTENSIVO", null);
 	fede = new Usuario("federico", 72.0, 1.20, LocalDate.of(1995,1,18), "LEVE", "Masculino");
 	nico = new Usuario("nico", 60.0, 2.00, LocalDate.of(1995,1,18), "LEVE", null);
 	nicoLuis = new Usuario("nicoLuis", 57.8 , 1.70, LocalDate.of(1995,6,24) ,"NADA", null);
@@ -59,7 +59,7 @@ public class UsuarioTest {
 	@Test
 	public void noEsValidoPorqueVeganoNoPuedeTenerPollo()
 	{
-		fede.condiciones.add(new Vegano());  //revisar si new Vegano() es correcto
+		fede.añadirCondicion(new Vegano());  //revisar si new Vegano() es correcto
 		fede.aniadirPreferencia("Pollo");
 		assertEquals ((boolean)false , fede.esValido());
 	}
@@ -80,21 +80,21 @@ public class UsuarioTest {
 	@Test
 	public void sigueRutinaSaludableParaUsuarioConCondiciones()
 	{	
-		lucho.condiciones.add(new Diabetico());
-		lucho.condiciones.add(new Vegano());
+		lucho.añadirCondicion(new Diabetico());
+		lucho.añadirCondicion(new Vegano());
 		lucho.aniadirPreferencia("frutas");
 		assertEquals ((boolean)true , lucho.sigueRutinaSaludable());		
 	}
 	@Test
 	public void noSigueRutinaSaludableParaVeganoSinFrutas()
 	{	
-		nicoLuis.condiciones.add(new Vegano());
+		nicoLuis.añadirCondicion(new Vegano());
 		assertEquals ((boolean)false , nicoLuis.sigueRutinaSaludable());		
 	}
 	@Test
 	public void noSigueRutinaSaludableParaHipertensoSinIntensivo()
 	{	
-		fede.condiciones.add(new Hipertenso());
+		fede.añadirCondicion(new Hipertenso());
 		assertEquals ((boolean)false , fede.sigueRutinaSaludable());		
 	}
 	
