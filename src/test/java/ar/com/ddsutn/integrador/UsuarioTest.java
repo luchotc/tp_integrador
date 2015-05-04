@@ -26,7 +26,7 @@ public class UsuarioTest {
 	nico = new UsuarioMock(2.00, 60.0);
 	nicoLuis = new UsuarioMock(1.70, 57.8);
 	}
-	// ^ Le quedan 3 commits antes de que lo elimine ^
+	// ^ Le quedan 2 commits antes de que lo elimine ^
 	*/
 	
 	public void setUp() {
@@ -60,7 +60,7 @@ public class UsuarioTest {
 	public void noEsValidoPorqueVeganoNoPuedeTenerPollo()
 	{
 		fede.condiciones.add(new Vegano());  //revisar si new Vegano() es correcto
-		fede.aniadirPreferencia("pollo");
+		fede.aniadirPreferencia("Pollo");
 		assertEquals ((boolean)false , fede.esValido());
 	}
 	@Test
@@ -68,7 +68,7 @@ public class UsuarioTest {
 	{	assertEquals ((boolean)false , nico.esValido());	}
 	@Test
 	public void noEsValidoPorqueTieneQueTenerFecha()
-	{	assertEquals ((boolean)false , (new Usuario("carlos",  81.0, 1.80, null,"unaRutina", null)).esValido()); 	}
+	{	assertEquals ((boolean)false , (new Usuario("carlos",  81.0, 1.80, null,"MEDIANO", null)).esValido()); 	}
 	
 	//Tests sigueRutinaSaludable()
 	@Test
@@ -91,6 +91,7 @@ public class UsuarioTest {
 		nicoLuis.condiciones.add(new Vegano());
 		assertEquals ((boolean)false , nicoLuis.sigueRutinaSaludable());		
 	}
+	@Test
 	public void noSigueRutinaSaludableParaHipertensoSinIntensivo()
 	{	
 		fede.condiciones.add(new Hipertenso());

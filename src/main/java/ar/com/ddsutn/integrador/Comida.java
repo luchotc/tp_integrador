@@ -1,11 +1,11 @@
 package ar.com.ddsutn.integrador;
 
-public class Condimento {
+public class Comida {
 
 	private String nombre;
 	private Double cantidad;
 	
-	public Condimento(String nombre, Double cantidad){
+	public Comida(String nombre, Double cantidad){
 		this.nombre = nombre;
 		this.cantidad = cantidad;
 	}

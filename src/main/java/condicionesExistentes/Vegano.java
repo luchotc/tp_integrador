@@ -11,10 +11,10 @@ public class Vegano extends Usuario implements Condicion{
 	public Vegano(){}
 	
 	public boolean tieneComidaNoDeseada(Collection<String> coleccion){
-		return  coleccion.contains("pollo") ||
-				coleccion.contains("carne") ||
-				coleccion.contains("chivito") ||
-				coleccion.contains("chori");
+		return  coleccion.contains("Pollo") ||
+				coleccion.contains("Carne") ||
+				coleccion.contains("Chivito") ||
+				coleccion.contains("Chori");
 	}
 	
 	@Override
@@ -32,7 +32,7 @@ public class Vegano extends Usuario implements Condicion{
 	@Override
 	public boolean esAdecuada(Usuario usuario, Receta receta) 
 	{
-		return !this.tieneComidaNoDeseada((Collection<String>)receta.getCondimentos().stream().map( condimento -> condimento.getNombre()).collect(Collectors.toList()) );
+		return !this.tieneComidaNoDeseada(receta.getNombreIngredientes());
 	}
 
 	@Override

@@ -2,12 +2,14 @@ package ar.com.ddsutn.integrador;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Receta {
 	private String nombre;
 	private int totalCalorias;
-	private Collection <String> ingredientes = new HashSet<String>();
-	protected Collection <Condimento> condimentos = new HashSet<Condimento>();
+	private Collection <Comida> ingredientes = new HashSet<Comida>();
+	protected Collection <Comida> condimentos = new HashSet<Comida>();
 	private Collection <String> explicacion = new HashSet<String>();
 	private Usuario usuarioQueLaCargo;
 	
@@ -17,7 +19,7 @@ public class Receta {
 		this.usuarioQueLaCargo = usuarioQueLaCargo;
 	}
 	
-	public boolean recetaValida(){
+	public boolean esValida(){
 		return !this.ingredientes.isEmpty() &&
 				this.totalCalorias > 10 &&
 				this.totalCalorias < 5000 ;
@@ -28,10 +30,19 @@ public class Receta {
 	}
 	
 	/*	setters y getters	*/
-	public void addIngrediente(String ingrediente)
+	public void addIngrediente(Comida ingrediente)
 	{	this.ingredientes.add(ingrediente);		}
 	public void addExplicacion(String explicacion)
 	{	this.explicacion.add(explicacion);		}
-	public Collection <Condimento> getCondimentos()
+	public void addCondimentos(Comida condimento)
+	{	this.condimentos.add(condimento);		}
+	public Collection <Comida> getCondimentos()
 	{	return this.condimentos;		}
+	public Collection <Comida> getIngredientes()
+	{	return this.ingredientes;		}
+	public Collection<String> getNombreCondimentos() 
+	{	return this.getCondimentos().stream().map( condimento -> condimento.getNombre()).collect(Collectors.toList());	}
+	public Collection<String> getNombreIngredientes() 
+	{	return this.getIngredientes().stream().map( condimento -> condimento.getNombre()).collect(Collectors.toList());	}
+	
 }
