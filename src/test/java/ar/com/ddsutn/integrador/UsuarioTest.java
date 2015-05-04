@@ -108,13 +108,14 @@ public class UsuarioTest {
 		assertEquals ((boolean)false , fede.sigueRutinaSaludable());		
 	}
 	
-	/*@Test
+	@Test
 	public void elUsuarioAgregaRecetaPeroNoEsValida()
 	{
 		Receta recetaInvalida = new Receta("Recetin", 25000, lucho);
+		recetaInvalida.setIngredientes(new ArrayList<>());
 		lucho.setRecetas(new ArrayList<>());
 		assertEquals ( (boolean)false, lucho.addReceta(recetaInvalida) );
 	}
-	*/
+	
 	
 }
