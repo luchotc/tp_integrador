@@ -100,10 +100,17 @@ public class Usuario {
 	
 	public Collection <Receta> getRecetas() 
 	{	return this.recetas;	}
+	
 	public void setRecetas(Collection <Receta> recetas) 
 	{	this.recetas = recetas;	}
-	public void aniadirRecetas(Receta recetas) 
-	{	this.recetas.add(recetas);	}
+	
+	public void aniadirRecetas(Receta receta) 
+	{	if(receta.esValida())
+	
+	{	this.recetas.add(receta);}
+	
+		else {System.out.println("la receta no es valida");}
+	}
 	
 	public Double getPeso()
 	{	return this.peso;	}
