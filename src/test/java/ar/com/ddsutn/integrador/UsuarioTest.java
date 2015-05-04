@@ -4,11 +4,13 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import condicionesExistentes.Condicion;
 import condicionesExistentes.Diabetico;
 import condicionesExistentes.Hipertenso;
 import condicionesExistentes.Vegano;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class UsuarioTest {
 	
@@ -35,6 +37,8 @@ public class UsuarioTest {
 	fede = new Usuario("federico", 72.0, 1.20, LocalDate.of(1995,1,18), "LEVE", "Masculino");
 	nico = new Usuario("nico", 60.0, 2.00, LocalDate.of(1995,1,18), "LEVE", null);
 	nicoLuis = new Usuario("nicoLuis", 57.8 , 1.70, LocalDate.of(1995,6,24) ,"NADA", null);
+	nicoLuis.setCondiciones(new ArrayList<Condicion>());
+	nicoLuis.setPreferenciasAlimenticias(new ArrayList<String>());
 	
 	}
 	
@@ -55,10 +59,15 @@ public class UsuarioTest {
 	//Tests esValido()
 	@Test
 	public void esValidoParaNicoLuis()
-	{	assertEquals ((boolean)true , nicoLuis.esValido());		}
+	{	
+		assertEquals ((boolean)true , nicoLuis.esValido());		}
 	@Test
 	public void noEsValidoPorqueVeganoNoPuedeTenerPollo()
 	{
+
+	
+		fede.setCondiciones(new ArrayList<Condicion>());
+		fede.setPreferenciasAlimenticias(new ArrayList<String>());
 		fede.aniadirCondicion(new Vegano());  //revisar si new Vegano() es correcto
 		fede.aniadirPreferencia("Pollo");
 		assertEquals ((boolean)false , fede.esValido());
@@ -80,20 +89,31 @@ public class UsuarioTest {
 	@Test
 	public void sigueRutinaSaludableParaUsuarioConCondiciones()
 	{	
+
+		lucho.setCondiciones(new ArrayList<Condicion>());
+		lucho.setPreferenciasAlimenticias(new ArrayList<String>());
+		lucho.aniadirCondicion(new Diabetico());
 		lucho.aniadirCondicion(new Vegano());
+
 		lucho.aniadirPreferencia("frutas");
 		assertEquals ((boolean)true , lucho.sigueRutinaSaludable());		
 	}
 	@Test
 	public void noSigueRutinaSaludableParaVeganoSinFrutas()
-	{	
+
+
+	{
 		nicoLuis.aniadirCondicion(new Vegano());
+
 		assertEquals ((boolean)false , nicoLuis.sigueRutinaSaludable());		
 	}
 	@Test
 	public void noSigueRutinaSaludableParaHipertensoSinIntensivo()
 	{	
+
+		fede.setCondiciones(new ArrayList<Condicion>());
 		fede.aniadirCondicion(new Hipertenso());
+
 		assertEquals ((boolean)false , fede.sigueRutinaSaludable());		
 	}
 	
