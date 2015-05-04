@@ -11,6 +11,7 @@ public class Receta {
 	private Collection <Comida> ingredientes = new HashSet<Comida>();
 	protected Collection <Comida> condimentos = new HashSet<Comida>();
 	private Collection <String> explicacion = new HashSet<String>();
+	private Collection <Receta> subRecetas;
 	private Usuario usuarioQueLaCargo;
 	private String temporada;
 	
@@ -52,5 +53,13 @@ public class Receta {
 	{	return this.getCondimentos().stream().map( condimento -> condimento.getNombre()).collect(Collectors.toList());	}
 	public Collection<String> getNombreIngredientes() 
 	{	return this.getIngredientes().stream().map( condimento -> condimento.getNombre()).collect(Collectors.toList());	}
+
+	public Collection <Receta> getSubRecetas() {
+		return subRecetas;
+	}
+
+	public void setSubRecetas(Collection <Receta> subRecetas) {
+		this.subRecetas = subRecetas;
+	}
 	
 }
