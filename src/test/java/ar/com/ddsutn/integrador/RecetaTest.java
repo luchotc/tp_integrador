@@ -4,11 +4,14 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import condicionesExistentes.Condicion;
 import condicionesExistentes.Diabetico;
 import condicionesExistentes.Hipertenso;
 import condicionesExistentes.Vegano;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class RecetaTest {
 	
@@ -76,21 +79,24 @@ public class RecetaTest {
 	@Test
 	public void esInadecuadaParaDiabeticoConMasDe100grDeAzucar()
 	{	
-		fede.condiciones.add(new Diabetico());
+		fede.setCondiciones(new ArrayList<Condicion>());
+		fede.getCondiciones().add(new Diabetico());
 		unaReceta.addCondimentos(new Comida("Azucar", 150.00));
 		assertEquals ((boolean)true , fede.esInadecuada(unaReceta));		
 	}
 	@Test
 	public void esInadecuadaParaVeganoConChori()
 	{	
-		fede.condiciones.add(new Vegano());
+		fede.setCondiciones(new ArrayList<Condicion>());
+		fede.getCondiciones().add(new Vegano());
 		unaReceta.addIngrediente(new Comida("Chori", 1.00));
 		assertEquals ((boolean)true , fede.esInadecuada(unaReceta));		
 	}
 	@Test
 	public void esInadecuadaParaHipertensoConSal()
 	{	
-		fede.condiciones.add(new Hipertenso());
+		fede.setCondiciones(new ArrayList<Condicion>());
+		fede.getCondiciones().add(new Hipertenso());
 		assertEquals ((boolean)true , fede.esInadecuada(bifes));		
 	}
 	

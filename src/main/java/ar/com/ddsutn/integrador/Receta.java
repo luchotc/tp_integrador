@@ -12,11 +12,19 @@ public class Receta {
 	protected Collection <Comida> condimentos = new HashSet<Comida>();
 	private Collection <String> explicacion = new HashSet<String>();
 	private Usuario usuarioQueLaCargo;
+	private String temporada;
 	
 	public Receta(String nombre, int totalCalorias, Usuario usuarioQueLaCargo){
 		this.nombre = nombre;
 		this.totalCalorias = totalCalorias;
 		this.usuarioQueLaCargo = usuarioQueLaCargo;
+	}
+	
+	public Receta(String nombre, int totalCalorias, Usuario usuarioQueLaCargo, String temporada){
+		this.nombre = nombre;
+		this.totalCalorias = totalCalorias;
+		this.usuarioQueLaCargo = usuarioQueLaCargo;
+		this.temporada = temporada;
 	}
 	
 	public boolean esValida(){
