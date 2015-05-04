@@ -17,6 +17,7 @@ public class Usuario {
 	private Double altura;
 	private Double peso;
 	private String rutina;		// ------ es String?? ------ <----<----<----<---- Revisar
+	private Collection <Receta> recetas;
 	
 	public Usuario()
 	{super();}
@@ -78,7 +79,7 @@ public class Usuario {
 	{	return this.condiciones;	}
 	public void setCondiciones(Collection <Condicion> condiciones)
 	{	this.condiciones = condiciones;	}
-	public void añadirCondicion(Condicion condicion){
+	public void aÃ±adirCondicion(Condicion condicion){
 		this.condiciones.add(condicion);
 	}
 	
@@ -96,6 +97,13 @@ public class Usuario {
 	{	this.palabrasDisgustan = palabrasDisgustan;	}
 	public void aniadirPalabrasDisgustan(String palabrasDisgustan) 
 	{	this.palabrasDisgustan.add(palabrasDisgustan);	}
+	
+	public Collection <Receta> getRecetas() 
+	{	return this.recetas;	}
+	public void setRecetas(Collection <Receta> recetas) 
+	{	this.recetas = recetas;	}
+	public void aniadirRecetas(Receta recetas) 
+	{	this.recetas.add(recetas);	}
 	
 	public Double getPeso()
 	{	return this.peso;	}
