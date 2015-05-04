@@ -21,21 +21,12 @@ public class UsuarioTest {
 	private Usuario nicoLuis;
 	
 	@Before
-	/*	Nico Luis no usa mock no sabe que es, expliquenle giles!
-	public void setUp() {
-	lucho = new UsuarioMock(1.80 , 81.0);
-	fede = new UsuarioMock(1.20, 72.0);
-	nico = new UsuarioMock(2.00, 60.0);
-	nicoLuis = new UsuarioMock(1.70, 57.8);
-	}
-	// ^ Le quedan 2 commits antes de que lo elimine ^
-	*/
 	
 	public void setUp() {
 		
-	lucho = new Usuario("lucho",  81.0, 1.80, LocalDate.of(1995,1,18), "INTENSIVO", null);
+	lucho = new Usuario("lucho",  81.0, 1.80, LocalDate.of(1995,3,20), "INTENSIVO", null);
 	fede = new Usuario("federico", 72.0, 1.20, LocalDate.of(1995,1,18), "LEVE", "Masculino");
-	nico = new Usuario("nico", 60.0, 2.00, LocalDate.of(1995,1,18), "LEVE", null);
+	nico = new Usuario("nico", 60.0, 2.00, LocalDate.of(1994,03,29), "LEVE", null);
 	nicoLuis = new Usuario("nicoLuis", 57.8 , 1.70, LocalDate.of(1995,6,24) ,"NADA", null);
 	nicoLuis.setCondiciones(new ArrayList<Condicion>());
 	nicoLuis.setPreferenciasAlimenticias(new ArrayList<String>());
