@@ -63,8 +63,8 @@ public class Usuario {
 	decidan cual prefieren*/
 	
 	public boolean sigueRutinaSaludable(){
-		return  this.imc() > 18 && 
-				this.imc() < 30 &&
+		return  imc() > 18 && 
+				imc() < 30 &&
 				this.condiciones.stream().allMatch(usuario -> usuario.lograSubsanar(this));
 	}
 	
@@ -75,26 +75,42 @@ public class Usuario {
 	/*	setters y getters	*/
 	
 	public Collection <String> getPreferenciasAlimenticias() 
-	{	return this.preferenciasAlimenticias;	}
+	{	
+		return this.preferenciasAlimenticias;	
+	}
 	public void setPreferenciasAlimenticias(Collection <String> preferenciasAlimenticias)
-	{	this.preferenciasAlimenticias = preferenciasAlimenticias;	}
+	{	
+		this.preferenciasAlimenticias = preferenciasAlimenticias;	
+	}
 	public void aniadirPreferencia(String preferenciasAlimenticias){
 		this.preferenciasAlimenticias.add(preferenciasAlimenticias);
 	}
 
 	public Collection <String> getPalabrasDisgustan() 
-	{	return this.palabrasDisgustan;	}
+	{	
+		return this.palabrasDisgustan;	
+	}
 	public void setPalabrasDisgustan(Collection <String> palabrasDisgustan) 
-	{	this.palabrasDisgustan = palabrasDisgustan;	}
+	{	
+		this.palabrasDisgustan = palabrasDisgustan;	
+	}
 	public void aniadirPalabrasDisgustan(String palabrasDisgustan) 
-	{	this.palabrasDisgustan.add(palabrasDisgustan);	}
+	{	
+		this.palabrasDisgustan.add(palabrasDisgustan);	
+	}
 	
 	public Double getPeso()
-	{	return this.peso;	}
+	{	
+		return this.peso;	
+	}
 	public String getSexo()
-	{	return this.sexo;	}
+	{	
+		return this.sexo;	
+	}
 	public String getRutina()
-	{	return this.rutina;	}
+	{	
+		return this.rutina;	
+	}
 	
 	public boolean rutinaSedentaria(){
 		return this.rutina.equals("LEVE") ||
