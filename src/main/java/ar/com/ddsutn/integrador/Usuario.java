@@ -79,7 +79,7 @@ public class Usuario {
 	{	return this.condiciones;	}
 	public void setCondiciones(Collection <Condicion> condiciones)
 	{	this.condiciones = condiciones;	}
-	public void añadirCondicion(Condicion condicion){
+	public void aniadirCondicion(Condicion condicion){
 		this.condiciones.add(condicion);
 	}
 	

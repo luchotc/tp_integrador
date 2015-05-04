@@ -59,7 +59,7 @@ public class UsuarioTest {
 	@Test
 	public void noEsValidoPorqueVeganoNoPuedeTenerPollo()
 	{
-		fede.añadirCondicion(new Vegano());  //revisar si new Vegano() es correcto
+		fede.aniadirCondicion(new Vegano());  //revisar si new Vegano() es correcto
 		fede.aniadirPreferencia("Pollo");
 		assertEquals ((boolean)false , fede.esValido());
 	}
@@ -80,21 +80,20 @@ public class UsuarioTest {
 	@Test
 	public void sigueRutinaSaludableParaUsuarioConCondiciones()
 	{	
-		lucho.añadirCondicion(new Diabetico());
-		lucho.añadirCondicion(new Vegano());
+		lucho.aniadirCondicion(new Vegano());
 		lucho.aniadirPreferencia("frutas");
 		assertEquals ((boolean)true , lucho.sigueRutinaSaludable());		
 	}
 	@Test
 	public void noSigueRutinaSaludableParaVeganoSinFrutas()
 	{	
-		nicoLuis.añadirCondicion(new Vegano());
+		nicoLuis.aniadirCondicion(new Vegano());
 		assertEquals ((boolean)false , nicoLuis.sigueRutinaSaludable());		
 	}
 	@Test
 	public void noSigueRutinaSaludableParaHipertensoSinIntensivo()
 	{	
-		fede.añadirCondicion(new Hipertenso());
+		fede.aniadirCondicion(new Hipertenso());
 		assertEquals ((boolean)false , fede.sigueRutinaSaludable());		
 	}
 	
