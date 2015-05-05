@@ -3,7 +3,11 @@ package ar.com.ddsutn.integrador;
 import java.time.LocalDate;
 import java.util.Collection;
 
+import ar.com.ddsutn.condicionesExistentes.Celiaco;
 import ar.com.ddsutn.condicionesExistentes.Condicion;
+import ar.com.ddsutn.condicionesExistentes.Diabetico;
+import ar.com.ddsutn.condicionesExistentes.Hipertenso;
+import ar.com.ddsutn.condicionesExistentes.Vegano;
 
 
 public class Usuario {
@@ -18,6 +22,21 @@ public class Usuario {
 	private Double peso;
 	private String rutina;		// ------ es String?? ------ <----<----<----<---- Revisar
 	private Collection <Receta> recetas;
+	private static Collection<Condicion> CondicionesExistentes ;
+	
+	private static void SetCondicionesExistentes()
+	
+	{CondicionesExistentes.add(new Celiaco());
+	 CondicionesExistentes.add(new Hipertenso());
+	 CondicionesExistentes.add(new Vegano());
+	 CondicionesExistentes.add(new Diabetico());
+	}
+	
+	public static Collection <Condicion> GetCondicionesExistentes()
+	{
+		return CondicionesExistentes;
+	}
+	
 	
 	public Usuario()
 	{super();}

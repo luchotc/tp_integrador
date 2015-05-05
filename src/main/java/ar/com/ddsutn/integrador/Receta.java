@@ -32,7 +32,7 @@ public class Receta {
 	
 	public static boolean EsPublica(Receta receta)
 	{
-		return Receta.recetasPublicas.stream().anyMatch(recetaPropia -> (recetaPropia.equals(receta)));
+		return recetasPublicas.stream().anyMatch(recetaPropia -> (recetaPropia.equals(receta)));
 	}
 	
 	public boolean esValida(){
@@ -44,6 +44,13 @@ public class Receta {
 	public boolean inadecuadoPara(){
 		return usuarioQueLaCargo.esInadecuada(this);
 	}
+	
+	public Collection <Condicion> condicionesInadecuadas()
+	{
+		return Usuario.GetCondicionesExistentes().stream().filter(condicion -> !condicion.esAdecuada(this)).collect(Collectors.toList());
+	}
+	
+	
 	
 	/*	setters y getters	*/
 	public void addIngrediente(Comida ingrediente)
@@ -103,10 +110,7 @@ public class Receta {
 		return subRecetas;
 	}
 			
-	public Collection <Condicion> condicionesAdecuadas(Collection<Condicion> condiciones)
-	{
-		return condiciones.stream().filter(condicion -> condicion.esAdecuada(this)).collect(Collectors.toList());
-	}
+	
 
 	public void setSubRecetas(Collection <Receta> subRecetas) {
 		this.subRecetas = subRecetas;
