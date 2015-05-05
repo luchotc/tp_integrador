@@ -87,7 +87,7 @@ public class RecetaTest {
 	}
 	
 	@Test
-	public void unaRecetaEsIgualQueOtra()
+	public void unaRecetaEsIgualAOtra()
 	{
 		Receta unaReceta = new Receta ("UnaReceta",90,"invierno");
 		Receta otraReceta = new Receta ("UnaReceta",90,"invierno");
@@ -103,6 +103,23 @@ public class RecetaTest {
 		otraReceta.setDificultad("facil");
 		assertEquals ((boolean) true, otraReceta.equals(otraReceta));
 
+	}
+	
+	public void unaRecetaNoEsIgualAOtraPorqueTienenDistintoNombre()
+	{
+		Receta unaReceta = new Receta ("UnaReceta",90,"invierno");
+		Receta otraReceta = new Receta ("OtraReceta",90,"invierno");
+		unaReceta.setCondimentos(condimentos);
+		unaReceta.setIngredientes(ingredientes);
+		unaReceta.setExplicaciones(explicaciones);
+		unaReceta.setSubRecetas(subRecetas);
+		unaReceta.setDificultad("facil");
+		otraReceta.setCondimentos(condimentos);
+		otraReceta.setIngredientes(ingredientes);
+		otraReceta.setExplicaciones(explicaciones);
+		otraReceta.setSubRecetas(subRecetas);
+		otraReceta.setDificultad("facil");
+		assertEquals ((boolean) false, otraReceta.equals(otraReceta));
 	}
 	
 	//Tests Receta Valida
