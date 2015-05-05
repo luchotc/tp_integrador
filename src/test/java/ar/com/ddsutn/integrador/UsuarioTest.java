@@ -132,7 +132,7 @@ public class UsuarioTest {
 	@Test
 	public void elUsuarioAgregaRecetaPeroNoEsValida()
 	{
-		Receta recetaInvalida = new Receta("Recetin", 25000, lucho);
+		Receta recetaInvalida = new Receta("Recetin", 25000);
 		recetaInvalida.setIngredientes(new ArrayList<>());
 		lucho.setRecetas(new ArrayList<>());
 		lucho.addReceta(recetaInvalida);

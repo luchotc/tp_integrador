@@ -12,21 +12,22 @@ public class Receta {
 	protected Collection <Comida> condimentos;
 	private Collection <String> explicaciones;
 	private Collection <Receta> subRecetas;
-	private Usuario usuarioQueLaCargo;
 	private String temporada;
 	public static Collection <Receta> recetasPublicas;
 	
+	public void modificarse()
+	{
 	
-	public Receta(String nombre, int totalCalorias, Usuario usuarioQueLaCargo){
-		this.nombre = nombre;
-		this.totalCalorias = totalCalorias;
-		this.usuarioQueLaCargo = usuarioQueLaCargo;
 	}
 	
-	public Receta(String nombre, int totalCalorias, Usuario usuarioQueLaCargo, String temporada){
+	public Receta(String nombre, int totalCalorias){
 		this.nombre = nombre;
 		this.totalCalorias = totalCalorias;
-		this.usuarioQueLaCargo = usuarioQueLaCargo;
+	}
+	
+	public Receta(String nombre, int totalCalorias, String temporada){
+		this.nombre = nombre;
+		this.totalCalorias = totalCalorias;
 		this.temporada = temporada;
 	}
 	
@@ -41,8 +42,8 @@ public class Receta {
 				this.totalCalorias < 5000 ;
 	}
 	
-	public boolean inadecuadoPara(){
-		return usuarioQueLaCargo.esInadecuada(this);
+	public boolean inadecuadoPara(Usuario usuario){
+		return usuario.esInadecuada(this);
 	}
 	
 	public Collection <Condicion> condicionesInadecuadas()

@@ -37,6 +37,13 @@ public class Usuario {
 		return CondicionesExistentes;
 	}
 	
+	public void modificarReceta(Receta receta)
+	{
+		if(puedeVerOModificarReceta(receta))
+		receta.modificarse();
+		
+	}
+	
 	
 	public Usuario()
 	{super();}

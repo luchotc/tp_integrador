@@ -27,7 +27,7 @@ public class RecetaTest {
 	lucho = new Usuario("lucho",  81.0, 1.80, LocalDate.of(1995,1,18), "INTENSIVO", null);
 	fede = new Usuario("federico", 72.0, 1.20, LocalDate.of(1995,1,18), "LEVE", "Masculino");
 	
-	unaReceta = new Receta("una receta", 1500, fede);
+	unaReceta = new Receta("una receta", 1500);
 	Collection <Comida> ingredientes = new ArrayList<Comida>();
 	Collection <Comida> condimentos = new ArrayList<Comida>();
 
@@ -37,7 +37,7 @@ public class RecetaTest {
 	unaReceta.setIngredientes(ingredientes);
 	unaReceta.setCondimentos(condimentos);
 	
-	bifes = new Receta("Bifes a la criolla con papas y arvejas", 785, fede);
+	bifes = new Receta("Bifes a la criolla con papas y arvejas", 785);
 	
 	ingredientes.clear();
 	condimentos.clear();
@@ -90,7 +90,7 @@ public class RecetaTest {
 	@Test
 	public void unaRecetaNoEsValidaPorNoTenerIngredientes()
 	{
-		Receta otraReceta = new Receta("otra Receta",1500, lucho);
+		Receta otraReceta = new Receta("otra Receta",1500);
 		otraReceta.setIngredientes(new ArrayList<Comida>());
 		assertEquals ((boolean)false , otraReceta.esValida());		
 	}
@@ -98,7 +98,7 @@ public class RecetaTest {
 	@Test
 	public void unaRecetaNoEsValidaPorNoTenerRangoEntre10Y5000()
 	{
-		Receta otraReceta = new Receta("otra Receta",8000, lucho);
+		Receta otraReceta = new Receta("otra Receta",8000);
 		otraReceta.setIngredientes(new ArrayList<Comida>());
 		assertEquals ((boolean)false , otraReceta.esValida());		}
 	
