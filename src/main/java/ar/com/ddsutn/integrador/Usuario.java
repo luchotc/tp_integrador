@@ -79,8 +79,14 @@ public class Usuario {
 	}
 	
 	public boolean puedeVerReceta (Receta receta)
-	{ return Receta.EsPublica(receta) || this.puedeVerReceta(receta);
+	{ return Receta.EsPublica(receta) || esRecetaPropia(receta);
 	}
+	
+	public boolean puedeModificarReceta (Receta receta)
+	{ return puedeVerReceta(receta);
+	}
+	
+	
 	
 	
 	
