@@ -114,7 +114,8 @@ public class UsuarioTest {
 		Receta recetaInvalida = new Receta("Recetin", 25000, lucho);
 		recetaInvalida.setIngredientes(new ArrayList<>());
 		lucho.setRecetas(new ArrayList<>());
-		assertEquals ( (boolean)false, lucho.addReceta(recetaInvalida) );
+		lucho.addReceta(recetaInvalida);
+		assertEquals ( (boolean)true, lucho.getRecetas().isEmpty() );
 	}
 	
 	

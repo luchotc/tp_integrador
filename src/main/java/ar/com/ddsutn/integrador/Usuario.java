@@ -104,14 +104,12 @@ public class Usuario {
 	public void setRecetas(Collection <Receta> recetas) 
 	{	this.recetas = recetas;	}
 	
-	public boolean addReceta(Receta receta) 
+	public void addReceta(Receta receta) 
 	{	
-		boolean retorno = receta.esValida();
-		if(retorno)
+		if(receta.esValida())
 		{
 		  recetas.add(receta);
 		}
-		return retorno;
 	}
 	
 	public Double getPeso()
