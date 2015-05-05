@@ -22,7 +22,7 @@ public class Celiaco implements Condicion {
 	}
 
 	@Override
-	public boolean esAdecuada(Usuario usuario, Receta receta) 
+	public boolean esAdecuada(Receta receta) 
 	{
 		return true;
 	}

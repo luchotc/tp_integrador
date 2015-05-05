@@ -3,6 +3,8 @@ package ar.com.ddsutn.integrador;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import ar.com.ddsutn.condicionesExistentes.Condicion;
+
 public class Receta {
 	private String nombre;
 	private int totalCalorias;
@@ -13,6 +15,7 @@ public class Receta {
 	private Usuario usuarioQueLaCargo;
 	private String temporada;
 	public static Collection <Receta> recetasPublicas;
+	
 	
 	public Receta(String nombre, int totalCalorias, Usuario usuarioQueLaCargo){
 		this.nombre = nombre;
@@ -99,6 +102,11 @@ public class Receta {
 	public Collection <Receta> getSubRecetas() {
 		return subRecetas;
 	}
+	
+	/*public Collection <Condicion> condicionesInadecuadas(Collection <Condicion> condiciones)
+	{
+	
+	}*/
 
 	public void setSubRecetas(Collection <Receta> subRecetas) {
 		this.subRecetas = subRecetas;

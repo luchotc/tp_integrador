@@ -25,12 +25,12 @@ public class Diabetico implements Condicion{
 	}
 	
 	@Override
-	public boolean esAdecuada(Usuario usuario, Receta receta) 
+	public boolean esAdecuada(Receta receta) 
 	{
-		return  getAzucar(usuario,receta).mapToDouble( condimento -> condimento.getCantidad()).sum() <100;
+		return  getAzucar(receta).mapToDouble( condimento -> condimento.getCantidad()).sum() <100;
 	}
 	
-	public Stream<Comida> getAzucar(Usuario usuario, Receta receta) 
+	public Stream<Comida> getAzucar(Receta receta) 
 	{
 		return receta.getCondimentos().stream().filter( condimento -> condimento.getNombre().equals("Azucar"));
 	}

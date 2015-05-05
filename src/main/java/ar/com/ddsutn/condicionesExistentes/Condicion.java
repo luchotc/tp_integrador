@@ -8,6 +8,6 @@ public interface Condicion {
 	
 	public boolean validar(Usuario usuario);
 	public boolean lograSubsanar(Usuario usuario);
-	public boolean esAdecuada(Usuario usuario, Receta receta);
+	public boolean esAdecuada(Receta receta);
 
 }

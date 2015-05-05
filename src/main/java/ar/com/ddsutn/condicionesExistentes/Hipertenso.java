@@ -21,7 +21,7 @@ public class Hipertenso implements Condicion{
 	}
 
 	@Override
-	public boolean esAdecuada(Usuario usuario, Receta receta) {
+	public boolean esAdecuada(Receta receta) {
 		// TODO Auto-generated method stub
 		return false;
 	}

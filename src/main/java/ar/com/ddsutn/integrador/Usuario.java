@@ -70,7 +70,7 @@ public class Usuario {
 	}
 	
 	public boolean esInadecuada(Receta receta){
-		return !this.condiciones.stream().allMatch(condicion -> condicion.esAdecuada(this, receta));
+		return !this.condiciones.stream().allMatch(condicion -> condicion.esAdecuada(receta));
 	}
 	
 	public boolean esRecetaPropia (Receta receta)
@@ -82,12 +82,6 @@ public class Usuario {
 	{ return Receta.EsPublica(receta) || esRecetaPropia(receta);
 	}
 
-	
-	
-	
-	
-	
-	
 	/*	setters y getters	*/
 	
 	public Collection <Condicion> getCondiciones() 
@@ -152,7 +146,6 @@ public class Usuario {
 		  recetas.add(receta);
 		}
 	}
-	
 	
 	public Double getPeso()
 	{	
