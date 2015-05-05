@@ -33,10 +33,8 @@ public class Hipertenso implements Condicion{
 		return !this.tieneComidaNoDeseada((Collection<String>)receta.getCondimentos().stream().map( condimento -> condimento.getNombre()).collect(Collectors.toList()) );
 	}
 
-	@Override
-	public void validar(Usuario usuario) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 	
-}
+

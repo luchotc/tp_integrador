@@ -25,11 +25,7 @@ public class Celiaco implements Condicion {
 		return true;
 	}
 
-	@Override
-	public void validar(Usuario usuario) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 
 }
