@@ -36,47 +36,70 @@ public class UsuarioTest {
 	//Tests imc()
 	@Test
 	public void imcHaceBienLaCuenta()
-	{	assertEquals ((Double) 25.0, lucho.imc()  )	;	}
+	{	
+		assertEquals ((Double) 25.0, lucho.imc()  )	;	
+	}
+	
 	@Test
 	public void imcSeCalculaBienParaFede()
-	{	assertEquals ((Double)50.0 , fede.imc());	}
+	{	
+		assertEquals ((Double)50.0 , fede.imc());	
+	}
+	
 	@Test
 	public void imcSeCalculaBienParaNico()
-	{	assertEquals ((Double)15.0 , nico.imc());	}
+	{	
+		assertEquals ((Double)15.0 , nico.imc());
+	}
+	
 	@Test
 	public void imcSeCalculaBienParaNicoLuis()
-	{	assertEquals ((Double)20.0 , nicoLuis.imc());	}
+	{	
+		assertEquals ((Double)20.0 , nicoLuis.imc());
+	}
 	
 	//Tests esValido()
 	@Test
 	public void esValidoParaNicoLuis()
 	{	
-		assertEquals ((boolean)true , nicoLuis.esValido());		}
+		assertEquals ((boolean)true , nicoLuis.esValido());		
+	}
+	
 	@Test
 	public void noEsValidoPorqueVeganoNoPuedeTenerPollo()
 	{
-
-	
 		fede.setCondiciones(new ArrayList<Condicion>());
 		fede.setPreferenciasAlimenticias(new ArrayList<String>());
 		fede.addCondicion(new Vegano());  //revisar si new Vegano() es correcto
 		fede.addPreferencia("Pollo");
 		assertEquals ((boolean)false , fede.esValido());
 	}
+	
 	@Test
 	public void noEsValidoPorqueTieneQueTenerMasDe4Letras()
-	{	assertEquals ((boolean)false , nico.esValido());	}
+	{	
+		assertEquals ((boolean)false , nico.esValido());	
+	}
+	
 	@Test
 	public void noEsValidoPorqueTieneQueTenerFecha()
-	{	assertEquals ((boolean)false , (new Usuario("carlos",  81.0, 1.80, null,"MEDIANO", null)).esValido()); 	}
+	{
+		assertEquals ((boolean)false , (new Usuario("carlos",  81.0, 1.80, null,"MEDIANO", null)).esValido()); 
+	}
 	
 	//Tests sigueRutinaSaludable()
 	@Test
 	public void sigueRutinaSaludableParaNicoLuis()
-	{	assertEquals ((boolean)true , nicoLuis.sigueRutinaSaludable());		}
+	{	
+		assertEquals ((boolean)true , nicoLuis.sigueRutinaSaludable());		
+	}
+	
 	@Test
 	public void sigueRutinaSaludableParaUsuarioFueraRangoIMC()
-	{	assertEquals ((boolean)false , nico.sigueRutinaSaludable());		}
+	{	
+		assertEquals ((boolean)false , nico.sigueRutinaSaludable());	
+	}
+	
 	@Test
 	public void sigueRutinaSaludableParaUsuarioConCondiciones()
 	{	
@@ -91,13 +114,11 @@ public class UsuarioTest {
 	}
 	@Test
 	public void noSigueRutinaSaludableParaVeganoSinFrutas()
-
-
 	{
 		nicoLuis.addCondicion(new Vegano());
-
 		assertEquals ((boolean)false , nicoLuis.sigueRutinaSaludable());		
 	}
+	
 	@Test
 	public void noSigueRutinaSaludableParaHipertensoSinIntensivo()
 	{	

@@ -83,7 +83,10 @@ public class RecetaTest {
 	//Tests Receta Valida
 	@Test
 	public void unaRecetaEsValida()
-	{	assertEquals ((boolean)true , bifes.esValida());		}
+	{	
+		assertEquals ((boolean)true , bifes.esValida());	
+	}
+	
 	@Test
 	public void unaRecetaNoEsValidaPorNoTenerIngredientes()
 	{
@@ -91,6 +94,7 @@ public class RecetaTest {
 		otraReceta.setIngredientes(new ArrayList<Comida>());
 		assertEquals ((boolean)false , otraReceta.esValida());		
 	}
+	
 	@Test
 	public void unaRecetaNoEsValidaPorNoTenerRangoEntre10Y5000()
 	{
@@ -107,6 +111,7 @@ public class RecetaTest {
 		unaReceta.addCondimentos(new Comida("Azucar", 150.00));
 		assertEquals ((boolean)true , fede.esInadecuada(unaReceta));		
 	}
+	
 	@Test
 	public void esInadecuadaParaVeganoConChori()
 	{	
@@ -115,6 +120,7 @@ public class RecetaTest {
 		unaReceta.addIngrediente(new Comida("Chori", 1.00));
 		assertEquals ((boolean)true , fede.esInadecuada(unaReceta));		
 	}
+	
 	@Test
 	public void esInadecuadaParaHipertensoConSal()
 	{	

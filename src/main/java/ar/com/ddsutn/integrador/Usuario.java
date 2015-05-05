@@ -76,33 +76,59 @@ public class Usuario {
 	/*	setters y getters	*/
 	
 	public Collection <Condicion> getCondiciones() 
-	{	return this.condiciones;	}
+	{	
+		return this.condiciones;
+	}
+	
 	public void setCondiciones(Collection <Condicion> condiciones)
-	{	this.condiciones = condiciones;	}
-	public void addCondicion(Condicion condicion){
+	{	
+		this.condiciones = condiciones;	
+	}
+	
+	public void addCondicion(Condicion condicion)
+	{
 		this.condiciones.add(condicion);
 	}
 	
 	public Collection <String> getPreferenciasAlimenticias() 
-	{	return this.preferenciasAlimenticias;	}
+	{	
+		return this.preferenciasAlimenticias;	
+	}
+	
 	public void setPreferenciasAlimenticias(Collection <String> preferenciasAlimenticias)
-	{	this.preferenciasAlimenticias = preferenciasAlimenticias;	}
-	public void addPreferencia(String preferenciasAlimenticias){
+	{	
+		this.preferenciasAlimenticias = preferenciasAlimenticias;
+	}
+	
+	public void addPreferencia(String preferenciasAlimenticias)
+	{
 		this.preferenciasAlimenticias.add(preferenciasAlimenticias);
 	}
 
 	public Collection <String> getPalabrasDisgustan() 
-	{	return this.palabrasDisgustan;	}
+	{	
+		return this.palabrasDisgustan;
+	}
+	
 	public void setPalabrasDisgustan(Collection <String> palabrasDisgustan) 
-	{	this.palabrasDisgustan = palabrasDisgustan;	}
+	{	
+		this.palabrasDisgustan = palabrasDisgustan;	
+	}
+	
 	public void addPalabrasDisgustan(String palabrasDisgustan) 
-	{	this.palabrasDisgustan.add(palabrasDisgustan);	}
+	{	
+		this.palabrasDisgustan.add(palabrasDisgustan);
+	}
 	
 	public Collection <Receta> getRecetas() 
-	{	return this.recetas;	}
+	{	
+		return this.recetas;
+	}
 	
 	public void setRecetas(Collection <Receta> recetas) 
-	{	this.recetas = recetas;	}
+	{	
+		this.recetas = recetas;	
+	}
 	
 	public void addReceta(Receta receta) 
 	{	
@@ -113,11 +139,19 @@ public class Usuario {
 	}
 	
 	public Double getPeso()
-	{	return this.peso;	}
+	{	
+		return this.peso;	
+	}
+	
 	public String getSexo()
-	{	return this.sexo;	}
+	{	
+		return this.sexo;	
+	}
+	
 	public String getRutina()
-	{	return this.rutina;	}
+	{	
+		return this.rutina;	
+	}
 	
 	public boolean rutinaSedentaria(){
 		return this.rutina.equals("LEVE") ||

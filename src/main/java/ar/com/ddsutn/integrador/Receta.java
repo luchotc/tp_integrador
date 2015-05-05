@@ -40,23 +40,49 @@ public class Receta {
 	
 	/*	setters y getters	*/
 	public void addIngrediente(Comida ingrediente)
-	{	this.ingredientes.add(ingrediente);		}
+	{	
+		this.ingredientes.add(ingrediente);		
+	}
+	
 	public void addExplicacion(String explicacion)
-	{	this.explicaciones.add(explicacion);		}
+	{	
+		this.explicaciones.add(explicacion);		
+	}
+	
 	public void addCondimentos(Comida condimento)
-	{	this.condimentos.add(condimento);		}
+	{	
+		this.condimentos.add(condimento);		
+	}
+	
 	public Collection <Comida> getCondimentos()
-	{	return this.condimentos;		}
+	{	
+		return this.condimentos;		
+	}
+	
 	public Collection <Comida> getIngredientes()
-	{	return this.ingredientes;		}
+	{	
+		return this.ingredientes;	
+	}
+	
 	public void setCondimentos(Collection <Comida> condimentos)
-	{	this.condimentos = condimentos;		}
+	{	
+		this.condimentos = condimentos;		
+	}
+	
 	public void setIngredientes(Collection <Comida> ingredientes)
-	{	this.ingredientes = ingredientes;		}
+	{	
+		this.ingredientes = ingredientes;	
+	}
+	
 	public Collection<String> getNombreCondimentos() 
-	{	return this.getCondimentos().stream().map( condimento -> condimento.getNombre()).collect(Collectors.toList());	}
+	{	
+		return this.getCondimentos().stream().map( condimento -> condimento.getNombre()).collect(Collectors.toList());	
+	}
+	
 	public Collection<String> getNombreIngredientes() 
-	{	return this.getIngredientes().stream().map( condimento -> condimento.getNombre()).collect(Collectors.toList());	}
+	{	
+		return this.getIngredientes().stream().map( condimento -> condimento.getNombre()).collect(Collectors.toList());
+	}
 
 	public Collection <Receta> getSubRecetas() {
 		return subRecetas;
