@@ -20,7 +20,11 @@ public class RecetaTest {
 	private Usuario fede;
 	private Receta unaReceta;
 	private Receta bifes;
-
+	Collection <String> explicaciones;
+	Collection <Comida> ingredientes;
+	Collection <Comida> condimentos;
+	Collection <Receta> subRecetas;
+	
 	@Before
 	public void setUp() {
 		
@@ -28,8 +32,9 @@ public class RecetaTest {
 	fede = new Usuario("federico", 72.0, 1.20, LocalDate.of(1995,1,18), "LEVE", "Masculino");
 	
 	unaReceta = new Receta("una receta", 1500);
-	Collection <Comida> ingredientes = new ArrayList<Comida>();
-	Collection <Comida> condimentos = new ArrayList<Comida>();
+	ingredientes = new ArrayList<Comida>();
+	condimentos = new ArrayList<Comida>();
+	subRecetas = new ArrayList<Receta>();
 
 	ingredientes.add(new Comida ("unIngrediente", 2.0));
 	condimentos.add(new Comida("Pepinos", 3.0));
@@ -42,7 +47,7 @@ public class RecetaTest {
 	ingredientes.clear();
 	condimentos.clear();
 
-	Collection <String> explicaciones = new ArrayList<String>();
+	explicaciones = new ArrayList<String>();
 	
 	ingredientes.add(new Comida("Cuadril", 3.0));
 	ingredientes.add(new Comida("Papas", 1.5));
@@ -77,8 +82,28 @@ public class RecetaTest {
 	bifes.setCondimentos(condimentos);
 	bifes.setExplicaciones(explicaciones);
 	
+	subRecetas.add(bifes);
+	
 	}
 	
+	@Test
+	public void unaRecetaEsIgualQueOtra()
+	{
+		Receta unaReceta = new Receta ("UnaReceta",90,"invierno");
+		Receta otraReceta = new Receta ("UnaReceta",90,"invierno");
+		unaReceta.setCondimentos(condimentos);
+		unaReceta.setIngredientes(ingredientes);
+		unaReceta.setExplicaciones(explicaciones);
+		unaReceta.setSubRecetas(subRecetas);
+		unaReceta.setDificultad("facil");
+		otraReceta.setCondimentos(condimentos);
+		otraReceta.setIngredientes(ingredientes);
+		otraReceta.setExplicaciones(explicaciones);
+		otraReceta.setSubRecetas(subRecetas);
+		otraReceta.setDificultad("facil");
+		assertEquals ((boolean) true, otraReceta.equals(otraReceta));
+
+	}
 	
 	//Tests Receta Valida
 	@Test

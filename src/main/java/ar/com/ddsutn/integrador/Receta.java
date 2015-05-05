@@ -13,7 +13,20 @@ public class Receta {
 	private Collection <String> explicaciones;
 	private Collection <Receta> subRecetas;
 	private String temporada;
+	private String dificultad;
 	public static Collection <Receta> recetasPublicas;
+	
+	public boolean equals(Receta receta)
+	{
+		boolean mismoNombre = nombre.equals(receta.nombre);
+		boolean mismosIngredientes = ingredientes.equals(receta.ingredientes);
+		boolean mismosCondimentos = condimentos.equals(receta.condimentos);
+		boolean mismasExplicaciones = explicaciones.equals(receta.explicaciones);
+		boolean mismasSubrecetas = subRecetas.equals(receta.subRecetas);
+		boolean mismaTemporada = temporada.equals(receta.temporada);
+		boolean mismaDificultad = dificultad.equals(receta.dificultad);
+		return  mismoNombre && mismosIngredientes && mismosCondimentos && mismasExplicaciones && mismasSubrecetas && mismaTemporada && mismaDificultad;
+	}
 	
 	public void modificarse()
 	{
@@ -110,8 +123,6 @@ public class Receta {
 	public Collection <Receta> getSubRecetas() {
 		return subRecetas;
 	}
-			
-	
 
 	public void setSubRecetas(Collection <Receta> subRecetas) {
 		this.subRecetas = subRecetas;
@@ -119,6 +130,14 @@ public class Receta {
 
 	public void setExplicaciones(Collection<String> explicaciones) {
 		this.explicaciones = explicaciones;
+	}
+
+	public String getDificultad() {
+		return dificultad;
+	}
+
+	public void setDificultad(String dificultad) {
+		this.dificultad = dificultad;
 	}
 	
 }
