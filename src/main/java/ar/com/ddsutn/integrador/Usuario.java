@@ -24,7 +24,7 @@ public class Usuario {
 	private Collection <Receta> recetas;
 	private static Collection<Condicion> CondicionesExistentes ;
 	
-	private static void SetCondicionesExistentes()
+	public static void SetCondicionesExistentes()
 	
 	{CondicionesExistentes.add(new Celiaco());
 	 CondicionesExistentes.add(new Hipertenso());

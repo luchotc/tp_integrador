@@ -104,6 +104,7 @@ public class RecetaTest {
 		assertEquals ((boolean) true, unaReceta.equals(otraReceta));
 	}
 	
+	@Test
 	public void unaRecetaNoEsIgualAOtraPorqueTienenDistintoNombre()
 	{
 		Receta unaReceta = new Receta ("UnaReceta",90,"invierno");
