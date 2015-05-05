@@ -73,6 +73,17 @@ public class Usuario {
 		return !this.condiciones.stream().allMatch(condicion -> condicion.esAdecuada(this, receta));
 	}
 	
+	public boolean esRecetaPropia (Receta receta)
+	{
+		return recetas.stream().anyMatch(recetaPropia -> (recetaPropia.equals(receta)));
+	}
+	
+	public boolean puedeVerReceta (Receta receta)
+	{ return Receta.EsPublica(receta) || this.puedeVerReceta(receta);
+	}
+	
+	
+	
 	/*	setters y getters	*/
 	
 	public Collection <Condicion> getCondiciones() 
@@ -136,11 +147,6 @@ public class Usuario {
 		{
 		  recetas.add(receta);
 		}
-	}
-	
-	public boolean puedeModificarReceta (Receta receta)
-	{
-		return recetas.stream().anyMatch(recetaPropia -> (recetaPropia.equals(receta)));
 	}
 	
 	

@@ -27,6 +27,11 @@ public class Receta {
 		this.temporada = temporada;
 	}
 	
+	public static boolean EsPublica(Receta receta)
+	{
+		return Receta.recetasPublicas.stream().anyMatch(recetaPropia -> (recetaPropia.equals(receta)));
+	}
+	
 	public boolean esValida(){
 		return !this.ingredientes.isEmpty() &&
 				this.totalCalorias > 10 &&
