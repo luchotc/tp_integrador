@@ -8,7 +8,7 @@ public class Celiaco implements Condicion {
 	public Celiaco(){};
 	
 	@Override
-	public boolean validar(Usuario usuario) 
+	public boolean esValidoPorCondicion(Usuario usuario) 
 	{
 		return true;
 	}
@@ -26,6 +26,8 @@ public class Celiaco implements Condicion {
 	}
 
 	
+		
+	}
 
 
 }

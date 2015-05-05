@@ -39,7 +39,7 @@ public class Usuario {
 	 }
 	
 	public boolean esValido() {
-		return esValidoPorCampos() && this.condiciones.stream().allMatch(usuario -> usuario.esValidoPorCondicion(this));
+		return esValidoPorCampos() && this.condiciones.stream().allMatch(usuario -> usuario.validar(this));
 	}
 	public boolean esValidoPorCampos() {
 		return  this.nombre != null && 

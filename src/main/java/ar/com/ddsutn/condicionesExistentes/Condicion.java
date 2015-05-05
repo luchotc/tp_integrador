@@ -5,9 +5,9 @@ import ar.com.ddsutn.integrador.Usuario;
 
 public interface Condicion {
 	
-	public boolean validar(Usuario usuario);
+	public boolean esValidoPorCondicion(Usuario usuario);
 	public boolean lograSubsanar(Usuario usuario);
 	public boolean esAdecuada(Usuario usuario, Receta receta);
-	
+	public void validar(Usuario usuario);
 
 }

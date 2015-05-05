@@ -14,6 +14,7 @@ public class Receta {
 	private Collection <Receta> subRecetas;
 	private Usuario usuarioQueLaCargo;
 	private String temporada;
+	public static Collection <Receta> recetasPublicas;
 	
 	public Receta(String nombre, int totalCalorias, Usuario usuarioQueLaCargo){
 		this.nombre = nombre;
@@ -42,6 +43,14 @@ public class Receta {
 	public void addIngrediente(Comida ingrediente)
 	{	
 		this.ingredientes.add(ingrediente);		
+	}
+	
+	public void addRecetasPublicas(Receta receta)
+	{
+		if(receta.esValida())
+		{
+		  recetasPublicas.add(receta);
+		}
 	}
 	
 	public void addExplicacion(String explicacion)

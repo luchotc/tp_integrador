@@ -1,7 +1,6 @@
 package condicionesExistentes;
 
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 import ar.com.ddsutn.integrador.Receta;
 import ar.com.ddsutn.integrador.Usuario;
@@ -10,15 +9,15 @@ public class Vegano extends Usuario implements Condicion{
 
 	public Vegano(){}
 	
-	public boolean tieneComidaNoDeseada(Collection<String> coleccion){
-		return  coleccion.contains("Pollo") ||
-				coleccion.contains("Carne") ||
-				coleccion.contains("Chivito") ||
-				coleccion.contains("Chori");
+	public boolean tieneComidaNoDeseada(Collection<?> coleccion){
+		return  coleccion.contains("pollo") ||
+				coleccion.contains("carne") ||
+				coleccion.contains("chivito") ||
+				coleccion.contains("chori");
 	}
 	
 	@Override
-	public boolean validar(Usuario usuario)
+	public boolean esValidoPorCondicion(Usuario usuario)
 	{
 		return  !this.tieneComidaNoDeseada(usuario.getPreferenciasAlimenticias());
 	}
@@ -32,10 +31,12 @@ public class Vegano extends Usuario implements Condicion{
 	@Override
 	public boolean esAdecuada(Usuario usuario, Receta receta) 
 	{
-		return !this.tieneComidaNoDeseada(receta.getNombreIngredientes());
+		//return !this.tieneComidaNoDeseada( receta.getCondimentos().stream().map( condimento -> condimento.getNombre() ) );
+		return false;
 	}
 
-	
+
+	}
 
 	
 }
