@@ -78,13 +78,11 @@ public class Usuario {
 		return recetas.stream().anyMatch(recetaPropia -> (recetaPropia.equals(receta)));
 	}
 	
-	public boolean puedeVerReceta (Receta receta)
+	public boolean puedeVeroModificarReceta (Receta receta)
 	{ return Receta.EsPublica(receta) || esRecetaPropia(receta);
 	}
+
 	
-	public boolean puedeModificarReceta (Receta receta)
-	{ return puedeVerReceta(receta);
-	}
 	
 	
 	
