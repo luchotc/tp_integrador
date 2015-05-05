@@ -138,6 +138,10 @@ public class Usuario {
 		}
 	}
 	
+	public boolean puedeModificarReceta (Receta receta)
+	{
+		return recetas.stream().anyMatch(recetaPropia -> (recetaPropia == receta));
+	}
 	public Double getPeso()
 	{	
 		return this.peso;	
