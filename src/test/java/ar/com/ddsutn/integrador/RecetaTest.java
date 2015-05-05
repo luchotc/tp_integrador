@@ -101,8 +101,7 @@ public class RecetaTest {
 		otraReceta.setExplicaciones(explicaciones);
 		otraReceta.setSubRecetas(subRecetas);
 		otraReceta.setDificultad("facil");
-		assertEquals ((boolean) true, otraReceta.equals(otraReceta));
-
+		assertEquals ((boolean) true, unaReceta.equals(otraReceta));
 	}
 	
 	public void unaRecetaNoEsIgualAOtraPorqueTienenDistintoNombre()
@@ -119,7 +118,7 @@ public class RecetaTest {
 		otraReceta.setExplicaciones(explicaciones);
 		otraReceta.setSubRecetas(subRecetas);
 		otraReceta.setDificultad("facil");
-		assertEquals ((boolean) false, otraReceta.equals(otraReceta));
+		assertEquals ((boolean) false, unaReceta.equals(otraReceta));
 	}
 	
 	//Tests Receta Valida
