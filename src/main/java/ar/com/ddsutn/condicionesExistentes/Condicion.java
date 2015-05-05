@@ -1,13 +1,16 @@
-package condicionesExistentes;
+package ar.com.ddsutn.condicionesExistentes;
+
+import ar.com.ddsutn.integrador.Receta;
+import ar.com.ddsutn.integrador.Usuario;
+
 
 import ar.com.ddsutn.integrador.Receta;
 import ar.com.ddsutn.integrador.Usuario;
 
 public interface Condicion {
 	
-	public boolean esValidoPorCondicion(Usuario usuario);
+	public boolean validar(Usuario usuario);
 	public boolean lograSubsanar(Usuario usuario);
 	public boolean esAdecuada(Usuario usuario, Receta receta);
-	public void validar(Usuario usuario);
 
 }

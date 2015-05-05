@@ -4,10 +4,10 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import condicionesExistentes.Condicion;
-import condicionesExistentes.Diabetico;
-import condicionesExistentes.Hipertenso;
-import condicionesExistentes.Vegano;
+import ar.com.ddsutn.condicionesExistentes.Condicion;
+import ar.com.ddsutn.condicionesExistentes.Diabetico;
+import ar.com.ddsutn.condicionesExistentes.Hipertenso;
+import ar.com.ddsutn.condicionesExistentes.Vegano;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

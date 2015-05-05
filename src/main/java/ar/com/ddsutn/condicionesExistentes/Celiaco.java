@@ -1,14 +1,16 @@
-package condicionesExistentes;
+package ar.com.ddsutn.condicionesExistentes;
 
 import ar.com.ddsutn.integrador.Receta;
 import ar.com.ddsutn.integrador.Usuario;
+
+
 
 public class Celiaco implements Condicion {
 
 	public Celiaco(){};
 	
 	@Override
-	public boolean esValidoPorCondicion(Usuario usuario) 
+	public boolean validar(Usuario usuario) 
 	{
 		return true;
 	}
@@ -24,10 +26,8 @@ public class Celiaco implements Condicion {
 	{
 		return true;
 	}
-
 	
-		
-	}
-
-
 }
+
+
+

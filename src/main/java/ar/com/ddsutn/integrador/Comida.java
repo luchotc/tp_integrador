@@ -14,4 +14,5 @@ public class Comida {
 	{	return this.nombre;		}
 	public Double getCantidad()
 	{	return this.cantidad;	}
+
 }

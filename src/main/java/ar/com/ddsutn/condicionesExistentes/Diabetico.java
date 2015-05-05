@@ -1,8 +1,13 @@
-package condicionesExistentes;
+package ar.com.ddsutn.condicionesExistentes;
+
+import ar.com.ddsutn.integrador.Comida;
+import ar.com.ddsutn.integrador.Receta;
+import ar.com.ddsutn.integrador.Usuario;
+
+
 
 import java.util.stream.Stream;
 
-import ar.com.ddsutn.integrador.Condimento;
 import ar.com.ddsutn.integrador.Receta;
 import ar.com.ddsutn.integrador.Usuario;
 
@@ -11,7 +16,7 @@ public class Diabetico implements Condicion{
 	public Diabetico(){}
 	
 	@Override
-	public boolean esValidoPorCondicion(Usuario usuario)
+	public boolean validar(Usuario usuario)
 	{
 		return  usuario.getSexo() != null &&
 				!usuario.getPreferenciasAlimenticias().isEmpty() ;
@@ -27,18 +32,12 @@ public class Diabetico implements Condicion{
 	@Override
 	public boolean esAdecuada(Usuario usuario, Receta receta) 
 	{
-		return true;
+		return  getAzucar(usuario,receta).mapToDouble( condimento -> condimento.getCantidad()).sum() <100;
 	}
 	
-	public Stream<Condimento> getAzucar(Usuario usuario, Receta receta) 
+	public Stream<Comida> getAzucar(Usuario usuario, Receta receta) 
 	{
 		return receta.getCondimentos().stream().filter( condimento -> condimento.getNombre().equals("Azucar"));
 	}
-
-	
-		
-	}
-
-	
 	
 }

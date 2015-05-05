@@ -1,4 +1,7 @@
-package condicionesExistentes;
+package ar.com.ddsutn.condicionesExistentes;
+
+import ar.com.ddsutn.integrador.Receta;
+import ar.com.ddsutn.integrador.Usuario;
 
 import ar.com.ddsutn.integrador.Receta;
 import ar.com.ddsutn.integrador.Usuario;
@@ -8,7 +11,7 @@ public class Hipertenso implements Condicion{
 	public Hipertenso(){}
 	
 	@Override
-	public boolean esValidoPorCondicion(Usuario usuario)
+	public boolean validar(Usuario usuario)
 	{
 		return !usuario.getPreferenciasAlimenticias().isEmpty();
 	}
@@ -25,7 +28,6 @@ public class Hipertenso implements Condicion{
 		return false;
 	}
 
-		
-	}
+
 	
 }
