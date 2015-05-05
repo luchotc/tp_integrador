@@ -71,7 +71,7 @@ public class UsuarioTest {
 		fede.setCondiciones(new ArrayList<Condicion>());
 		fede.setPreferenciasAlimenticias(new ArrayList<String>());
 		fede.addCondicion(new Vegano());  //revisar si new Vegano() es correcto
-		fede.addPreferencia("Pollo");
+		fede.addPreferencia("pollo");
 		assertEquals ((boolean)false , fede.esValido());
 	}
 	

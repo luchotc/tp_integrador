@@ -24,7 +24,7 @@ public class RecetaTest {
 	@Before
 	public void setUp() {
 		
-	lucho = new Usuario("lucho",  81.0, 1.80, LocalDate.of(1995,1,18), "INSTENSIVO", null);
+	lucho = new Usuario("lucho",  81.0, 1.80, LocalDate.of(1995,1,18), "INTENSIVO", null);
 	fede = new Usuario("federico", 72.0, 1.20, LocalDate.of(1995,1,18), "LEVE", "Masculino");
 	
 	unaReceta = new Receta("una receta", 1500, fede);
