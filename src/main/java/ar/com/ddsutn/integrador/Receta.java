@@ -1,9 +1,7 @@
 package ar.com.ddsutn.integrador;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Receta {
 	private String nombre;

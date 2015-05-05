@@ -3,12 +3,9 @@ package ar.com.ddsutn.condicionesExistentes;
 import ar.com.ddsutn.integrador.Receta;
 import ar.com.ddsutn.integrador.Usuario;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-import ar.com.ddsutn.integrador.Receta;
-import ar.com.ddsutn.integrador.Usuario;
 
 public class Vegano extends Usuario implements Condicion{
 

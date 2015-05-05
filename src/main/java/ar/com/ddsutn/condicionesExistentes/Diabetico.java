@@ -4,12 +4,7 @@ import ar.com.ddsutn.integrador.Comida;
 import ar.com.ddsutn.integrador.Receta;
 import ar.com.ddsutn.integrador.Usuario;
 
-
-
 import java.util.stream.Stream;
-
-import ar.com.ddsutn.integrador.Receta;
-import ar.com.ddsutn.integrador.Usuario;
 
 public class Diabetico implements Condicion{
 

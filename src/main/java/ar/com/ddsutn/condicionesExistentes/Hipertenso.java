@@ -3,8 +3,6 @@ package ar.com.ddsutn.condicionesExistentes;
 import ar.com.ddsutn.integrador.Receta;
 import ar.com.ddsutn.integrador.Usuario;
 
-import ar.com.ddsutn.integrador.Receta;
-import ar.com.ddsutn.integrador.Usuario;
 
 public class Hipertenso implements Condicion{
 
