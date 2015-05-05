@@ -102,11 +102,11 @@ public class Receta {
 	public Collection <Receta> getSubRecetas() {
 		return subRecetas;
 	}
-	
-	/*public Collection <Condicion> condicionesInadecuadas(Collection <Condicion> condiciones)
+			
+	public Collection <Condicion> condicionesAdecuadas(Collection<Condicion> condiciones)
 	{
-	
-	}*/
+		return condiciones.stream().filter(condicion -> condicion.esAdecuada(this)).collect(Collectors.toList());
+	}
 
 	public void setSubRecetas(Collection <Receta> subRecetas) {
 		this.subRecetas = subRecetas;
