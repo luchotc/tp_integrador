@@ -35,12 +35,8 @@ public class Diabetico implements Condicion{
 		return receta.getCondimentos().stream().filter( condimento -> condimento.getNombre().equals("Azucar"));
 	}
 
-	@Override
-	public void validar(Usuario usuario) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	
 	
-}
+

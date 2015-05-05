@@ -35,11 +35,7 @@ public class Vegano extends Usuario implements Condicion{
 		return !this.tieneComidaNoDeseada(receta.getNombreIngredientes());
 	}
 
-	@Override
-	public void validar(Usuario usuario) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	
 }
