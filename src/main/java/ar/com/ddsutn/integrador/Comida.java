@@ -11,8 +11,13 @@ public class Comida {
 	}
 	
 	public String getNombre()
-	{	return this.nombre;		}
+	{	
+		return nombre;		
+	}
+	
 	public Double getCantidad()
-	{	return this.cantidad;	}
+	{	
+		return cantidad;	
+	}
 
 }

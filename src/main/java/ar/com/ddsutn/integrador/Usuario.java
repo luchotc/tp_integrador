@@ -25,11 +25,11 @@ public class Usuario {
 	private static Collection<Condicion> CondicionesExistentes ;
 	
 	public static void SetCondicionesExistentes()
-	
-	{CondicionesExistentes.add(new Celiaco());
-	 CondicionesExistentes.add(new Hipertenso());
-	 CondicionesExistentes.add(new Vegano());
-	 CondicionesExistentes.add(new Diabetico());
+	{
+		CondicionesExistentes.add(new Celiaco());
+		CondicionesExistentes.add(new Hipertenso());
+		CondicionesExistentes.add(new Vegano());
+		CondicionesExistentes.add(new Diabetico());
 	}
 	
 	public static Collection <Condicion> GetCondicionesExistentes()
@@ -58,45 +58,37 @@ public class Usuario {
 	}
 	
 	public Double imc ()
-	 {
+	{
 	  return peso/Math.pow(altura, 2);
-	  /* habia un Double cuadradoAltura = Math.pow(altura, 2);
-	     return peso/cuadradoAltura (el ayudante ya habia tirado que declarar una variable solo para esto no esta bien) */
-	 }
+	}
 	
 	public boolean esValido() {
-		return esValidoPorCampos() && this.condiciones.stream().allMatch(usuario -> usuario.validar(this));
+		return esValidoPorCampos() && condiciones.stream().allMatch(usuario -> usuario.validar(this));
 	}
 	public boolean esValidoPorCampos() {
-		return  this.nombre != null && 
-				this.peso != null && 
-				this.altura != null && 
-				this.fechaNacimiento != null && 
-				this.rutina != null &&
+		return  nombre != null && 
+				peso != null && 
+				altura != null && 
+				fechaNacimiento != null && 
+				rutina != null &&
 				esValidoPorNombre() &&
 				esValidoPorFecha();
 	}
 	public boolean esValidoPorNombre(){
-		return this.nombre.length() > 4;
+		return nombre.length() > 4;
 	}
 	public boolean esValidoPorFecha(){
-		return LocalDate.now().isAfter(this.fechaNacimiento);
+		return LocalDate.now().isAfter(fechaNacimiento);
 	}
 	
-	/* esValidoPorNombre() y esValidoPorFecha() las hice solo por expresividad
-	pero se podria incluir directamente el valor de retorno dentro
-	del return de esValidoPorCampos() 
-	return  this.nombre != null && ... && this.nombre.length() > 4 && LocalDate.now().isAfter(this.fechaNacimiento);
-	decidan cual prefieren*/
-	
 	public boolean sigueRutinaSaludable(){
-		return  this.imc() > 18 && 
-				this.imc() < 30 &&
-				this.condiciones.stream().allMatch(condicion -> condicion.lograSubsanar(this));
+		return  imc() > 18 && 
+				imc() < 30 &&
+				condiciones.stream().allMatch(condicion -> condicion.lograSubsanar(this));
 	}
 	
 	public boolean esInadecuada(Receta receta){
-		return !this.condiciones.stream().allMatch(condicion -> condicion.esAdecuada(receta));
+		return !condiciones.stream().allMatch(condicion -> condicion.esAdecuada(receta));
 	}
 	
 	public boolean esRecetaPropia (Receta receta)
@@ -112,7 +104,7 @@ public class Usuario {
 	
 	public Collection <Condicion> getCondiciones() 
 	{	
-		return this.condiciones;
+		return condiciones;
 	}
 	
 	public void setCondiciones(Collection <Condicion> condiciones)
@@ -122,12 +114,12 @@ public class Usuario {
 	
 	public void addCondicion(Condicion condicion)
 	{
-		this.condiciones.add(condicion);
+		condiciones.add(condicion);
 	}
 	
 	public Collection <String> getPreferenciasAlimenticias() 
 	{	
-		return this.preferenciasAlimenticias;	
+		return preferenciasAlimenticias;	
 	}
 	
 	public void setPreferenciasAlimenticias(Collection <String> preferenciasAlimenticias)
@@ -142,7 +134,7 @@ public class Usuario {
 
 	public Collection <String> getPalabrasDisgustan() 
 	{	
-		return this.palabrasDisgustan;
+		return palabrasDisgustan;
 	}
 	
 	public void setPalabrasDisgustan(Collection <String> palabrasDisgustan) 
@@ -157,7 +149,7 @@ public class Usuario {
 	
 	public Collection <Receta> getRecetas() 
 	{	
-		return this.recetas;
+		return recetas;
 	}
 	
 	public void setRecetas(Collection <Receta> recetas) 
@@ -175,23 +167,23 @@ public class Usuario {
 	
 	public Double getPeso()
 	{	
-		return this.peso;	
+		return peso;	
 	}
 	
 	public String getSexo()
 	{	
-		return this.sexo;	
+		return sexo;	
 	}
 	
 	public String getRutina()
 	{	
-		return this.rutina;	
+		return rutina;	
 	}
 	
 	public boolean rutinaSedentaria(){
-		return this.rutina.equals("LEVE") ||
-			   this.rutina.equals("NADA") ||
-			   this.rutina.equals("MEDIANO");
+		return rutina.equals("LEVE") ||
+			   rutina.equals("NADA") ||
+			   rutina.equals("MEDIANO");
 	}
 	
 }

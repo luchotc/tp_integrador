@@ -18,14 +18,13 @@ public class Receta {
 	
 	public boolean equals(Receta receta)
 	{
-		boolean mismoNombre = nombre.equals(receta.nombre);
-		boolean mismosIngredientes = ingredientes.equals(receta.ingredientes);
-		boolean mismosCondimentos = condimentos.equals(receta.condimentos);
-		boolean mismasExplicaciones = explicaciones.equals(receta.explicaciones);
-		boolean mismasSubrecetas = subRecetas.equals(receta.subRecetas);
-		boolean mismaTemporada = temporada.equals(receta.temporada);
-		boolean mismaDificultad = dificultad.equals(receta.dificultad);
-		return  mismoNombre && mismosIngredientes && mismosCondimentos && mismasExplicaciones && mismasSubrecetas && mismaTemporada && mismaDificultad;
+		return  nombre.equals(receta.nombre) &&
+				ingredientes.equals(receta.ingredientes) &&
+				condimentos.equals(receta.condimentos) &&
+				explicaciones.equals(receta.explicaciones) &&
+				subRecetas.equals(receta.subRecetas) &&
+				temporada.equals(receta.temporada) &&
+				dificultad.equals(receta.dificultad);
 	}
 	
 	public void modificarse()
@@ -50,9 +49,9 @@ public class Receta {
 	}
 	
 	public boolean esValida(){
-		return !this.ingredientes.isEmpty() &&
-				this.totalCalorias > 10 &&
-				this.totalCalorias < 5000 ;
+		return !ingredientes.isEmpty() &&
+				totalCalorias > 10 &&
+				totalCalorias < 5000 ;
 	}
 	
 	public boolean inadecuadoPara(Usuario usuario){
@@ -69,7 +68,7 @@ public class Receta {
 	/*	setters y getters	*/
 	public void addIngrediente(Comida ingrediente)
 	{	
-		this.ingredientes.add(ingrediente);		
+		ingredientes.add(ingrediente);		
 	}
 	
 	public void addRecetasPublicas(Receta receta)
@@ -82,22 +81,22 @@ public class Receta {
 	
 	public void addExplicacion(String explicacion)
 	{	
-		this.explicaciones.add(explicacion);		
+		explicaciones.add(explicacion);		
 	}
 	
 	public void addCondimentos(Comida condimento)
 	{	
-		this.condimentos.add(condimento);		
+		condimentos.add(condimento);		
 	}
 	
 	public Collection <Comida> getCondimentos()
 	{	
-		return this.condimentos;		
+		return condimentos;		
 	}
 	
 	public Collection <Comida> getIngredientes()
 	{	
-		return this.ingredientes;	
+		return ingredientes;	
 	}
 	
 	public void setCondimentos(Collection <Comida> condimentos)
@@ -112,12 +111,12 @@ public class Receta {
 	
 	public Collection<String> getNombreCondimentos() 
 	{	
-		return this.getCondimentos().stream().map( condimento -> condimento.getNombre()).collect(Collectors.toList());	
+		return getCondimentos().stream().map( condimento -> condimento.getNombre()).collect(Collectors.toList());	
 	}
 	
 	public Collection<String> getNombreIngredientes() 
 	{	
-		return this.getIngredientes().stream().map( condimento -> condimento.getNombre()).collect(Collectors.toList());
+		return getIngredientes().stream().map( condimento -> condimento.getNombre()).collect(Collectors.toList());
 	}
 
 	public Collection <Receta> getSubRecetas() {

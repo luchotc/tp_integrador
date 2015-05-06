@@ -62,7 +62,7 @@ public class UsuarioTest {
 	@Test
 	public void esValidoParaNicoLuis()
 	{	
-		assertEquals ((boolean)true , nicoLuis.esValido());		
+		assertEquals ( true , nicoLuis.esValido());		
 	}
 	
 	@Test
@@ -72,33 +72,33 @@ public class UsuarioTest {
 		fede.setPreferenciasAlimenticias(new ArrayList<String>());
 		fede.addCondicion(new Vegano());  //revisar si new Vegano() es correcto
 		fede.addPreferencia("pollo");
-		assertEquals ((boolean)false , fede.esValido());
+		assertEquals ( false , fede.esValido());
 	}
 	
 	
 	@Test
 	public void noEsValidoPorqueTieneQueTenerMasDe4Letras()
 	{	
-		assertEquals ((boolean)false , nico.esValido());	
+		assertEquals ( false , nico.esValido());	
 	}
 	
 	@Test
 	public void noEsValidoPorqueTieneQueTenerFecha()
 	{
-		assertEquals ((boolean)false , (new Usuario("carlos",  81.0, 1.80, null,"MEDIANO", null)).esValido()); 
+		assertEquals ( false , new Usuario("carlos",  81.0, 1.80, null,"MEDIANO", null).esValido()); 
 	}
 	
 	//Tests sigueRutinaSaludable()
 	@Test
 	public void sigueRutinaSaludableParaNicoLuis()
 	{	
-		assertEquals ((boolean)true , nicoLuis.sigueRutinaSaludable());		
+		assertEquals ( true , nicoLuis.sigueRutinaSaludable());		
 	}
 	
 	@Test
 	public void sigueRutinaSaludableParaUsuarioFueraRangoIMC()
 	{	
-		assertEquals ((boolean)false , nico.sigueRutinaSaludable());	
+		assertEquals ( false , nico.sigueRutinaSaludable());	
 	}
 	
 	@Test
@@ -111,13 +111,13 @@ public class UsuarioTest {
 		lucho.addCondicion(new Vegano());
 
 		lucho.addPreferencia("frutas");
-		assertEquals ((boolean)true , lucho.sigueRutinaSaludable());		
+		assertEquals (true , lucho.sigueRutinaSaludable());		
 	}
 	@Test
 	public void noSigueRutinaSaludableParaVeganoSinFrutas()
 	{
 		nicoLuis.addCondicion(new Vegano());
-		assertEquals ((boolean)false , nicoLuis.sigueRutinaSaludable());		
+		assertEquals ( false , nicoLuis.sigueRutinaSaludable());		
 	}
 	
 	@Test
@@ -127,7 +127,7 @@ public class UsuarioTest {
 		fede.setCondiciones(new ArrayList<Condicion>());
 		fede.addCondicion(new Hipertenso());
 
-		assertEquals ((boolean)false , fede.sigueRutinaSaludable());		
+		assertEquals ( false , fede.sigueRutinaSaludable());		
 	}
 	
 	@Test
@@ -137,7 +137,7 @@ public class UsuarioTest {
 		recetaInvalida.setIngredientes(new ArrayList<>());
 		lucho.setRecetas(new ArrayList<>());
 		lucho.addReceta(recetaInvalida);
-		assertEquals ( (boolean)true, lucho.getRecetas().isEmpty() );
+		assertEquals ( true, lucho.getRecetas().isEmpty() );
 	}
 	
 	
