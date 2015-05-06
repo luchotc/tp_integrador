@@ -44,7 +44,7 @@ public class RecetaTest {
 	unaReceta.setIngredientes(ingredientes);
 	unaReceta.setCondimentos(condimentos);
 	
-	bifes = new Receta("Bifes a la criolla con papas y arvejas", 785);
+	bifes = new Receta("Bifes a la criolla con papas y arvejas", 785, "Todas");
 	
 	ingredientes.clear();
 	condimentos.clear();
@@ -85,6 +85,9 @@ public class RecetaTest {
 	bifes.setExplicaciones(explicaciones);
 	
 	subRecetas.add(bifes);
+	
+	bifes.setSubRecetas(subRecetas);
+	bifes.setDificultad("Media");
 	
 	}
 	

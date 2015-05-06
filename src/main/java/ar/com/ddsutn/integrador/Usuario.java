@@ -159,6 +159,7 @@ public class Usuario {
 	
 	public void addReceta(Receta receta) 
 	{	
+		if(receta.esValida())
 		  recetas.add(receta);
 	}
 	
