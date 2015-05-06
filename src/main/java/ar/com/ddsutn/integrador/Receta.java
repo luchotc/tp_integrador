@@ -14,7 +14,7 @@ public class Receta {
 	private Collection <Receta> subRecetas;
 	private String temporada;
 	private String dificultad;
-	public static Collection <Receta> recetasPublicas;
+	public static Collection <Receta> RecetasPublicas;
 	
 	public boolean equals(Receta receta)
 	{
@@ -43,9 +43,9 @@ public class Receta {
 		this.temporada = temporada;
 	}
 	
-	public static boolean EsPublica(Receta receta)
+	public boolean esPublica()
 	{
-		return recetasPublicas.stream().anyMatch(recetaPropia -> (recetaPropia.equals(receta)));
+		return RecetasPublicas.stream().anyMatch(recetaPublica -> recetaPublica.equals(this));
 	}
 	
 	public boolean esValida(){
@@ -71,11 +71,11 @@ public class Receta {
 		ingredientes.add(ingrediente);		
 	}
 	
-	public void addRecetasPublicas(Receta receta)
+	public static void addRecetasPublicas(Receta receta)
 	{
 		if(receta.esValida())
 		{
-		  recetasPublicas.add(receta);
+		  RecetasPublicas.add(receta);
 		}
 	}
 	

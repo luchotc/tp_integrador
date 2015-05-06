@@ -97,7 +97,7 @@ public class Usuario {
 	}
 	
 	public boolean puedeVerOModificarReceta (Receta receta)
-	{ return Receta.EsPublica(receta) || esRecetaPropia(receta);
+	{ return receta.esPublica() || esRecetaPropia(receta);
 	}
 
 	/*	setters y getters	*/
@@ -159,10 +159,7 @@ public class Usuario {
 	
 	public void addReceta(Receta receta) 
 	{	
-		if(receta.esValida())
-		{
 		  recetas.add(receta);
-		}
 	}
 	
 	public Double getPeso()

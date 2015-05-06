@@ -35,6 +35,8 @@ public class RecetaTest {
 	ingredientes = new ArrayList<Comida>();
 	condimentos = new ArrayList<Comida>();
 	subRecetas = new ArrayList<Receta>();
+	
+	Receta.RecetasPublicas = new ArrayList<Receta>();
 
 	ingredientes.add(new Comida ("unIngrediente", 2.0));
 	condimentos.add(new Comida("Pepinos", 3.0));
@@ -86,6 +88,58 @@ public class RecetaTest {
 	
 	}
 	
+	//Tests Receta Valida
+	@Test
+	public void unaRecetaEsValida()
+	{	
+		assertEquals ( true , bifes.esValida());	
+	}
+	
+	@Test
+	public void unaRecetaNoEsValidaPorNoTenerIngredientes()
+	{
+		Receta otraReceta = new Receta("otra Receta",1500);
+		otraReceta.setIngredientes(new ArrayList<Comida>());
+		assertEquals ( false , otraReceta.esValida());		
+	}
+	
+	@Test
+	public void unaRecetaNoEsValidaPorNoTenerRangoEntre10Y5000()
+	{
+		Receta otraReceta = new Receta("otra Receta",8000);
+		otraReceta.setIngredientes(new ArrayList<Comida>());
+		assertEquals ( false , otraReceta.esValida());		}
+	
+	//Tests Receta inadecuada
+	@Test
+	public void esInadecuadaParaDiabeticoConMasDe100grDeAzucar()
+	{	
+		fede.setCondiciones(new ArrayList<Condicion>());
+		fede.getCondiciones().add(new Diabetico());
+		unaReceta.addCondimentos(new Comida("Azucar", 150.00));
+		assertEquals ( true , fede.esInadecuada(unaReceta));		
+	}
+	
+	@Test
+	public void esInadecuadaParaVeganoConChori()
+	{	
+		fede.setCondiciones(new ArrayList<Condicion>());
+		fede.getCondiciones().add(new Vegano());
+		unaReceta.addIngrediente(new Comida("chori", 1.00));
+		assertEquals ( true , fede.esInadecuada(unaReceta));		
+	}
+	
+	@Test
+	public void esInadecuadaParaHipertensoConSal()
+	{	
+		fede.setCondiciones(new ArrayList<Condicion>());
+		fede.getCondiciones().add(new Hipertenso());
+		assertEquals ( true , fede.esInadecuada(bifes));		
+	}
+	
+	// Tests Igualdad entre Recetas
+	
+
 	@Test
 	public void unaRecetaEsIgualAOtra()
 	{
@@ -101,7 +155,7 @@ public class RecetaTest {
 		otraReceta.setExplicaciones(explicaciones);
 		otraReceta.setSubRecetas(subRecetas);
 		otraReceta.setDificultad("facil");
-		assertEquals ((boolean) true, unaReceta.equals(otraReceta));
+		assertEquals ( true, unaReceta.equals(otraReceta));
 	}
 	
 	@Test
@@ -119,56 +173,39 @@ public class RecetaTest {
 		otraReceta.setExplicaciones(explicaciones);
 		otraReceta.setSubRecetas(subRecetas);
 		otraReceta.setDificultad("facil");
-		assertEquals ((boolean) false, unaReceta.equals(otraReceta));
+		assertEquals ( false, unaReceta.equals(otraReceta));
 	}
 	
-	//Tests Receta Valida
+	// Tests visualizacion Receta
 	@Test
-	public void unaRecetaEsValida()
+	public void usuarioPuedeVerUnaRecetaPropia()
 	{	
-		assertEquals ((boolean)true , bifes.esValida());	
+		fede.setRecetas(new ArrayList<Receta>());
+		fede.addReceta(bifes);
+		assertEquals ( true , fede.esRecetaPropia(bifes));
+		assertEquals ( true , fede.puedeVerOModificarReceta(bifes));		
 	}
 	
 	@Test
-	public void unaRecetaNoEsValidaPorNoTenerIngredientes()
-	{
-		Receta otraReceta = new Receta("otra Receta",1500);
-		otraReceta.setIngredientes(new ArrayList<Comida>());
-		assertEquals ((boolean)false , otraReceta.esValida());		
-	}
-	
-	@Test
-	public void unaRecetaNoEsValidaPorNoTenerRangoEntre10Y5000()
-	{
-		Receta otraReceta = new Receta("otra Receta",8000);
-		otraReceta.setIngredientes(new ArrayList<Comida>());
-		assertEquals ((boolean)false , otraReceta.esValida());		}
-	
-	//Tests Receta inadecuada
-	@Test
-	public void esInadecuadaParaDiabeticoConMasDe100grDeAzucar()
+	public void usuarioPuedeVerUnaRecetaAjena()
 	{	
-		fede.setCondiciones(new ArrayList<Condicion>());
-		fede.getCondiciones().add(new Diabetico());
-		unaReceta.addCondimentos(new Comida("Azucar", 150.00));
-		assertEquals ((boolean)true , fede.esInadecuada(unaReceta));		
+		fede.setRecetas(new ArrayList<Receta>());
+		lucho.setRecetas(new ArrayList<Receta>());
+		fede.addReceta(bifes);
+		assertEquals ( false , lucho.esRecetaPropia(bifes));
+		assertEquals ( false , lucho.puedeVerOModificarReceta(bifes));		
 	}
 	
 	@Test
-	public void esInadecuadaParaVeganoConChori()
+	public void usuarioPuedeVerUnaRecetaPublica()
 	{	
-		fede.setCondiciones(new ArrayList<Condicion>());
-		fede.getCondiciones().add(new Vegano());
-		unaReceta.addIngrediente(new Comida("chori", 1.00));
-		assertEquals ((boolean)true , fede.esInadecuada(unaReceta));		
-	}
-	
-	@Test
-	public void esInadecuadaParaHipertensoConSal()
-	{	
-		fede.setCondiciones(new ArrayList<Condicion>());
-		fede.getCondiciones().add(new Hipertenso());
-		assertEquals ((boolean)true , fede.esInadecuada(bifes));		
+		Receta.addRecetasPublicas(bifes);
+		fede.setRecetas(new ArrayList<Receta>());
+		lucho.setRecetas(new ArrayList<Receta>());
+		assertEquals ( false , fede.esRecetaPropia(bifes));
+		assertEquals ( false , lucho.esRecetaPropia(bifes));
+		assertEquals ( true , fede.puedeVerOModificarReceta(bifes));
+		assertEquals ( true , lucho.puedeVerOModificarReceta(bifes));	
 	}
 	
 }
