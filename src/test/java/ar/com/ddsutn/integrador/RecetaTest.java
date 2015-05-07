@@ -219,7 +219,7 @@ public class RecetaTest {
 	}
 	
 	// Tests modificar Receta
-	@Test
+	/*@Test
 	public void usuarioModificaUnaRecetaPublica()
 	{	
 		Receta.addRecetasPublicas(bifes);
@@ -232,7 +232,7 @@ public class RecetaTest {
 		assertEquals ( true , bifes.getTotalCalorias() == 1550);
 		fede.modificarTemporadaReceta(bifes, "otra Temporada");
 		assertEquals ( true , bifes.getTemporada() == "otra Temporada");
-	}
+	}*/
 	
 	@Test
 	public void usuarioModificaUnaRecetaPropia()
