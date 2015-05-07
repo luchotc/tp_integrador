@@ -18,12 +18,15 @@ public class RecetaTest {
 	
 	private Usuario lucho;
 	private Usuario fede;
-	private Receta unaReceta;
 	private Receta bifes;
-	Collection <String> explicaciones;
-	Collection <Comida> ingredientes;
-	Collection <Comida> condimentos;
-	Collection <Receta> subRecetas;
+	private Receta unaSubReceta;
+	Collection <String> explicaciones = new ArrayList<String>();
+	Collection <Comida> ingredientes = new ArrayList<Comida>();
+	Collection <Comida> condimentos = new ArrayList<Comida>();
+	Collection <Receta> subRecetas = new ArrayList<Receta>();
+	Collection <Comida> ingredientesSubReceta = new ArrayList<Comida>();
+	Collection <Comida> condimentosSubReceta = new ArrayList<Comida>();
+	Collection <String> explicacionesSubReceta = new ArrayList<String>();
 	
 	@Before
 	public void setUp() {
@@ -31,24 +34,10 @@ public class RecetaTest {
 	lucho = new Usuario("lucho",  81.0, 1.80, LocalDate.of(1995,1,18), "INTENSIVO", null);
 	fede = new Usuario("federico", 72.0, 1.20, LocalDate.of(1995,1,18), "LEVE", "Masculino");
 	
-	unaReceta = new Receta("una receta", 1500);
-	ingredientes = new ArrayList<Comida>();
-	condimentos = new ArrayList<Comida>();
-	subRecetas = new ArrayList<Receta>();
-	
 	Receta.RecetasPublicas = new ArrayList<Receta>();
-
-	ingredientes.add(new Comida ("unIngrediente", 2.0));
-	condimentos.add(new Comida("Pepinos", 3.0));
-	
-	unaReceta.setIngredientes(ingredientes);
-	unaReceta.setCondimentos(condimentos);
 	
 	bifes = new Receta("Bifes a la criolla con papas y arvejas", 785, "Todas");
 	
-	ingredientes.clear();
-	condimentos.clear();
-
 	explicaciones = new ArrayList<String>();
 	
 	ingredientes.add(new Comida("Cuadril", 3.0));
@@ -83,11 +72,29 @@ public class RecetaTest {
 	bifes.setIngredientes(ingredientes);
 	bifes.setCondimentos(condimentos);
 	bifes.setExplicaciones(explicaciones);
-	
-	subRecetas.add(bifes);
-	
-	bifes.setSubRecetas(subRecetas);
+	bifes.setSubRecetas(new ArrayList<Receta>());
 	bifes.setDificultad("Media");
+	
+	unaSubReceta = new Receta("una subReceta", 250, "Todas");
+	
+	
+	ingredientesSubReceta.add(new Comida("un ingrediente", 4.5));
+	ingredientesSubReceta.add(new Comida("otro ingrediente", 5.0));
+	ingredientesSubReceta.add(new Comida("un ingrediente mas", 1.0));
+	condimentosSubReceta.add(new Comida("un condimento", 0.0));
+	condimentosSubReceta.add(new Comida("otro condimento", 1.0));
+	explicacionesSubReceta.add("Hola, soy una explicacion");
+	explicacionesSubReceta.add("Hola, yo soy la segunda parte");
+	explicacionesSubReceta.add("y yo la tercera parte");
+	
+	unaSubReceta.setIngredientes(ingredientesSubReceta);
+	unaSubReceta.setCondimentos(condimentosSubReceta);
+	unaSubReceta.setExplicaciones(explicacionesSubReceta);
+	unaSubReceta.setSubRecetas(new ArrayList<Receta>());
+	unaSubReceta.setDificultad("Facil");
+	
+	subRecetas.add(unaSubReceta);
+
 	
 	}
 	
@@ -119,8 +126,8 @@ public class RecetaTest {
 	{	
 		fede.setCondiciones(new ArrayList<Condicion>());
 		fede.getCondiciones().add(new Diabetico());
-		unaReceta.addCondimentos(new Comida("Azucar", 150.00));
-		assertEquals ( true , fede.esInadecuada(unaReceta));		
+		bifes.addCondimentos(new Comida("Azucar", 150.00));
+		assertEquals ( true , fede.esInadecuada(bifes));		
 	}
 	
 	@Test
@@ -128,8 +135,8 @@ public class RecetaTest {
 	{	
 		fede.setCondiciones(new ArrayList<Condicion>());
 		fede.getCondiciones().add(new Vegano());
-		unaReceta.addIngrediente(new Comida("chori", 1.00));
-		assertEquals ( true , fede.esInadecuada(unaReceta));		
+		bifes.addIngrediente(new Comida("chori", 1.00));
+		assertEquals ( true , fede.esInadecuada(bifes));		
 	}
 	
 	@Test
@@ -137,7 +144,7 @@ public class RecetaTest {
 	{	
 		fede.setCondiciones(new ArrayList<Condicion>());
 		fede.getCondiciones().add(new Hipertenso());
-		assertEquals ( true , fede.esInadecuada(bifes));		
+		assertEquals ( true , fede.esInadecuada(bifes));	
 	}
 	
 	// Tests Igualdad entre Recetas
@@ -211,4 +218,55 @@ public class RecetaTest {
 		assertEquals ( true , lucho.puedeVerOModificarReceta(bifes));	
 	}
 	
+	// Tests modificar Receta
+	@Test
+	public void usuarioModificaUnaRecetaPublica()
+	{	
+		Receta.addRecetasPublicas(bifes);
+		assertEquals ( true , bifes.esPublica());
+		fede.setRecetas(new ArrayList<Receta>());
+		fede.addReceta(bifes);
+		fede.modificarNombreReceta(bifes, "Bifes");
+		assertEquals ( true , bifes.getNombre() == "Bifes");
+		fede.modificarTotalCaloriasReceta(bifes, 1550);
+		assertEquals ( true , bifes.getTotalCalorias() == 1550);
+		fede.modificarTemporadaReceta(bifes, "otra Temporada");
+		assertEquals ( true , bifes.getTemporada() == "otra Temporada");
+	}
+	
+	@Test
+	public void usuarioModificaUnaRecetaPropia()
+	{	
+		fede.setRecetas(new ArrayList<Receta>());
+		fede.addReceta(bifes);
+		fede.modificarNombreReceta(bifes, "Bifes");
+		assertEquals ( true , bifes.getNombre() == "Bifes");
+		fede.modificarTotalCaloriasReceta(bifes, 1550);
+		assertEquals ( true , bifes.getTotalCalorias() == 1550);
+		fede.modificarTemporadaReceta(bifes, "otra Temporada");
+		assertEquals ( true , bifes.getTemporada() == "otra Temporada");
+	}
+	
+	@Test
+	public void usuarioModificaUnaRecetaAjena()
+	{	
+		fede.setRecetas(new ArrayList<Receta>());
+		lucho.setRecetas(new ArrayList<Receta>());
+		fede.addReceta(bifes);
+		lucho.modificarNombreReceta(bifes, "Bifes");
+		assertEquals ( false , bifes.getNombre() == "Bifes");
+		lucho.modificarTotalCaloriasReceta(bifes, 1550);
+		assertEquals ( false , bifes.getTotalCalorias() == 1550);
+		lucho.modificarTemporadaReceta(bifes, "otra Temporada");
+		assertEquals ( false , bifes.getTemporada() == "otra Temporada");
+	}
+	
+	// Tests agregar subRecetas
+	
+	@Test
+	public void seAgregaUnaSubReceta()
+	{	
+		// FALTA IMPLEMENTAR
+		assertEquals ( false , false);
+	}
 }
