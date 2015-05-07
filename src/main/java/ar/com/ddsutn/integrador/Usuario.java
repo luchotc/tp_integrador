@@ -89,51 +89,126 @@ public class Usuario {
 		return recetas.stream().anyMatch(recetaPropia -> (recetaPropia.equals(receta)));
 	}
 	
-	public boolean puedeVerOModificarReceta (Receta receta)
-	{ return receta.esPublica() || esRecetaPropia(receta);
+	public Receta agregarAPropias(Receta receta)
+	{
+			Receta copiaReceta = (Receta) receta.clone();
+			addReceta(copiaReceta);
+			return copiaReceta;
 	}
 	
+	public boolean puedeVerOModificarReceta (Receta receta)
+	{ 
+		return receta.esPublica() || esRecetaPropia(receta);
+	}
 	
 	/* Modificar Receta */
 	public void modificarNombreReceta(Receta receta, String nombre)
 	{
 		if(puedeVerOModificarReceta(receta))
-		receta.setNombre(nombre);
+			if (receta.esPublica())
+			{
+				Receta recetaAgregada = agregarAPropias(receta);
+				recetaAgregada.setNombre(nombre);
+			}
+			else
+			{
+				receta.setNombre(nombre);
+			}
 	}
 	public void modificarTotalCaloriasReceta(Receta receta, int totalCalorias)
 	{
 		if(puedeVerOModificarReceta(receta))
-		receta.setTotalCalorias(totalCalorias);
+			if (receta.esPublica())
+			{
+				Receta recetaAgregada = agregarAPropias(receta);
+				recetaAgregada.setTotalCalorias(totalCalorias);
+			}
+			else
+			{
+				receta.setTotalCalorias(totalCalorias);
+			}
+		
 	}
 	public void modificarIngredientesReceta(Receta receta, Collection<Comida> ingredientes)
 	{
 		if(puedeVerOModificarReceta(receta))
-		receta.setIngredientes(ingredientes);
+			if (receta.esPublica())
+			{
+				Receta recetaAgregada = agregarAPropias(receta);
+				recetaAgregada.setIngredientes(ingredientes);
+			}
+			else
+			{
+				receta.setIngredientes(ingredientes);
+			}
+	
 	}
 	public void modificarCondimentosReceta(Receta receta, Collection<Comida> condimentos)
 	{
 		if(puedeVerOModificarReceta(receta))
-		receta.setCondimentos(condimentos);
+			if (receta.esPublica())
+			{
+				Receta recetaAgregada = agregarAPropias(receta);
+				recetaAgregada.setCondimentos(condimentos);
+			}
+			else
+			{
+				receta.setCondimentos(condimentos);
+			}
+
 	}
 	public void modificarExplicacionReceta(Receta receta, Collection<String> explicacion)
 	{
 		if(puedeVerOModificarReceta(receta))
-		receta.setExplicaciones(explicacion);
+			if (receta.esPublica())
+			{
+				Receta recetaAgregada = agregarAPropias(receta);
+				recetaAgregada.setExplicaciones(explicacion);
+			}
+			else
+			{
+				receta.setExplicaciones(explicacion);
+			}
+		
 	}
 	public void modificarSubRecetaReceta(Receta receta, Collection<Receta> subReceta)
 	{
 		if(puedeVerOModificarReceta(receta))
-		receta.setSubRecetas(subReceta);
+			if (receta.esPublica())
+			{
+				Receta recetaAgregada = agregarAPropias(receta);
+				recetaAgregada.setSubRecetas(subReceta);
+			}
+			else
+			{
+				receta.setSubRecetas(subReceta);
+			}
 	}
 	public void modificarTemporadaReceta(Receta receta, String temporada)
 	{
 		if(puedeVerOModificarReceta(receta))
-		receta.setTemporada(temporada);
+			if (receta.esPublica())
+			{
+				Receta recetaAgregada = agregarAPropias(receta);
+				recetaAgregada.setTemporada(temporada);
+			}
+			else
+			{
+				receta.setTemporada(temporada);
+			}
 	}
 	public void modificarDificultadReceta(Receta receta, String dificultad)
 	{
 		if(puedeVerOModificarReceta(receta))
-		receta.setDificultad(dificultad);
+			if (receta.esPublica())
+			{
+				Receta recetaAgregada = agregarAPropias(receta);
+				recetaAgregada.setDificultad(dificultad);
+			}
+			else
+			{
+				receta.setDificultad(dificultad);
+			}
 	}
 
 	/*	setters y getters	*/
@@ -193,10 +268,11 @@ public class Usuario {
 		this.recetas = recetas;	
 	}
 	
-	public void addReceta(Receta receta) 
+	public Receta addReceta(Receta receta) 
 	{	
 		if(receta.esValida())
 		  recetas.add(receta);
+		  return receta;
 	}
 	
 	public Double getPeso()

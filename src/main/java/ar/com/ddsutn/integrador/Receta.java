@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 import ar.com.ddsutn.condicionesExistentes.Condicion;
 
-public class Receta {
+public class Receta implements Cloneable{
 	private String nombre;
 	private int totalCalorias;
 	private Collection <Comida> ingredientes;
@@ -63,7 +63,16 @@ public class Receta {
 		return Usuario.GetCondicionesExistentes().stream().filter(condicion -> !condicion.esAdecuada(this)).collect(Collectors.toList());
 	}
 	
-	
+
+    public Object clone(){
+        Object obj=null;
+        try{
+            obj=super.clone();
+        }catch(CloneNotSupportedException ex){
+         //   System.out.println(" no se puede duplicar");
+        }
+        return obj;
+    }
 	
 	/*	setters y getters	*/
 	public void addIngrediente(Comida ingrediente)
