@@ -130,6 +130,7 @@ public class UsuarioTest {
 		assertEquals ( false , fede.sigueRutinaSaludable());		
 	}
 	
+	//tests agregar recetas
 	@Test
 	public void elUsuarioAgregaRecetaPeroNoEsValida()
 	{
