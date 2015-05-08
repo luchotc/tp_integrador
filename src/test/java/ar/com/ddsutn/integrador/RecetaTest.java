@@ -84,7 +84,6 @@ public class RecetaTest {
 	}
 	
 	private void inicializarSubReceta() {
-		// TODO Auto-generated method stub
 		unaSubReceta = new Receta("una subReceta", 250, "Todas");
 		
 		ingredientesSubReceta.add(new Comida("un ingrediente", 4.5));
@@ -105,6 +104,7 @@ public class RecetaTest {
 		subRecetas.add(unaSubReceta);
 	}
 	
+	//Tests condimentos
 	@Test
 	public void condimentoConCN()
 	{
@@ -168,8 +168,6 @@ public class RecetaTest {
 	}
 	
 	// Tests Igualdad entre Recetas
-	
-
 	@Test
 	public void unaRecetaEsIgualAOtra()
 	{
