@@ -16,17 +16,19 @@ public class Receta implements Cloneable{
 	private String dificultad;
 	public static Collection <Receta> RecetasPublicas;
 	
-	public boolean equals(Receta receta)
-	{
-		return  nombre.equals(receta.nombre) &&
-				ingredientes.equals(receta.ingredientes) &&
-				condimentos.equals(receta.condimentos) &&
-				explicaciones.equals(receta.explicaciones) &&
-				subRecetas.equals(receta.subRecetas) &&
-				temporada.equals(receta.temporada) &&
-				dificultad.equals(receta.dificultad);
+	public Receta() {}
+	
+	public Receta(String nombre, int totalCalorias){
+		this.nombre = nombre;
+		this.totalCalorias = totalCalorias;
 	}
 	
+	public Receta(String nombre, int totalCalorias, String temporada){
+		this.nombre = nombre;
+		this.totalCalorias = totalCalorias;
+		this.temporada = temporada;
+	}
+
 	public void modificarSegun(Receta receta)
 	{
 		String nombreNuevo = receta.getNombre();
@@ -64,27 +66,6 @@ public class Receta implements Cloneable{
 			
 	}
 	
-	
-	private Collection<String> getExplicaciones() {
-		// TODO Auto-generated method stub
-		return explicaciones;
-	}
-
-	public Receta(String nombre, int totalCalorias){
-		this.nombre = nombre;
-		this.totalCalorias = totalCalorias;
-	}
-	
-	public Receta(String nombre, int totalCalorias, String temporada){
-		this.nombre = nombre;
-		this.totalCalorias = totalCalorias;
-		this.temporada = temporada;
-	}
-	
-	public Receta() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public boolean esPublica()
 	{
 		return RecetasPublicas.stream().anyMatch(recetaPublica -> recetaPublica.equals(this));
@@ -105,6 +86,16 @@ public class Receta implements Cloneable{
 		return Usuario.GetCondicionesExistentes().stream().filter(condicion -> !condicion.esAdecuada(this)).collect(Collectors.toList());
 	}
 	
+	public boolean equals(Receta receta)
+	{
+		return  nombre.equals(receta.nombre) &&
+				ingredientes.equals(receta.ingredientes) &&
+				condimentos.equals(receta.condimentos) &&
+				explicaciones.equals(receta.explicaciones) &&
+				subRecetas.equals(receta.subRecetas) &&
+				temporada.equals(receta.temporada) &&
+				dificultad.equals(receta.dificultad);
+	}
 
     public Object clone(){
         Object obj=null;
@@ -116,11 +107,18 @@ public class Receta implements Cloneable{
         return obj;
     }
 	
-	/*	setters y getters	*/
-	public void addIngrediente(Comida ingrediente)
+
+	public Collection<String> getNombreCondimentos() 
 	{	
-		ingredientes.add(ingrediente);		
+		return getCondimentos().stream().map( condimento -> condimento.getNombre()).collect(Collectors.toList());	
 	}
+	
+	public Collection<String> getNombreIngredientes() 
+	{	
+		return getIngredientes().stream().map( condimento -> condimento.getNombre()).collect(Collectors.toList());
+	}
+
+	/*	setters y getters	*/
 	
 	public static void addRecetasPublicas(Receta receta)
 	{
@@ -128,6 +126,19 @@ public class Receta implements Cloneable{
 		{
 		  RecetasPublicas.add(receta);
 		}
+	}
+	
+	public void addIngrediente(Comida ingrediente)
+	{	
+		ingredientes.add(ingrediente);		
+	}
+	
+	public Collection <Receta> getSubRecetas() {
+		return subRecetas;
+	}
+
+	public void setSubRecetas(Collection <Receta> subRecetas) {
+		this.subRecetas = subRecetas;
 	}
 	
 	public void addExplicacion(String explicacion)
@@ -159,25 +170,11 @@ public class Receta implements Cloneable{
 	{	
 		this.ingredientes = ingredientes;	
 	}
+
+	private Collection<String> getExplicaciones() {
+		return explicaciones;
+	}
 	
-	public Collection<String> getNombreCondimentos() 
-	{	
-		return getCondimentos().stream().map( condimento -> condimento.getNombre()).collect(Collectors.toList());	
-	}
-	
-	public Collection<String> getNombreIngredientes() 
-	{	
-		return getIngredientes().stream().map( condimento -> condimento.getNombre()).collect(Collectors.toList());
-	}
-
-	public Collection <Receta> getSubRecetas() {
-		return subRecetas;
-	}
-
-	public void setSubRecetas(Collection <Receta> subRecetas) {
-		this.subRecetas = subRecetas;
-	}
-
 	public void setExplicaciones(Collection<String> explicaciones) {
 		this.explicaciones = explicaciones;
 	}
