@@ -1,8 +1,6 @@
 package ar.com.ddsutn.condicionesExistentes;
 
 import java.util.Collection;
-
-import ar.com.ddsutn.integrador.Comida;
 import ar.com.ddsutn.integrador.Receta;
 import ar.com.ddsutn.integrador.Usuario;
 
