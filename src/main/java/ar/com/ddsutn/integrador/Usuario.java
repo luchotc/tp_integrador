@@ -17,10 +17,10 @@ public class Usuario {
 	private LocalDate fechaNacimiento;
 	private Collection <String> preferenciasAlimenticias;
 	private Collection <String> palabrasDisgustan;
-	private Collection <Condicion> condiciones;	// Revisar si es correcto el uso de HashSet<String>(), o si hay otra forma
+	private Collection <Condicion> condiciones;	
 	private Double altura;
 	private Double peso;
-	private String rutina;		// ------ es String?? ------ <----<----<----<---- Revisar
+	private String rutina;		
 	private Collection <Receta> recetas;
 	private static Collection<Condicion> CondicionesExistentes ;
 	
@@ -193,7 +193,7 @@ public class Usuario {
 		return rutina;	
 	}
 	
-	public boolean rutinaSedentaria(){
+	public boolean esSedentario(){
 		return rutina.equals("LEVE") ||
 			   rutina.equals("NADA") ||
 			   rutina.equals("MEDIANO");

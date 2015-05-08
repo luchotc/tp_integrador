@@ -21,7 +21,7 @@ public class Diabetico implements Condicion{
 	@Override
 	public boolean lograSubsanar(Usuario usuario) 
 	{
-		return !usuario.rutinaSedentaria() || usuario.getPeso() <= 70;
+		return !usuario.esSedentario() || usuario.getPeso() <= 70;
 	}
 	
 	@Override
