@@ -18,6 +18,7 @@ public class RecetaTest {
 	
 	private Usuario lucho;
 	private Usuario fede;
+	private UsuarioMock fedeMock ;
 	private Receta bifes;
 	private Receta unaSubReceta;
 	Collection <String> explicaciones = new ArrayList<String>();
@@ -33,69 +34,88 @@ public class RecetaTest {
 		
 	lucho = new Usuario("lucho",  81.0, 1.80, LocalDate.of(1995,1,18), "INTENSIVO", null);
 	fede = new Usuario("federico", 72.0, 1.20, LocalDate.of(1995,1,18), "LEVE", "Masculino");
+	fedeMock = new UsuarioMock("federico", 72.0, 1.20, LocalDate.of(1995,1,18), "LEVE", "Masculino");
 	
 	Receta.RecetasPublicas = new ArrayList<Receta>();
 	
-	bifes = new Receta("Bifes a la criolla con papas y arvejas", 785, "Todas");
+	inicializarReceta();
+	inicializarSubReceta();
 	
-	explicaciones = new ArrayList<String>();
-	
-	ingredientes.add(new Comida("Cuadril", 3.0));
-	ingredientes.add(new Comida("Papas", 1.5));
-	ingredientes.add(new Comida("Tomates triturados", 1.5));
-	ingredientes.add(new Comida("Morr√≥n rojo", 4.0));
-	ingredientes.add(new Comida("Morr√≥n amarillo", 4.0));
-	ingredientes.add(new Comida("Morr√≥n verde", 4.0));
-	ingredientes.add(new Comida("Cebollas", 1.0));
-	ingredientes.add(new Comida("Aceite de oliva", 2.0));
-	ingredientes.add(new Comida("Huevos", 20.0));
-	ingredientes.add(new Comida("Tomate perita", 1.0));
-	ingredientes.add(new Comida("Pur√© de tomate", 500.0));
-	ingredientes.add(new Comida("Arvejas congeladas", 500.0));
-	condimentos.add(new Comida("Aj√≠ molido", 0.0));
-	condimentos.add(new Comida("Ajo picado", 1.0));
-	condimentos.add(new Comida("Perejil picado", 0.0));
-	condimentos.add(new Comida("Or√©gano", 0.0));
-	condimentos.add(new Comida("Sal", 0.0));
-	condimentos.add(new Comida("Pimienta", 0.0));
-	condimentos.add(new Comida("Hojas de laurel", 0.0));
-	condimentos.add(new Comida("Caldo de verdura o carne", 0.0));
-	explicaciones.add("Limpiar el morr√≥n. Cortar en tiras a lo largo y reservar");
-	explicaciones.add("Pelar y cortar las papas en rodajas gruesitas, cortar la cebolla en juliana");
-	explicaciones.add("Rociar levemente con aceite de oliva a la paellera");
-	explicaciones.add("Pasar la carne por harina (para que se dore mejor) luego disponerla sobre la paella (previamente aceitada). Retirar la carne una vez sellada vuelta y vuelta");
-	explicaciones.add("En la misma paellera colocar una capa de cebolla cortada en juliana, pimientos en juliana, luego una capa de rodajas de papas, rodajas de tomates. Agregar la carne, condimentar por encima");
-	explicaciones.add("Una vez dispuestos todos los ingredientes en el disco con la sal, la pimienta, el or√©gano, el laurel y el aj√≠ molido, incorporar pur√© de tomate y caldo de verdura hasta cubrir la totalidad de la preparaci√≥n");
-	explicaciones.add("Cuando las papas tomen color, indicar√° que la preparaci√≥n est√° lista (la cocci√≥n total luego de agregar las papas lleva 20 minutos aproximadamente)");
-	explicaciones.add("Agregar los huevos, chasc√°ndolos previamente por separado y luego volcarlos encima de los bifes. Sumar las arvejas y espolvorear con perejil picado toda la preparaci√≥n");
-	
-	bifes.setIngredientes(ingredientes);
-	bifes.setCondimentos(condimentos);
-	bifes.setExplicaciones(explicaciones);
-	bifes.setSubRecetas(new ArrayList<Receta>());
-	bifes.setDificultad("Media");
-	
-	unaSubReceta = new Receta("una subReceta", 250, "Todas");
-	
-	
-	ingredientesSubReceta.add(new Comida("un ingrediente", 4.5));
-	ingredientesSubReceta.add(new Comida("otro ingrediente", 5.0));
-	ingredientesSubReceta.add(new Comida("un ingrediente mas", 1.0));
-	condimentosSubReceta.add(new Comida("un condimento", 0.0));
-	condimentosSubReceta.add(new Comida("otro condimento", 1.0));
-	explicacionesSubReceta.add("Hola, soy una explicacion");
-	explicacionesSubReceta.add("Hola, yo soy la segunda parte");
-	explicacionesSubReceta.add("y yo la tercera parte");
-	
-	unaSubReceta.setIngredientes(ingredientesSubReceta);
-	unaSubReceta.setCondimentos(condimentosSubReceta);
-	unaSubReceta.setExplicaciones(explicacionesSubReceta);
-	unaSubReceta.setSubRecetas(new ArrayList<Receta>());
-	unaSubReceta.setDificultad("Facil");
-	
-	subRecetas.add(unaSubReceta);
+	}
 
+	private void inicializarReceta()
+	{
+		bifes = new Receta("Bifes a la criolla con papas y arvejas", 785, "Todas");
+		
+		ingredientes.add(new Comida("Cuadril", 3.0));
+		ingredientes.add(new Comida("Papas", 1.5));
+		ingredientes.add(new Comida("Tomates triturados", 1.5));
+		ingredientes.add(new Comida("MorrÛn rojo", 4.0));
+		ingredientes.add(new Comida("MorrÛn amarillo", 4.0));
+		ingredientes.add(new Comida("MorrÛn verde", 4.0));
+		ingredientes.add(new Comida("Cebollas", 1.0));
+		ingredientes.add(new Comida("Aceite de oliva", 2.0));
+		ingredientes.add(new Comida("Huevos", 20.0));
+		ingredientes.add(new Comida("Tomate perita", 1.0));
+		ingredientes.add(new Comida("PurÈ de tomate", 500.0));
+		ingredientes.add(new Comida("Arvejas congeladas", 500.0));
+		condimentos.add(new Comida("AjÌ molido", 0.0));
+		condimentos.add(new Comida("Ajo picado", 1.0));
+		condimentos.add(new Comida("Perejil picado", 0.0));
+		condimentos.add(new Comida("OrÈgano", 0.0));
+		condimentos.add(new Comida("Sal", 0.0));
+		condimentos.add(new Comida("Pimienta", 0.0));
+		condimentos.add(new Comida("Hojas de laurel", 0.0));
+		condimentos.add(new Comida("Caldo de verdura o carne", 0.0));
+		explicaciones.add("Limpiar el morrÛn. Cortar en tiras a lo largo y reservar");
+		explicaciones.add("Pelar y cortar las papas en rodajas gruesitas, cortar la cebolla en juliana");
+		explicaciones.add("Rociar levemente con aceite de oliva a la paellera");
+		explicaciones.add("Pasar la carne por harina (para que se dore mejor) luego disponerla sobre la paella (previamente aceitada). Retirar la carne una vez sellada vuelta y vuelta");
+		explicaciones.add("En la misma paellera colocar una capa de cebolla cortada en juliana, pimientos en juliana, luego una capa de rodajas de papas, rodajas de tomates. Agregar la carne, condimentar por encima");
+		explicaciones.add("Una vez dispuestos todos los ingredientes en el disco con la sal, la pimienta, el orÈgano, el laurel y el ajÌ molido, incorporar purÈ de tomate y caldo de verdura hasta cubrir la totalidad de la preparaciÛn");
+		explicaciones.add("Cuando las papas tomen color, indicar· que la preparaciÛn est· lista (la cocciÛn total luego de agregar las papas lleva 20 minutos aproximadamente)");
+		explicaciones.add("Agregar los huevos, chasc·ndolos previamente por separado y luego volcarlos encima de los bifes. Sumar las arvejas y espolvorear con perejil picado toda la preparaciÛn");
+		
+		bifes.setIngredientes(ingredientes);
+		bifes.setCondimentos(condimentos);
+		bifes.setExplicaciones(explicaciones);
+		bifes.setSubRecetas(new ArrayList<Receta>());
+		bifes.setDificultad("Media");
+	}
 	
+	private void inicializarSubReceta() {
+		// TODO Auto-generated method stub
+		unaSubReceta = new Receta("una subReceta", 250, "Todas");
+		
+		ingredientesSubReceta.add(new Comida("un ingrediente", 4.5));
+		ingredientesSubReceta.add(new Comida("otro ingrediente", 5.0));
+		ingredientesSubReceta.add(new Comida("un ingrediente mas", 1.0));
+		condimentosSubReceta.add(new Comida("un condimento", 0.0));
+		condimentosSubReceta.add(new Comida("otro condimento", 1.0));
+		explicacionesSubReceta.add("Hola, soy una explicacion");
+		explicacionesSubReceta.add("Hola, yo soy la segunda parte");
+		explicacionesSubReceta.add("y yo la tercera parte");
+		
+		unaSubReceta.setIngredientes(ingredientesSubReceta);
+		unaSubReceta.setCondimentos(condimentosSubReceta);
+		unaSubReceta.setExplicaciones(explicacionesSubReceta);
+		unaSubReceta.setSubRecetas(new ArrayList<Receta>());
+		unaSubReceta.setDificultad("Facil");
+		
+		subRecetas.add(unaSubReceta);
+	}
+	
+	@Test
+	public void condimentoConCN()
+	{
+		Comida azucar = new Comida ("Azucar","C/N");
+		assertEquals ((Double) 0.0 , azucar.getCantidad());
+	}
+	@Test
+	public void condimentoConValorNormal()
+	{
+		Comida azucar = new Comida ("Azucar",70.0);
+		assertEquals ((Double) 70.0 , azucar.getCantidad());
 	}
 	
 	//Tests Receta Valida
@@ -219,54 +239,18 @@ public class RecetaTest {
 	}
 	
 	// Tests modificar Receta
-	/*@Test
+	@Test
 	public void usuarioModificaUnaRecetaPublica()
 	{	
 		Receta.addRecetasPublicas(bifes);
 		assertEquals ( true , bifes.esPublica());
-		fede.setRecetas(new ArrayList<Receta>());
-		fede.addReceta(bifes);
-		fede.modificarNombreReceta(bifes, "Bifes");
-		assertEquals ( true , bifes.getNombre() == "Bifes");
-		fede.modificarTotalCaloriasReceta(bifes, 1550);
-		assertEquals ( true , bifes.getTotalCalorias() == 1550);
-		fede.modificarTemporadaReceta(bifes, "otra Temporada");
-		assertEquals ( true , bifes.getTemporada() == "otra Temporada");
-	}*/
-	
-	@Test
-	public void usuarioModificaUnaRecetaPropia()
-	{	
-		fede.setRecetas(new ArrayList<Receta>());
-		fede.addReceta(bifes);
-		fede.modificarNombreReceta(bifes, "Bifes");
-		assertEquals ( true , bifes.getNombre() == "Bifes");
-		fede.modificarTotalCaloriasReceta(bifes, 1550);
-		assertEquals ( true , bifes.getTotalCalorias() == 1550);
-		fede.modificarTemporadaReceta(bifes, "otra Temporada");
-		assertEquals ( true , bifes.getTemporada() == "otra Temporada");
+		fedeMock.setRecetas(new ArrayList<Receta>());
+		Receta recetaNueva = new Receta ();
+		recetaNueva.setNombre("Bifes");
+		Receta recetaModificada = fedeMock.devuelveRecetaModificada(bifes, recetaNueva);
+		assertEquals(true , recetaModificada.getNombre().equals("Bifes"));
 	}
+
 	
-	@Test
-	public void usuarioModificaUnaRecetaAjena()
-	{	
-		fede.setRecetas(new ArrayList<Receta>());
-		lucho.setRecetas(new ArrayList<Receta>());
-		fede.addReceta(bifes);
-		lucho.modificarNombreReceta(bifes, "Bifes");
-		assertEquals ( false , bifes.getNombre() == "Bifes");
-		lucho.modificarTotalCaloriasReceta(bifes, 1550);
-		assertEquals ( false , bifes.getTotalCalorias() == 1550);
-		lucho.modificarTemporadaReceta(bifes, "otra Temporada");
-		assertEquals ( false , bifes.getTemporada() == "otra Temporada");
-	}
-	
-	// Tests agregar subRecetas
-	
-	@Test
-	public void seAgregaUnaSubReceta()
-	{	
-		// FALTA IMPLEMENTAR
-		assertEquals ( false , false);
-	}
 }
+

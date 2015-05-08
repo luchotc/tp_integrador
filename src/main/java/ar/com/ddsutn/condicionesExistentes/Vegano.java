@@ -4,7 +4,6 @@ import ar.com.ddsutn.integrador.Receta;
 import ar.com.ddsutn.integrador.Usuario;
 
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 
 public class Vegano extends Usuario implements Condicion{
@@ -40,3 +39,4 @@ public class Vegano extends Usuario implements Condicion{
 
 	
 }
+

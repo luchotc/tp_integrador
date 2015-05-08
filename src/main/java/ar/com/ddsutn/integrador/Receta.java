@@ -27,11 +27,49 @@ public class Receta implements Cloneable{
 				dificultad.equals(receta.dificultad);
 	}
 	
-	public void modificarse()
+	public void modificarSegun(Receta receta)
 	{
-	
+		String nombreNuevo = receta.getNombre();
+		int caloriasNuevas = receta.getTotalCalorias();
+		Collection <Comida> ingredientes = receta.getIngredientes();
+		Collection <Comida> condimentos = receta.getCondimentos();
+		Collection <String> explicaciones = receta.getExplicaciones();
+		Collection <Receta> subRecetas = receta.getSubRecetas();
+		String temporada = receta.getTemporada();
+		String dificultad = receta.getDificultad();
+		
+		if (nombreNuevo!=null)
+			setNombre(nombreNuevo);
+		
+		if (caloriasNuevas!=0)
+			setTotalCalorias(caloriasNuevas);
+		
+		if (ingredientes!=null)
+			setIngredientes(ingredientes);
+		
+		if (condimentos!=null)
+			setCondimentos(condimentos);
+		
+		if (explicaciones!=null)
+			setExplicaciones(explicaciones);
+		
+		if (subRecetas!=null)
+			setSubRecetas(subRecetas);
+		
+		if (temporada!=null)
+			setTemporada(temporada);
+		
+		if (dificultad!=null)
+			setDificultad(dificultad);
+			
 	}
 	
+	
+	private Collection<String> getExplicaciones() {
+		// TODO Auto-generated method stub
+		return explicaciones;
+	}
+
 	public Receta(String nombre, int totalCalorias){
 		this.nombre = nombre;
 		this.totalCalorias = totalCalorias;
@@ -43,6 +81,10 @@ public class Receta implements Cloneable{
 		this.temporada = temporada;
 	}
 	
+	public Receta() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public boolean esPublica()
 	{
 		return RecetasPublicas.stream().anyMatch(recetaPublica -> recetaPublica.equals(this));
@@ -173,3 +215,4 @@ public class Receta implements Cloneable{
 	}
 	
 }
+

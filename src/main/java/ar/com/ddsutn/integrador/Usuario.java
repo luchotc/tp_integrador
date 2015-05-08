@@ -37,9 +37,7 @@ public class Usuario {
 		return CondicionesExistentes;
 	}
 	
-	
-	public Usuario()
-	{super();}
+	public Usuario(){}
 	
 	public Usuario (String nombre, Double peso, Double altura, LocalDate fechaNacimiento, String rutina, String sexo){
 		this.nombre = nombre;
@@ -101,115 +99,21 @@ public class Usuario {
 		return receta.esPublica() || esRecetaPropia(receta);
 	}
 	
-	/* Modificar Receta */
-	public void modificarNombreReceta(Receta receta, String nombre)
+	public void modificarRecetaGeneral(Receta receta, Receta recetaModificada)
 	{
 		if(puedeVerOModificarReceta(receta))
 			if (receta.esPublica())
 			{
 				Receta recetaAgregada = agregarAPropias(receta);
-				recetaAgregada.setNombre(nombre);
+				recetaAgregada.modificarSegun(recetaModificada);
+				
 			}
 			else
 			{
-				receta.setNombre(nombre);
-			}
+				receta.modificarSegun(recetaModificada);
+			}	
 	}
-	public void modificarTotalCaloriasReceta(Receta receta, int totalCalorias)
-	{
-		if(puedeVerOModificarReceta(receta))
-			if (receta.esPublica())
-			{
-				Receta recetaAgregada = agregarAPropias(receta);
-				recetaAgregada.setTotalCalorias(totalCalorias);
-			}
-			else
-			{
-				receta.setTotalCalorias(totalCalorias);
-			}
-		
-	}
-	public void modificarIngredientesReceta(Receta receta, Collection<Comida> ingredientes)
-	{
-		if(puedeVerOModificarReceta(receta))
-			if (receta.esPublica())
-			{
-				Receta recetaAgregada = agregarAPropias(receta);
-				recetaAgregada.setIngredientes(ingredientes);
-			}
-			else
-			{
-				receta.setIngredientes(ingredientes);
-			}
 	
-	}
-	public void modificarCondimentosReceta(Receta receta, Collection<Comida> condimentos)
-	{
-		if(puedeVerOModificarReceta(receta))
-			if (receta.esPublica())
-			{
-				Receta recetaAgregada = agregarAPropias(receta);
-				recetaAgregada.setCondimentos(condimentos);
-			}
-			else
-			{
-				receta.setCondimentos(condimentos);
-			}
-
-	}
-	public void modificarExplicacionReceta(Receta receta, Collection<String> explicacion)
-	{
-		if(puedeVerOModificarReceta(receta))
-			if (receta.esPublica())
-			{
-				Receta recetaAgregada = agregarAPropias(receta);
-				recetaAgregada.setExplicaciones(explicacion);
-			}
-			else
-			{
-				receta.setExplicaciones(explicacion);
-			}
-		
-	}
-	public void modificarSubRecetaReceta(Receta receta, Collection<Receta> subReceta)
-	{
-		if(puedeVerOModificarReceta(receta))
-			if (receta.esPublica())
-			{
-				Receta recetaAgregada = agregarAPropias(receta);
-				recetaAgregada.setSubRecetas(subReceta);
-			}
-			else
-			{
-				receta.setSubRecetas(subReceta);
-			}
-	}
-	public void modificarTemporadaReceta(Receta receta, String temporada)
-	{
-		if(puedeVerOModificarReceta(receta))
-			if (receta.esPublica())
-			{
-				Receta recetaAgregada = agregarAPropias(receta);
-				recetaAgregada.setTemporada(temporada);
-			}
-			else
-			{
-				receta.setTemporada(temporada);
-			}
-	}
-	public void modificarDificultadReceta(Receta receta, String dificultad)
-	{
-		if(puedeVerOModificarReceta(receta))
-			if (receta.esPublica())
-			{
-				Receta recetaAgregada = agregarAPropias(receta);
-				recetaAgregada.setDificultad(dificultad);
-			}
-			else
-			{
-				receta.setDificultad(dificultad);
-			}
-	}
 
 	/*	setters y getters	*/
 	
@@ -268,11 +172,10 @@ public class Usuario {
 		this.recetas = recetas;	
 	}
 	
-	public Receta addReceta(Receta receta) 
+	public void addReceta(Receta receta) 
 	{	
 		if(receta.esValida())
 		  recetas.add(receta);
-		  return receta;
 	}
 	
 	public Double getPeso()
@@ -297,4 +200,5 @@ public class Usuario {
 	}
 	
 }
+
 
