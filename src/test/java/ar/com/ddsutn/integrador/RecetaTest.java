@@ -32,9 +32,9 @@ public class RecetaTest {
 	@Before
 	public void setUp() {
 		
-	lucho = new Usuario("lucho",  81.0, 1.80, LocalDate.of(1995,1,18), "INTENSIVO", null);
-	fede = new Usuario("federico", 72.0, 1.20, LocalDate.of(1995,1,18), "LEVE", "Masculino");
-	fedeMock = new UsuarioMock("federico", 72.0, 1.20, LocalDate.of(1995,1,18), "LEVE", "Masculino");
+	lucho = new Usuario("lucho",  81.0, 1.80, LocalDate.of(1995,1,18), TipoRutina.INTENSIVO, null);
+	fede = new Usuario("federico", 72.0, 1.20, LocalDate.of(1995,1,18), TipoRutina.LEVE, "Masculino");
+	fedeMock = new UsuarioMock("federico", 72.0, 1.20, LocalDate.of(1995,1,18), TipoRutina.LEVE, "Masculino");
 	
 	Receta.RecetasPublicas = new ArrayList<Receta>();
 	
@@ -50,31 +50,31 @@ public class RecetaTest {
 		ingredientes.add(new Comida("Cuadril", 3.0));
 		ingredientes.add(new Comida("Papas", 1.5));
 		ingredientes.add(new Comida("Tomates triturados", 1.5));
-		ingredientes.add(new Comida("Morrón rojo", 4.0));
-		ingredientes.add(new Comida("Morrón amarillo", 4.0));
-		ingredientes.add(new Comida("Morrón verde", 4.0));
+		ingredientes.add(new Comida("Morrï¿½n rojo", 4.0));
+		ingredientes.add(new Comida("Morrï¿½n amarillo", 4.0));
+		ingredientes.add(new Comida("Morrï¿½n verde", 4.0));
 		ingredientes.add(new Comida("Cebollas", 1.0));
 		ingredientes.add(new Comida("Aceite de oliva", 2.0));
 		ingredientes.add(new Comida("Huevos", 20.0));
 		ingredientes.add(new Comida("Tomate perita", 1.0));
-		ingredientes.add(new Comida("Puré de tomate", 500.0));
+		ingredientes.add(new Comida("Purï¿½ de tomate", 500.0));
 		ingredientes.add(new Comida("Arvejas congeladas", 500.0));
-		condimentos.add(new Comida("Ají molido", 0.0));
+		condimentos.add(new Comida("Ajï¿½ molido", 0.0));
 		condimentos.add(new Comida("Ajo picado", 1.0));
 		condimentos.add(new Comida("Perejil picado", 0.0));
-		condimentos.add(new Comida("Orégano", 0.0));
+		condimentos.add(new Comida("Orï¿½gano", 0.0));
 		condimentos.add(new Comida("Sal", 0.0));
 		condimentos.add(new Comida("Pimienta", 0.0));
 		condimentos.add(new Comida("Hojas de laurel", 0.0));
 		condimentos.add(new Comida("Caldo de verdura o carne", 0.0));
-		explicaciones.add("Limpiar el morrón. Cortar en tiras a lo largo y reservar");
+		explicaciones.add("Limpiar el morrï¿½n. Cortar en tiras a lo largo y reservar");
 		explicaciones.add("Pelar y cortar las papas en rodajas gruesitas, cortar la cebolla en juliana");
 		explicaciones.add("Rociar levemente con aceite de oliva a la paellera");
 		explicaciones.add("Pasar la carne por harina (para que se dore mejor) luego disponerla sobre la paella (previamente aceitada). Retirar la carne una vez sellada vuelta y vuelta");
 		explicaciones.add("En la misma paellera colocar una capa de cebolla cortada en juliana, pimientos en juliana, luego una capa de rodajas de papas, rodajas de tomates. Agregar la carne, condimentar por encima");
-		explicaciones.add("Una vez dispuestos todos los ingredientes en el disco con la sal, la pimienta, el orégano, el laurel y el ají molido, incorporar puré de tomate y caldo de verdura hasta cubrir la totalidad de la preparación");
-		explicaciones.add("Cuando las papas tomen color, indicará que la preparación está lista (la cocción total luego de agregar las papas lleva 20 minutos aproximadamente)");
-		explicaciones.add("Agregar los huevos, chascándolos previamente por separado y luego volcarlos encima de los bifes. Sumar las arvejas y espolvorear con perejil picado toda la preparación");
+		explicaciones.add("Una vez dispuestos todos los ingredientes en el disco con la sal, la pimienta, el orï¿½gano, el laurel y el ajï¿½ molido, incorporar purï¿½ de tomate y caldo de verdura hasta cubrir la totalidad de la preparaciï¿½n");
+		explicaciones.add("Cuando las papas tomen color, indicarï¿½ que la preparaciï¿½n estï¿½ lista (la cocciï¿½n total luego de agregar las papas lleva 20 minutos aproximadamente)");
+		explicaciones.add("Agregar los huevos, chascï¿½ndolos previamente por separado y luego volcarlos encima de los bifes. Sumar las arvejas y espolvorear con perejil picado toda la preparaciï¿½n");
 		
 		bifes.setIngredientes(ingredientes);
 		bifes.setCondimentos(condimentos);

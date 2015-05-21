@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class UsuarioMock extends Usuario {
 
 	public UsuarioMock(String string, double d, double e, LocalDate of,
-			String string2, String string3) {
-		super (string,d,e,of,string2,string3);
+			TipoRutina rut, String string3) {
+		super (string,d,e,of,rut,string3);
 		// TODO Auto-generated constructor stub
 	}
 

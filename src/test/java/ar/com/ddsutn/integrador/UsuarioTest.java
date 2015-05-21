@@ -24,10 +24,10 @@ public class UsuarioTest {
 	
 	public void setUp() {
 		
-	lucho = new Usuario("lucho",  81.0, 1.80, LocalDate.of(1995,3,20), "INTENSIVO", null);
-	fede = new Usuario("federico", 72.0, 1.20, LocalDate.of(1995,1,18), "LEVE", "Masculino");
-	nico = new Usuario("nico", 60.0, 2.00, LocalDate.of(1994,03,29), "LEVE", null);
-	nicoLuis = new Usuario("nicoLuis", 57.8 , 1.70, LocalDate.of(1995,6,24) ,"NADA", null);
+	lucho = new Usuario("lucho",  81.0, 1.80, LocalDate.of(1995,3,20), TipoRutina.INTENSIVO, null);
+	fede = new Usuario("federico", 72.0, 1.20, LocalDate.of(1995,1,18), TipoRutina.LEVE, "Masculino");
+	nico = new Usuario("nico", 60.0, 2.00, LocalDate.of(1994,03,29), TipoRutina.LEVE, null);
+	nicoLuis = new Usuario("nicoLuis", 57.8 , 1.70, LocalDate.of(1995,6,24) ,TipoRutina.NADA, null);
 	nicoLuis.setCondiciones(new ArrayList<Condicion>());
 	nicoLuis.setPreferenciasAlimenticias(new ArrayList<String>());
 	
@@ -85,7 +85,7 @@ public class UsuarioTest {
 	@Test
 	public void noEsValidoPorqueTieneQueTenerFecha()
 	{
-		assertEquals ( false , new Usuario("carlos",  81.0, 1.80, null,"MEDIANO", null).esValido()); 
+		assertEquals ( false , new Usuario("carlos",  81.0, 1.80, null,TipoRutina.MEDIANO, null).esValido()); 
 	}
 	
 	//Tests sigueRutinaSaludable()

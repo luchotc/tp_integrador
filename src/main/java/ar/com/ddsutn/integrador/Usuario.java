@@ -11,7 +11,7 @@ import ar.com.ddsutn.condicionesExistentes.Vegano;
 
 
 public class Usuario {
-
+	
 	private String nombre;
 	private String sexo;
 	private LocalDate fechaNacimiento;
@@ -20,7 +20,7 @@ public class Usuario {
 	private Collection <Condicion> condiciones;	
 	private Double altura;
 	private Double peso;
-	private String rutina;		
+	private TipoRutina rutina;
 	private Collection <Receta> recetas;
 	private static Collection<Condicion> CondicionesExistentes ;
 	
@@ -39,7 +39,7 @@ public class Usuario {
 	
 	public Usuario(){}
 	
-	public Usuario (String nombre, Double peso, Double altura, LocalDate fechaNacimiento, String rutina, String sexo){
+	public Usuario (String nombre, Double peso, Double altura, LocalDate fechaNacimiento, TipoRutina rutina, String sexo){
 		this.nombre = nombre;
 		this.peso = peso;
 		this.altura = altura;
@@ -190,7 +190,7 @@ public class Usuario {
 	
 	public String getRutina()
 	{	
-		return rutina;	
+		return rutina.name();	
 	}
 	
 	public boolean esSedentario(){
