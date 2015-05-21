@@ -28,7 +28,7 @@ public class Receta implements Cloneable{
 		this.totalCalorias = totalCalorias;
 		this.temporada = temporada;
 	}
-
+	
 	public void modificarSegun(Receta receta)
 	{
 		String nombreNuevo = receta.getNombre();

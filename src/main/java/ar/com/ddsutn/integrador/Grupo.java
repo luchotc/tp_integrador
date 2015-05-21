@@ -1,5 +1,6 @@
 package ar.com.ddsutn.integrador;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Grupo {
@@ -10,6 +11,13 @@ public class Grupo {
 	
 	public Grupo (String nombre){
 		this.setNombre(nombre);
+	}
+	
+	public Collection <Receta> getRecetasGrupo()
+	{
+		Collection<Receta> recetasGrupo = new ArrayList<Receta>();
+		usuarios.stream().forEach(u -> recetasGrupo.addAll(u.getRecetas()));
+		return recetasGrupo;
 	}
 
 	public Collection <String> getPreferenciasAlimenticias() 
