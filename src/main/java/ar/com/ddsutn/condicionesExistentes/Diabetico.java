@@ -1,6 +1,7 @@
 package ar.com.ddsutn.condicionesExistentes;
 
-import ar.com.ddsutn.integrador.Comida;
+import ar.com.ddsutn.integrador.Ingrediente;
+import ar.com.ddsutn.integrador.Condimento;
 import ar.com.ddsutn.integrador.Receta;
 import ar.com.ddsutn.integrador.Usuario;
 
@@ -30,7 +31,7 @@ public class Diabetico implements Condicion{
 		return  getAzucar(receta).mapToDouble( condimento -> condimento.getCantidad()).sum() <100;
 	}
 	
-	public Stream<Comida> getAzucar(Receta receta) 
+	public Stream<Condimento> getAzucar(Receta receta) 
 	{
 		return receta.getCondimentos().stream().filter( condimento -> condimento.getNombre().equals("Azucar"));
 	}

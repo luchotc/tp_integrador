@@ -22,11 +22,11 @@ public class RecetaTest {
 	private Receta bifes;
 	private Receta unaSubReceta;
 	Collection <String> explicaciones = new ArrayList<String>();
-	Collection <Comida> ingredientes = new ArrayList<Comida>();
-	Collection <Comida> condimentos = new ArrayList<Comida>();
+	Collection <Ingrediente> ingredientes = new ArrayList<Ingrediente>();
+	Collection <Condimento> condimentos = new ArrayList<Condimento>();
 	Collection <Receta> subRecetas = new ArrayList<Receta>();
-	Collection <Comida> ingredientesSubReceta = new ArrayList<Comida>();
-	Collection <Comida> condimentosSubReceta = new ArrayList<Comida>();
+	Collection <Ingrediente> ingredientesSubReceta = new ArrayList<Ingrediente>();
+	Collection <Condimento> condimentosSubReceta = new ArrayList<Condimento>();
 	Collection <String> explicacionesSubReceta = new ArrayList<String>();
 	
 	@Before
@@ -47,26 +47,26 @@ public class RecetaTest {
 	{
 		bifes = new Receta("Bifes a la criolla con papas y arvejas", 785, "Todas");
 		
-		ingredientes.add(new Comida("Cuadril", 3.0));
-		ingredientes.add(new Comida("Papas", 1.5));
-		ingredientes.add(new Comida("Tomates triturados", 1.5));
-		ingredientes.add(new Comida("Morr�n rojo", 4.0));
-		ingredientes.add(new Comida("Morr�n amarillo", 4.0));
-		ingredientes.add(new Comida("Morr�n verde", 4.0));
-		ingredientes.add(new Comida("Cebollas", 1.0));
-		ingredientes.add(new Comida("Aceite de oliva", 2.0));
-		ingredientes.add(new Comida("Huevos", 20.0));
-		ingredientes.add(new Comida("Tomate perita", 1.0));
-		ingredientes.add(new Comida("Pur� de tomate", 500.0));
-		ingredientes.add(new Comida("Arvejas congeladas", 500.0));
-		condimentos.add(new Comida("Aj� molido", 0.0));
-		condimentos.add(new Comida("Ajo picado", 1.0));
-		condimentos.add(new Comida("Perejil picado", 0.0));
-		condimentos.add(new Comida("Or�gano", 0.0));
-		condimentos.add(new Comida("Sal", 0.0));
-		condimentos.add(new Comida("Pimienta", 0.0));
-		condimentos.add(new Comida("Hojas de laurel", 0.0));
-		condimentos.add(new Comida("Caldo de verdura o carne", 0.0));
+		ingredientes.add(new Ingrediente("Cuadril", 3.0));
+		ingredientes.add(new Ingrediente("Papas", 1.5));
+		ingredientes.add(new Ingrediente("Tomates triturados", 1.5));
+		ingredientes.add(new Ingrediente("Morr�n rojo", 4.0));
+		ingredientes.add(new Ingrediente("Morr�n amarillo", 4.0));
+		ingredientes.add(new Ingrediente("Morr�n verde", 4.0));
+		ingredientes.add(new Ingrediente("Cebollas", 1.0));
+		ingredientes.add(new Ingrediente("Aceite de oliva", 2.0));
+		ingredientes.add(new Ingrediente("Huevos", 20.0));
+		ingredientes.add(new Ingrediente("Tomate perita", 1.0));
+		ingredientes.add(new Ingrediente("Pur� de tomate", 500.0));
+		ingredientes.add(new Ingrediente("Arvejas congeladas", 500.0));
+		condimentos.add(new Condimento("Aj� molido", 0.0));
+		condimentos.add(new Condimento("Ajo picado", 1.0));
+		condimentos.add(new Condimento("Perejil picado", 0.0));
+		condimentos.add(new Condimento("Or�gano", 0.0));
+		condimentos.add(new Condimento("Sal", 0.0));
+		condimentos.add(new Condimento("Pimienta", 0.0));
+		condimentos.add(new Condimento("Hojas de laurel", 0.0));
+		condimentos.add(new Condimento("Caldo de verdura o carne", 0.0));
 		explicaciones.add("Limpiar el morr�n. Cortar en tiras a lo largo y reservar");
 		explicaciones.add("Pelar y cortar las papas en rodajas gruesitas, cortar la cebolla en juliana");
 		explicaciones.add("Rociar levemente con aceite de oliva a la paellera");
@@ -86,11 +86,11 @@ public class RecetaTest {
 	private void inicializarSubReceta() {
 		unaSubReceta = new Receta("una subReceta", 250, "Todas");
 		
-		ingredientesSubReceta.add(new Comida("un ingrediente", 4.5));
-		ingredientesSubReceta.add(new Comida("otro ingrediente", 5.0));
-		ingredientesSubReceta.add(new Comida("un ingrediente mas", 1.0));
-		condimentosSubReceta.add(new Comida("un condimento", 0.0));
-		condimentosSubReceta.add(new Comida("otro condimento", 1.0));
+		ingredientesSubReceta.add(new Ingrediente("un ingrediente", 4.5));
+		ingredientesSubReceta.add(new Ingrediente("otro ingrediente", 5.0));
+		ingredientesSubReceta.add(new Ingrediente("un ingrediente mas", 1.0));
+		condimentosSubReceta.add(new Condimento("un condimento", 0.0));
+		condimentosSubReceta.add(new Condimento("otro condimento", 1.0));
 		explicacionesSubReceta.add("Hola, soy una explicacion");
 		explicacionesSubReceta.add("Hola, yo soy la segunda parte");
 		explicacionesSubReceta.add("y yo la tercera parte");
@@ -108,13 +108,13 @@ public class RecetaTest {
 	@Test
 	public void condimentoConCN()
 	{
-		Comida azucar = new Comida ("Azucar","C/N");
+		Condimento azucar = new Condimento ("Azucar","C/N");
 		assertEquals ((Double) 0.0 , azucar.getCantidad());
 	}
 	@Test
 	public void condimentoConValorNormal()
 	{
-		Comida azucar = new Comida ("Azucar",70.0);
+		Condimento azucar = new Condimento ("Azucar",70.0);
 		assertEquals ((Double) 70.0 , azucar.getCantidad());
 	}
 	
@@ -129,7 +129,7 @@ public class RecetaTest {
 	public void unaRecetaNoEsValidaPorNoTenerIngredientes()
 	{
 		Receta otraReceta = new Receta("otra Receta",1500);
-		otraReceta.setIngredientes(new ArrayList<Comida>());
+		otraReceta.setIngredientes(new ArrayList<Ingrediente>());
 		assertEquals ( false , otraReceta.esValida());		
 	}
 	
@@ -137,7 +137,7 @@ public class RecetaTest {
 	public void unaRecetaNoEsValidaPorNoTenerRangoEntre10Y5000()
 	{
 		Receta otraReceta = new Receta("otra Receta",8000);
-		otraReceta.setIngredientes(new ArrayList<Comida>());
+		otraReceta.setIngredientes(new ArrayList<Ingrediente>());
 		assertEquals ( false , otraReceta.esValida());		}
 	
 	//Tests Receta inadecuada
@@ -146,7 +146,7 @@ public class RecetaTest {
 	{	
 		fede.setCondiciones(new ArrayList<Condicion>());
 		fede.getCondiciones().add(new Diabetico());
-		bifes.addCondimentos(new Comida("Azucar", 150.00));
+		bifes.addCondimentos(new Condimento("Azucar", 150.00));
 		assertEquals ( true , fede.esInadecuada(bifes));		
 	}
 	
@@ -155,7 +155,7 @@ public class RecetaTest {
 	{	
 		fede.setCondiciones(new ArrayList<Condicion>());
 		fede.getCondiciones().add(new Vegano());
-		bifes.addIngrediente(new Comida("chori", 1.00));
+		bifes.addIngrediente(new Ingrediente("chori", 1.00));
 		assertEquals ( true , fede.esInadecuada(bifes));		
 	}
 	

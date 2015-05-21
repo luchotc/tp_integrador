@@ -8,8 +8,8 @@ import ar.com.ddsutn.condicionesExistentes.Condicion;
 public class Receta implements Cloneable{
 	private String nombre;
 	private int totalCalorias;
-	private Collection <Comida> ingredientes;
-	protected Collection <Comida> condimentos;
+	private Collection <Ingrediente> ingredientes;
+	protected Collection <Condimento> condimentos;
 	private Collection <String> explicaciones;
 	private Collection <Receta> subRecetas;
 	private String temporada;
@@ -33,8 +33,8 @@ public class Receta implements Cloneable{
 	{
 		String nombreNuevo = receta.getNombre();
 		int caloriasNuevas = receta.getTotalCalorias();
-		Collection <Comida> ingredientes = receta.getIngredientes();
-		Collection <Comida> condimentos = receta.getCondimentos();
+		Collection <Ingrediente> ingredientes = receta.getIngredientes();
+		Collection <Condimento> condimentos = receta.getCondimentos();
 		Collection <String> explicaciones = receta.getExplicaciones();
 		Collection <Receta> subRecetas = receta.getSubRecetas();
 		String temporada = receta.getTemporada();
@@ -128,9 +128,14 @@ public class Receta implements Cloneable{
 		}
 	}
 	
-	public void addIngrediente(Comida ingrediente)
+	public void addIngrediente(Ingrediente ingrediente)
 	{	
 		ingredientes.add(ingrediente);		
+	}
+	
+	public void addCondimento(Condimento condimento)
+	{	
+		condimentos.add(condimento);		
 	}
 	
 	public Collection <Receta> getSubRecetas() {
@@ -146,27 +151,27 @@ public class Receta implements Cloneable{
 		explicaciones.add(explicacion);		
 	}
 	
-	public void addCondimentos(Comida condimento)
+	public void addCondimentos(Condimento condimento)
 	{	
 		condimentos.add(condimento);		
 	}
 	
-	public Collection <Comida> getCondimentos()
+	public Collection <Condimento> getCondimentos()
 	{	
 		return condimentos;		
 	}
 	
-	public Collection <Comida> getIngredientes()
+	public Collection <Ingrediente> getIngredientes()
 	{	
 		return ingredientes;	
 	}
 	
-	public void setCondimentos(Collection <Comida> condimentos)
+	public void setCondimentos(Collection <Condimento> condimentos)
 	{	
 		this.condimentos = condimentos;		
 	}
 	
-	public void setIngredientes(Collection <Comida> ingredientes)
+	public void setIngredientes(Collection <Ingrediente> ingredientes)
 	{	
 		this.ingredientes = ingredientes;	
 	}
