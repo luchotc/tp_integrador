@@ -2,6 +2,9 @@ package ar.com.ddsutn.integrador;
 
 public class Condimento extends Ingrediente {
 
+	public Condimento(String nombre, Double cantidad){
+		super(nombre,cantidad);
+	}
 	
 	public Condimento(String nombre, String cantidad){
 		super(nombre);
