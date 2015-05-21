@@ -1,6 +1,6 @@
 package ar.com.ddsutn.condicionesExistentes;
 
-import ar.com.ddsutn.integrador.Ingrediente;
+
 import ar.com.ddsutn.integrador.Condimento;
 import ar.com.ddsutn.integrador.Receta;
 import ar.com.ddsutn.integrador.Usuario;
