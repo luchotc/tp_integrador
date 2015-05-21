@@ -1,6 +1,7 @@
 package ar.com.ddsutn.integrador;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import ar.com.ddsutn.condicionesExistentes.Celiaco;
@@ -22,6 +23,7 @@ public class Usuario {
 	private Double peso;
 	private TipoRutina rutina;
 	private Collection <Receta> recetas;
+	private Collection <Grupo> grupos;
 	private static Collection<Condicion> CondicionesExistentes ;
 	
 	public static void SetCondicionesExistentes()
@@ -114,6 +116,20 @@ public class Usuario {
 			}	
 	}
 	
+	/*public Collection <Receta> getRecetasDeLosGrupos()
+	{
+		Collection<Receta> recetasTotales = new ArrayList<Receta>();
+		grupos.stream().forEach(g -> recetasTotales.addAll(g.getRecetasGrupo()));
+		return recetasTotales;
+	} 
+	PUEDE LLEGAR A SERVIR*/
+	
+	  public boolean perteneceAAlgunGrupo (Receta receta)
+	  
+	  {return grupos.stream().anyMatch(grupo -> (grupo.getRecetasGrupo()).contains(receta));
+	  }
+	  
+	
 
 	/*	setters y getters	*/
 	
@@ -197,6 +213,14 @@ public class Usuario {
 		return rutina.equals("LEVE") ||
 			   rutina.equals("NADA") ||
 			   rutina.equals("MEDIANO");
+	}
+
+	public Collection <Grupo> getGrupos() {
+		return grupos;
+	}
+
+	public void setGrupos(Collection <Grupo> grupos) {
+		this.grupos = grupos;
 	}
 	
 }
