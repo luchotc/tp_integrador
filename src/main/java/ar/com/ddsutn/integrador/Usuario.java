@@ -223,9 +223,9 @@ public class Usuario {
 	}
 	
 	public boolean esSedentario(){
-		return rutina.equals("LEVE") ||
-			   rutina.equals("NADA") ||
-			   rutina.equals("MEDIANO");
+		return rutina.equals(TipoRutina.LEVE) ||
+			   rutina.equals(TipoRutina.NADA) ||
+			   rutina.equals(TipoRutina.MEDIANO);
 	}
 
 	public Collection <Grupo> getGrupos() {
