@@ -96,14 +96,14 @@ public class Usuario {
 			return copiaReceta;
 	}
 	
-	public boolean puedeVerOModificarReceta (Receta receta)
+	public boolean puedeVerOModificar (Receta receta)
 	{ 
 		return receta.esPublica() || esRecetaPropia(receta);
 	}
 	
 	public void modificarRecetaGeneral(Receta receta, Receta recetaModificada)
 	{
-		if(puedeVerOModificarReceta(receta))
+		if(puedeVerOModificar(receta))
 			if (receta.esPublica())
 			{
 				Receta recetaAgregada = agregarAPropias(receta);
@@ -116,6 +116,18 @@ public class Usuario {
 			}	
 	}
 	
+	boolean puedeSugerir(Receta receta){
+		
+		return puedeVerOModificar(receta) && !esInadecuada(receta) && !incluyeIngredienteQueDisgusta(receta);
+	}
+	
+	private boolean incluyeIngredienteQueDisgusta(Receta receta) {
+		
+		 return palabrasDisgustan.stream().anyMatch(p -> (receta.getIngredientes()).contains(p));
+	}
+	
+	
+	
 	/*public Collection <Receta> getRecetasDeLosGrupos()
 	{
 		Collection<Receta> recetasTotales = new ArrayList<Receta>();
@@ -124,7 +136,8 @@ public class Usuario {
 	} 
 	PUEDE LLEGAR A SERVIR*/
 	
-	  public boolean perteneceAAlgunGrupo (Receta receta)
+	  
+	public boolean perteneceAAlgunGrupo (Receta receta)
 	  
 	  {return grupos.stream().anyMatch(grupo -> (grupo.getRecetasGrupo()).contains(receta));
 	  }

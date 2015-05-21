@@ -211,7 +211,7 @@ public class RecetaTest {
 		fede.setRecetas(new ArrayList<Receta>());
 		fede.addReceta(bifes);
 		assertEquals ( true , fede.esRecetaPropia(bifes));
-		assertEquals ( true , fede.puedeVerOModificarReceta(bifes));		
+		assertEquals ( true , fede.puedeVerOModificar(bifes));		
 	}
 	
 	@Test
@@ -221,7 +221,7 @@ public class RecetaTest {
 		lucho.setRecetas(new ArrayList<Receta>());
 		fede.addReceta(bifes);
 		assertEquals ( false , lucho.esRecetaPropia(bifes));
-		assertEquals ( false , lucho.puedeVerOModificarReceta(bifes));		
+		assertEquals ( false , lucho.puedeVerOModificar(bifes));		
 	}
 	
 	@Test
@@ -232,8 +232,8 @@ public class RecetaTest {
 		lucho.setRecetas(new ArrayList<Receta>());
 		assertEquals ( false , fede.esRecetaPropia(bifes));
 		assertEquals ( false , lucho.esRecetaPropia(bifes));
-		assertEquals ( true , fede.puedeVerOModificarReceta(bifes));
-		assertEquals ( true , lucho.puedeVerOModificarReceta(bifes));	
+		assertEquals ( true , fede.puedeVerOModificar(bifes));
+		assertEquals ( true , lucho.puedeVerOModificar(bifes));	
 	}
 	
 	// Tests modificar Receta

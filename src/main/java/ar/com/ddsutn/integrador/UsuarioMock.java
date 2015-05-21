@@ -12,7 +12,7 @@ public class UsuarioMock extends Usuario {
 
 	public Receta devuelveRecetaModificada(Receta receta, Receta recetaModificada)
 	{
-		if(puedeVerOModificarReceta(receta))
+		if(puedeVerOModificar(receta))
 			if (receta.esPublica())
 			{
 				Receta recetaAgregada = agregarAPropias(receta);
