@@ -13,6 +13,7 @@ public class Grupo {
 		this.setNombre(nombre);
 	}
 	
+	
 	public Collection <Receta> getRecetasGrupo()
 	{
 		Collection<Receta> recetasGrupo = new ArrayList<Receta>();
@@ -20,6 +21,19 @@ public class Grupo {
 		return recetasGrupo;
 	}
 
+	public boolean puedeSugerir(Receta receta)
+	{
+		return nombreQueGusta(receta);
+	}
+	
+	public boolean nombreQueGusta(Receta receta)
+	{
+		String nombreReceta = (receta.getNombre()).toLowerCase();
+		return preferenciasAlimenticias.stream().anyMatch(pref -> nombreReceta.contains(pref.toLowerCase()));		
+	}
+	
+	
+	/*Getters y Setters*/
 	public Collection <String> getPreferenciasAlimenticias() 
 	{	
 		return preferenciasAlimenticias;	
