@@ -128,6 +128,7 @@ public class Usuario {
 	
 	
 	
+	
 	/*public Collection <Receta> getRecetasDeLosGrupos()
 	{
 		Collection<Receta> recetasTotales = new ArrayList<Receta>();

@@ -7,11 +7,23 @@ public class Grupo {
 	
 	private Collection <Usuario> usuarios;
 	private Collection <String> preferenciasAlimenticias;
-	private String nombre;
+	private String nombre; 
 	
+
 	public Grupo (String nombre){
 		this.setNombre(nombre);
 	}
+	
+	
+	public void agregarUsuario (Usuario usuario)
+	{
+		usuarios.add(usuario);
+	}
+	public boolean nombreQueGusta(Receta receta)
+	 {
+	  String nombreReceta = (receta.getNombre()).toLowerCase();
+	  return preferenciasAlimenticias.stream().anyMatch(pref -> nombreReceta.contains(pref.toLowerCase()));  
+	 }
 	
 	public Collection <Receta> getRecetasGrupo()
 	{
