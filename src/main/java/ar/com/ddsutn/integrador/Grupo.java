@@ -15,16 +15,14 @@ public class Grupo {
 	}
 	
 	
+
 	public void agregarUsuario (Usuario usuario)
 	{
 		usuarios.add(usuario);
 	}
-	public boolean nombreQueGusta(Receta receta)
-	 {
-	  String nombreReceta = (receta.getNombre()).toLowerCase();
-	  return preferenciasAlimenticias.stream().anyMatch(pref -> nombreReceta.contains(pref.toLowerCase()));  
-	 }
 	
+	
+
 	public Collection <Receta> getRecetasGrupo()
 	{
 		Collection<Receta> recetasGrupo = new ArrayList<Receta>();
@@ -32,6 +30,19 @@ public class Grupo {
 		return recetasGrupo;
 	}
 
+	public boolean puedeSugerir(Receta receta)
+	{
+		return nombreQueGusta(receta);
+	}
+	
+	public boolean nombreQueGusta(Receta receta)
+	{
+		String nombreReceta = (receta.getNombre()).toLowerCase();
+		return preferenciasAlimenticias.stream().anyMatch(pref -> nombreReceta.contains(pref.toLowerCase()));		
+	}
+	
+	
+	/*Getters y Setters*/
 	public Collection <String> getPreferenciasAlimenticias() 
 	{	
 		return preferenciasAlimenticias;	
