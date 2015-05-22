@@ -217,6 +217,14 @@ public class RecetaTest {
 	@Test
 	public void usuarioPuedeVerUnaRecetaAjena()
 	{	
+		fede.setGrupos(new ArrayList<Grupo>());
+		lucho.setGrupos(new ArrayList<Grupo>());
+		Grupo lasSuris = new Grupo ("Suricatas");
+		Grupo adrianYLosDados = new Grupo ("Adrian y los Dados Negros");
+		lasSuris.setUsuarios(new ArrayList<Usuario>());
+		adrianYLosDados.setUsuarios(new ArrayList<Usuario>());
+		lasSuris.agregarUsuario(lucho);
+		adrianYLosDados.agregarUsuario(fede);
 		fede.setRecetas(new ArrayList<Receta>());
 		lucho.setRecetas(new ArrayList<Receta>());
 		fede.addReceta(bifes);

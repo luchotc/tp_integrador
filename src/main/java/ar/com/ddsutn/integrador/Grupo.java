@@ -19,6 +19,7 @@ public class Grupo {
 	public void agregarUsuario (Usuario usuario)
 	{
 		usuarios.add(usuario);
+		usuario.actualizarGruposPropios(this);
 	}
 	
 	

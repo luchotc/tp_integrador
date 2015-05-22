@@ -145,7 +145,6 @@ public class Usuario {
 	  
 	  {return grupos.stream().anyMatch(grupo -> (grupo.getRecetasGrupo()).contains(receta));
 	  }
-	  
 	
 
 	/*	setters y getters	*/
