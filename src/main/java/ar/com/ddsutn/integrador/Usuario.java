@@ -1,7 +1,6 @@
 package ar.com.ddsutn.integrador;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collection;
 
 import ar.com.ddsutn.condicionesExistentes.Celiaco;
@@ -48,6 +47,10 @@ public class Usuario {
 		this.fechaNacimiento = fechaNacimiento;
 		this.sexo = sexo;
 		this.rutina = rutina;
+	}
+	
+	public void actualizarGruposPropios(Grupo grupo){
+		grupos.add(grupo);
 	}
 	
 	public Double imc ()

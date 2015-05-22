@@ -14,11 +14,14 @@ public class GrupoTest {
 	private Usuario rama;
 	private Usuario nicoLuis;
 	private Grupo lasSuris;
+	private Receta bifes;
+	
 
 	@Before
 	
 	public void setUp() {
 	
+	bifes = new Receta("Bifes a la criolla con papas y arvejas", 785, "Todas");
 	lasSuris = new Grupo("Suricatas 2.0");	
 	lucho = new Usuario("lucho",  81.0, 1.80, LocalDate.of(1995,3,20), TipoRutina.INTENSIVO, null);
 	fede = new Usuario("federico", 72.0, 1.20, LocalDate.of(1995,1,18), TipoRutina.LEVE, "Masculino");
@@ -30,6 +33,7 @@ public class GrupoTest {
 	lasSuris.agregarUsuario (lucho);
 	lasSuris.agregarUsuario (nicoLuis);
 	lasSuris.agregarUsuario (rama);
+	
 	
 	
 	
