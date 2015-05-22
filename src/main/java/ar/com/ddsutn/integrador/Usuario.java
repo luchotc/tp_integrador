@@ -98,7 +98,7 @@ public class Usuario {
 	
 	public boolean puedeVerOModificar (Receta receta)
 	{ 
-		return receta.esPublica() || esRecetaPropia(receta);
+		return receta.esPublica() || esRecetaPropia(receta) || perteneceAAlgunGrupo(receta);
 	}
 	
 	public void modificarRecetaGeneral(Receta receta, Receta recetaModificada)
