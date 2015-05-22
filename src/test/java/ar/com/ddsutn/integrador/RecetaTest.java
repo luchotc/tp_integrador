@@ -151,7 +151,7 @@ public class RecetaTest {
 	}
 	
 	@Test
-	public void esInadecuadaParaVeganoConChori()
+	public void alVeganoNoLeCabeElChori()
 	{	
 		fede.setCondiciones(new ArrayList<Condicion>());
 		fede.getCondiciones().add(new Vegano());
