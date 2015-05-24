@@ -7,6 +7,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.Before;
 
+import ar.com.ddsutn.condicionesExistentes.Hipertenso;
+
 public class GrupoTest {
 
 	private Usuario lucho;
@@ -72,6 +74,26 @@ public class GrupoTest {
 	{
 		nicoLuis.addReceta(bifes);
 		assertEquals(true, fede.puedeVerOModificar(bifes));
+	}
+	
+	@Test
+	public void unaRecetaPuedeSugerirseAGrupo()
+	{
+		suricatas.addPreferencia("arvejas");
+		assertEquals(true,suricatas.puedeSugerir(bifes));
+	}
+	
+	@Test
+	public void unaRecetaNoEsSugeribleAlGrupoPorqueNicoEsHipertensoYElBifeTieneSal()
+	{
+		bifes.addCondimento(new Condimento("Sal",150.0));
+		nicoLuis.addCondicion(new Hipertenso());
+		assertEquals(false,suricatas.puedeSugerir(bifes));
+	}
+	@Test
+	public void unaRecetaNoEsSugeribleAlGrupoPorqueNoTienePreferencia()
+	{
+		assertEquals(false,suricatas.puedeSugerir(bifes));
 	}
 	
 }

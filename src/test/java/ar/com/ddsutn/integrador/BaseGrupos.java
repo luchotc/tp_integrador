@@ -16,8 +16,9 @@ public class BaseGrupos {
 		iniciarVariables(suricatas);
 	}
 
-	private void iniciarVariables(Grupo suricatas2) {
-		suricatas.setUsuarios(new ArrayList<>());
+	private void iniciarVariables(Grupo grupo) {
+		grupo.setUsuarios(new ArrayList<>());
+		grupo.setPreferenciasAlimenticias(new ArrayList<>());
 	}
 
 	public Grupo getSuricatas() {

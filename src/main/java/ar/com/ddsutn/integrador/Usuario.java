@@ -121,14 +121,19 @@ public class Usuario {
 	}
 	
 	boolean puedeSugerir(Receta receta){
-		
-		return puedeVerOModificar(receta) && !esInadecuada(receta) && !incluyeIngredienteQueDisgusta(receta);
+		return !esInadecuada(receta) && !incluyeIngredienteQueDisgusta(receta);
+		//return puedeVerOModificar(receta) && !esInadecuada(receta) && !incluyeIngredienteQueDisgusta(receta);
 	}
 	
-	public boolean incluyeIngredienteQueDisgusta(Receta receta) {
-		
-		 return palabrasDisgustan.stream().anyMatch(p -> (receta.getIngredientes()).contains(p));
+	public boolean incluyeIngredienteQueDisgusta(Receta receta)
+	{
+		return receta.getIngredientes().stream().anyMatch(ing -> esDisgusto(ing.getNombre()));
 	}
+	
+	private boolean esDisgusto(String ing) {
+		return palabrasDisgustan.stream().anyMatch(dis -> dis.equals(ing));
+	}
+
 	
     public String toString() //temporal para encontrar errores
     {
@@ -194,7 +199,7 @@ public class Usuario {
 		this.palabrasDisgustan = palabrasDisgustan;	
 	}
 	
-	public void addPalabrasDisgustan(String palabrasDisgustan) 
+	public void addDisgusto(String palabrasDisgustan) 
 	{	
 		this.palabrasDisgustan.add(palabrasDisgustan);
 	}

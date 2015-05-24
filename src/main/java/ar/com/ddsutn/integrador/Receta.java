@@ -137,11 +137,10 @@ public class Receta implements Cloneable{
 	
 	public boolean esCara()
 	{
-		ingredientes.stream().anyMatch(ing -> esIngredienteCaro(ing));
-		return true;
+		return ingredientes.stream().anyMatch(ing -> esIngredienteCaro(ing.getNombre()));
 	}
 	
-	private boolean esIngredienteCaro(Ingrediente ing) {
+	private boolean esIngredienteCaro(String ing) {
 		return ingredientesCaros.stream().anyMatch(caro -> caro.equals(ing));
 	}
 

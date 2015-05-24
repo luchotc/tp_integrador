@@ -54,6 +54,11 @@ public class Grupo {
 	{	
 		this.preferenciasAlimenticias = preferenciasAlimenticias;
 	}
+	
+	public void addPreferencia(String preferencia)
+	{
+		preferenciasAlimenticias.add(preferencia);
+	}
 
 	public String getNombre() {
 		return nombre;

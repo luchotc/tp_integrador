@@ -49,6 +49,33 @@ public class RecetaTest {
 		bifes.addSubReceta(recetas.subRecetaCualquiera());
 	}
 	
+	@Test
+	public void unaRecetaEsCara()
+	{
+		bifes.addIngrediente(new Ingrediente("lomo",10.0));
+		assertEquals(true,bifes.esCara());
+	}
+	
+	@Test
+	public void unaRecetaNoEsCara()
+	{
+		assertEquals(false,bifes.esCara());
+	}
+	
+	@Test
+	public void unaRecetaPuedeSugerirseAUnUsuario()
+	{
+		assertEquals(true,lucho.puedeSugerir(bifes));
+	}
+	
+	@Test
+	public void unaRecetaNoPuedeSugerirseAUnUsuario()
+	{
+		fede.addDisgusto("paella");
+		bifes.addIngrediente(new Ingrediente ("paella",50.0));
+		assertEquals(false, fede.puedeSugerir(bifes));
+	}
+	
 	//Tests condimentos
 	@Test
 	public void condimentoConCN()
