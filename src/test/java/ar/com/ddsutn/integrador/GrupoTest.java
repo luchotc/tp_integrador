@@ -13,19 +13,19 @@ public class GrupoTest {
 	private Usuario fede;
 	private Usuario rama;
 	private Usuario nicoLuis;
-	private Grupo lasSuris;
+	private Grupo suricatas;
 	private Receta bifes;
 	private BaseUsuarios usuarios;
 	private BaseRecetas recetas;
+	private BaseGrupos grupos;
 	
 	@Before
 	public void setUp() {
-		
-		lasSuris = new Grupo("Suricatas 2.0");
 
 		iniciarBases();
 		crearUsuarios();
 		crearRecetas();
+		crearGrupos();
 		agregarUsuarios();
 	
 		Receta.RecetasPublicas = new ArrayList<Receta>();	
@@ -33,7 +33,8 @@ public class GrupoTest {
 
 	private void iniciarBases() {
 		usuarios = new BaseUsuarios();
-		recetas = new BaseRecetas();		
+		recetas = new BaseRecetas();	
+		grupos = new BaseGrupos();
 	}
 
 	private void crearUsuarios() {
@@ -46,20 +47,23 @@ public class GrupoTest {
 	private void crearRecetas() {
 		bifes = recetas.getBifes();
 	}
+	
+	private void crearGrupos() {
+		suricatas = grupos.getSuricatas();
+	}
 
 	private void agregarUsuarios() {
-		lasSuris.setUsuarios(new ArrayList<Usuario>());
-		lasSuris.agregarUsuario(fede);
-		lasSuris.agregarUsuario(lucho);
-		lasSuris.agregarUsuario(nicoLuis);
-		lasSuris.agregarUsuario(rama);
+		suricatas.agregarUsuario(fede);
+		suricatas.agregarUsuario(lucho);
+		suricatas.agregarUsuario(nicoLuis);
+		suricatas.agregarUsuario(rama);
 	}
 
 	@Test
 	public void elGrupoTieneLaRecetaDeUnMiembro()
 	{
 		nicoLuis.addReceta(bifes);
-		boolean retorno = (lasSuris.getRecetasGrupo()).stream().anyMatch(r -> r.equals(bifes));
+		boolean retorno = (suricatas.getRecetasGrupo()).stream().anyMatch(r -> r.equals(bifes));
 		assertEquals(true, retorno);
 	}
 	

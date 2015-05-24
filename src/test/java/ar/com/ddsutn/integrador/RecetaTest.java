@@ -4,17 +4,14 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.com.ddsutn.condicionesExistentes.Condicion;
 import ar.com.ddsutn.condicionesExistentes.Diabetico;
 import ar.com.ddsutn.condicionesExistentes.Hipertenso;
 import ar.com.ddsutn.condicionesExistentes.Vegano;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class RecetaTest {
-	
 	
 	private Usuario lucho;
 	private Usuario fede;
@@ -22,13 +19,6 @@ public class RecetaTest {
 	private Receta bifes;
 	private BaseUsuarios usuarios;
 	private BaseRecetas recetas;
-	Collection <String> explicaciones = new ArrayList<String>();
-	Collection <Ingrediente> ingredientes = new ArrayList<Ingrediente>();
-	Collection <Condimento> condimentos = new ArrayList<Condimento>();
-	Collection <Receta> subRecetas = new ArrayList<Receta>();
-	Collection <Ingrediente> ingredientesSubReceta = new ArrayList<Ingrediente>();
-	Collection <Condimento> condimentosSubReceta = new ArrayList<Condimento>();
-	Collection <String> explicacionesSubReceta = new ArrayList<String>();
 	
 	@Before
 	public void setUp() {
@@ -37,7 +27,6 @@ public class RecetaTest {
 		crearRecetas();
 		Receta.RecetasPublicas = new ArrayList<Receta>();
 		inicializarSubReceta();
-	
 	}
 	
 	private void iniciarBases() {
@@ -94,14 +83,14 @@ public class RecetaTest {
 	{
 		Receta otraReceta = new Receta("otra Receta",8000);
 		otraReceta.setIngredientes(new ArrayList<Ingrediente>());
-		assertEquals ( false , otraReceta.esValida());		}
+		assertEquals ( false , otraReceta.esValida());		
+	}
 	
 	//Tests Receta inadecuada
 	@Test
 	public void esInadecuadaParaDiabeticoConMasDe100grDeAzucar()
 	{	
-		fede.setCondiciones(new ArrayList<Condicion>());
-		fede.getCondiciones().add(new Diabetico());
+		fede.addCondicion(new Diabetico());
 		bifes.addCondimentos(new Condimento("Azucar", 150.00));
 		assertEquals ( true , fede.esInadecuada(bifes));		
 	}
@@ -109,8 +98,7 @@ public class RecetaTest {
 	@Test
 	public void alVeganoNoLeCabeElChori()
 	{	
-		fede.setCondiciones(new ArrayList<Condicion>());
-		fede.getCondiciones().add(new Vegano());
+		fede.addCondicion(new Vegano());
 		bifes.addIngrediente(new Ingrediente("chori", 1.00));
 		assertEquals ( true , fede.esInadecuada(bifes));		
 	}
@@ -118,8 +106,7 @@ public class RecetaTest {
 	@Test
 	public void esInadecuadaParaHipertensoConSal()
 	{	
-		fede.setCondiciones(new ArrayList<Condicion>());
-		fede.getCondiciones().add(new Hipertenso());
+		fede.addCondicion(new Hipertenso());
 		assertEquals ( true , fede.esInadecuada(bifes));	
 	}
 	
@@ -176,7 +163,6 @@ public class RecetaTest {
 	@Test
 	public void usuarioPuedeVerUnaRecetaPropia()
 	{	
-		fede.setRecetas(new ArrayList<Receta>());
 		fede.addReceta(bifes);
 		assertEquals ( true , fede.esRecetaPropia(bifes));
 		assertEquals ( true , fede.puedeVerOModificar(bifes));		
@@ -185,17 +171,17 @@ public class RecetaTest {
 	@Test
 	public void usuarioPuedeVerUnaRecetaAjena()
 	{	
-		fede.setGrupos(new ArrayList<Grupo>());
-		lucho.setGrupos(new ArrayList<Grupo>());
 		Grupo lasSuris = new Grupo ("Suricatas");
 		Grupo adrianYLosDados = new Grupo ("Adrian y los Dados Negros");
+		
 		lasSuris.setUsuarios(new ArrayList<Usuario>());
 		adrianYLosDados.setUsuarios(new ArrayList<Usuario>());
+		
 		lasSuris.agregarUsuario(lucho);
 		adrianYLosDados.agregarUsuario(fede);
-		fede.setRecetas(new ArrayList<Receta>());
-		lucho.setRecetas(new ArrayList<Receta>());
+		
 		fede.addReceta(bifes);
+		
 		assertEquals ( false , lucho.esRecetaPropia(bifes));
 		assertEquals ( false , lucho.puedeVerOModificar(bifes));		
 	}
@@ -204,8 +190,7 @@ public class RecetaTest {
 	public void usuarioPuedeVerUnaRecetaPublica()
 	{	
 		Receta.addRecetasPublicas(bifes);
-		fede.setRecetas(new ArrayList<Receta>());
-		lucho.setRecetas(new ArrayList<Receta>());
+
 		assertEquals ( false , fede.esRecetaPropia(bifes));
 		assertEquals ( false , lucho.esRecetaPropia(bifes));
 		assertEquals ( true , fede.puedeVerOModificar(bifes));
@@ -218,6 +203,7 @@ public class RecetaTest {
 	{	
 		Receta.addRecetasPublicas(bifes);
 		assertEquals ( true , bifes.esPublica());
+		
 		fedeMock.setRecetas(new ArrayList<Receta>());
 		Receta recetaNueva = new Receta ();
 		recetaNueva.setNombre("Bifes");
