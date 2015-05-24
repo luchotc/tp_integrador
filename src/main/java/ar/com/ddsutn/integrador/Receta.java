@@ -135,11 +135,16 @@ public class Receta implements Cloneable{
 		}
 	}
 	
-	public boolean esCara() //falta desarrollar
+	public boolean esCara()
 	{
+		ingredientes.stream().anyMatch(ing -> esIngredienteCaro(ing));
 		return true;
 	}
 	
+	private boolean esIngredienteCaro(Ingrediente ing) {
+		return ingredientesCaros.stream().anyMatch(caro -> caro.equals(ing));
+	}
+
 	public static void setIngredientesCaros()
 	{
 		ingredientesCaros = new ArrayList<>();
