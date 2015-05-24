@@ -106,6 +106,11 @@ public class Receta implements Cloneable{
         }
         return obj;
     }
+    
+    public String toString() //temporal para encontrar errores
+    {
+    	return nombre;
+    }
 	
 
 	public Collection<String> getNombreCondimentos() 
@@ -214,6 +219,10 @@ public class Receta implements Cloneable{
 	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public void addSubReceta(Receta subReceta) {
+		subRecetas.add(subReceta);
 	}
 	
 }

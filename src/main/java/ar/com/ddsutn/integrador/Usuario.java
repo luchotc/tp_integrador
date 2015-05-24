@@ -1,6 +1,7 @@
 package ar.com.ddsutn.integrador;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import ar.com.ddsutn.condicionesExistentes.Celiaco;
@@ -23,7 +24,7 @@ public class Usuario {
 	private TipoRutina rutina;
 	private Collection <Receta> recetas;
 	private Collection <Grupo> grupos;
-	private static Collection<Condicion> CondicionesExistentes ;
+	private static Collection<Condicion> CondicionesExistentes = new ArrayList<>();
 	
 	public static void SetCondicionesExistentes()
 	{
@@ -129,7 +130,10 @@ public class Usuario {
 		 return palabrasDisgustan.stream().anyMatch(p -> (receta.getIngredientes()).contains(p));
 	}
 	
-	
+    public String toString() //temporal para encontrar errores
+    {
+    	return nombre;
+    }
 	
 	
 	/*public Collection <Receta> getRecetasDeLosGrupos()
@@ -141,9 +145,10 @@ public class Usuario {
 	PUEDE LLEGAR A SERVIR*/
 	
 	  
-	public boolean perteneceAAlgunGrupo (Receta receta)
-	  
-	  {return grupos.stream().anyMatch(grupo -> (grupo.getRecetasGrupo()).contains(receta));
+	public boolean perteneceAAlgunGrupo (Receta receta) //esta mal? En el enunciado dice que la puede ver
+														//si el creador comparte algun grupo con el usuario.
+	  {
+		return grupos.stream().anyMatch(grupo -> (grupo.getRecetasGrupo()).contains(receta));
 	  }
 	
 

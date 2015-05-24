@@ -13,16 +13,12 @@ public class Grupo {
 	public Grupo (String nombre){
 		this.setNombre(nombre);
 	}
-	
-	
 
 	public void agregarUsuario (Usuario usuario)
 	{
 		usuarios.add(usuario);
 		usuario.actualizarGruposPropios(this);
 	}
-	
-	
 
 	public Collection <Receta> getRecetasGrupo()
 	{
@@ -33,9 +29,14 @@ public class Grupo {
 
 	public boolean puedeSugerir(Receta receta)
 	{
-		return nombreQueGusta(receta);
+		return nombreQueGusta(receta) && esApropiadaParaGrupo(receta);
 	}
 	
+	private boolean esApropiadaParaGrupo(Receta receta) {
+		return usuarios.stream().allMatch(u -> !u.esInadecuada(receta));
+		//return !usuarios.stream().anyMatch(u -> u.esInadecuada(receta)); -> otra forma
+	}
+
 	public boolean nombreQueGusta(Receta receta)
 	{
 		String nombreReceta = (receta.getNombre()).toLowerCase();

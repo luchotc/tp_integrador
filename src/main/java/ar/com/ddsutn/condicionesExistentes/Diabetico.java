@@ -4,6 +4,7 @@ package ar.com.ddsutn.condicionesExistentes;
 import ar.com.ddsutn.integrador.Condimento;
 import ar.com.ddsutn.integrador.Receta;
 import ar.com.ddsutn.integrador.Usuario;
+import ar.com.ddsutn.condicionesExistentes.Condicion;
 
 import java.util.stream.Stream;
 
@@ -11,7 +12,7 @@ public class Diabetico implements Condicion{
 
 	public Diabetico(){}
 	
-	@Override
+	
 	public boolean validar(Usuario usuario)
 	{
 		return  usuario.getSexo() != null &&
