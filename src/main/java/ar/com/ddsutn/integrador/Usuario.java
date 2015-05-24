@@ -83,7 +83,7 @@ public class Usuario {
 				imc() < 30 &&
 				condiciones.stream().allMatch(condicion -> condicion.lograSubsanar(this));
 	}
-	
+
 	public boolean esInadecuada(Receta receta){
 		return !condiciones.stream().allMatch(condicion -> condicion.esAdecuada(receta));
 	}
@@ -125,7 +125,7 @@ public class Usuario {
 		return puedeVerOModificar(receta) && !esInadecuada(receta) && !incluyeIngredienteQueDisgusta(receta);
 	}
 	
-	private boolean incluyeIngredienteQueDisgusta(Receta receta) {
+	public boolean incluyeIngredienteQueDisgusta(Receta receta) {
 		
 		 return palabrasDisgustan.stream().anyMatch(p -> (receta.getIngredientes()).contains(p));
 	}

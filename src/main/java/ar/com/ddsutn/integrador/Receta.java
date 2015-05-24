@@ -1,5 +1,6 @@
 package ar.com.ddsutn.integrador;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,7 @@ public class Receta implements Cloneable{
 	private String temporada;
 	private String dificultad;
 	public static Collection <Receta> RecetasPublicas;
+	public static Collection <String> ingredientesCaros;
 	
 	public Receta() {}
 	
@@ -131,6 +133,20 @@ public class Receta implements Cloneable{
 		{
 		  RecetasPublicas.add(receta);
 		}
+	}
+	
+	public boolean esCara() //falta desarrollar
+	{
+		return true;
+	}
+	
+	public static void setIngredientesCaros()
+	{
+		ingredientesCaros = new ArrayList<>();
+		ingredientesCaros.add("lechón");
+		ingredientesCaros.add("lomo");
+		ingredientesCaros.add("salmón");
+		ingredientesCaros.add("alcaparras");
 	}
 	
 	public void addIngrediente(Ingrediente ingrediente)
