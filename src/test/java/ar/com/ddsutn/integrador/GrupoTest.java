@@ -96,4 +96,5 @@ public class GrupoTest {
 		assertEquals(false,suricatas.puedeSugerir(bifes));
 	}
 	
+	
 }
