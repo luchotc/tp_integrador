@@ -79,13 +79,14 @@ public class RecetaTest {
 		lucho.addReceta(recetas.getComidaTop());
 		lucho.addReceta(recetas.getSuperChori());
 		lucho.addDisgusto("caca");
-		Collection<Receta> recetasT = lucho.getRecetasTotales();
-		recetasT = recetasT.stream().filter(receta -> filtroCaro.filtrar(receta, lucho)).collect(Collectors.toList());
+		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
+		recetasTotales = recetasTotales.stream().filter(receta -> filtroCaro.filtrar(receta, lucho)).collect(Collectors.toList());
 		Collection<Receta> recetasFiltradas = new HashSet<>();
 		recetasFiltradas.add(bifes);
-		System.out.println(recetasT);
+		
+		System.out.println(recetasTotales);
 
-		assertEquals(true,recetasFiltradas.equals(recetasT));
+		assertEquals(true,recetasTotales.equals(recetasFiltradas));
 	}
 	
 	
