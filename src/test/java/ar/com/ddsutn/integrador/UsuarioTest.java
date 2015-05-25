@@ -36,7 +36,7 @@ public class UsuarioTest {
 	@Test
 	public void filtroCaroCalorico()
 	{
-	//	Filtro filtroso = new FiltroCaro(new FiltroCalorias(new FiltroGusto(new FiltroPosta())));
+		Filtro filtroso = new FiltroCaro(new FiltroCalorias(new FiltroGusto(new FiltroPosta())));
 		
 	}
 	
