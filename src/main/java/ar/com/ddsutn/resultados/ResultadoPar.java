@@ -24,7 +24,6 @@ public class ResultadoPar implements Resultado  {
 		{
 			recetasPares.add(recetasTotales.get(i));
 		}
-		
 		return resultado.resultar(recetasPares);
 	}
 
