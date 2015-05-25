@@ -17,7 +17,6 @@ import ar.com.ddsutn.condicionesExistentes.Vegano;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
@@ -73,7 +72,7 @@ public class RecetaTest {
 		recetasFiltradas.add(bifes);
 		recetasFiltradas.add(recetas.getSuperChori());
 		
-		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(new HashSet<Receta>(recetasFiltradas)));
+		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
 	}
 	
 	@Test
@@ -90,7 +89,7 @@ public class RecetaTest {
 		Collection<Receta> recetasFiltradas = new HashSet<>();
 		recetasFiltradas.add(bifes);
 		
-		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(new HashSet<Receta>(recetasFiltradas)));
+		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
 	}
 	
 	
@@ -110,7 +109,7 @@ public class RecetaTest {
 		recetasFiltradas.add(recetas.getComidaTop());
 		recetasFiltradas.add(recetas.getSuperChori());
 		
-		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(new HashSet<Receta>(recetasFiltradas)));
+		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
 	}
 	
 	@Test
