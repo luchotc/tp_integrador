@@ -6,6 +6,8 @@ public class BaseRecetas {
 	private Receta bifes;
 	private Receta comidaTop;
 	private Receta superChori;
+	private Receta recetinInadecuada;
+	private Receta otraInadecuada;
 
 	public BaseRecetas()
 	{
@@ -13,6 +15,8 @@ public class BaseRecetas {
 		crearComidaTop();
 		crearSuperChori();
 		Receta.setIngredientesCaros();
+		crearRecetinInadecuada();
+		crearOtraInadecuada();
 	}
 	
 	private void crearComidaTop()
@@ -42,6 +46,22 @@ public class BaseRecetas {
 		bifesIngredientes();
 		bifesCondimentos();
 		bifesExplicacion();
+	}
+	
+	private void crearRecetinInadecuada() {
+		recetinInadecuada = new Receta("Receta RecetinInadecuada", 440, "Todas");
+		recetinInadecuada.setDificultad("Facil");
+		iniciarVariables(recetinInadecuada);
+		recetinInadecuada.addIngrediente(new Ingrediente("carne", 3.0));
+		recetinInadecuada.addCondimento(new Condimento("caldo", 1.0));
+	}
+	
+	private void crearOtraInadecuada() {
+		otraInadecuada = new Receta("Otra receta inadecuada", 440, "Todas");
+		otraInadecuada.setDificultad("Dificil");
+		iniciarVariables(otraInadecuada);
+		otraInadecuada.addCondimento(new Condimento("sal", 1.0));
+		otraInadecuada.addIngrediente(new Ingrediente("chivito", 3.0));
 	}
 
 	private void iniciarVariables(Receta receta) {
@@ -118,5 +138,12 @@ public class BaseRecetas {
 		return superChori;
 	}
 	
+	public Receta getRecetinInadecuada(){
+		return recetinInadecuada;
+	}
+	
+	public Receta getOtraInadecuada(){
+		return otraInadecuada;
+	}
 	
 }
