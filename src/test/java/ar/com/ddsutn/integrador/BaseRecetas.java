@@ -4,13 +4,33 @@ import java.util.ArrayList;
 
 public class BaseRecetas {
 	private Receta bifes;
+	private Receta comidaTop;
+	private Receta superChori;
 
 	public BaseRecetas()
 	{
 		crearBifes();
 		Receta.setIngredientesCaros();
 	}
-
+	
+	private void crearComidaTop()
+	{
+		comidaTop = new Receta("Comida excesivamente cara y top", 594, "Invierno");
+		comidaTop.setDificultad("Media");
+		iniciarVariables(comidaTop);
+		comidaTop.addIngrediente(new Ingrediente("Lomo", 2.0));
+		comidaTop.addIngrediente(new Ingrediente("Alcaparras", 2.0));
+	}
+	
+	private void crearSuperChori()
+	{
+		superChori = new Receta("Super chori", 294, "Verano");
+		superChori.setDificultad("Media");
+		iniciarVariables(superChori);
+		superChori.addIngrediente(new Ingrediente("Chori", 1.0));
+		superChori.addIngrediente(new Ingrediente("Caca", 5.0));
+	}
+	
 	private void crearBifes() {
 		bifes = new Receta("Bifes a la criolla con papas y arvejas", 785, "Todas");
 		bifes.setDificultad("Media");
