@@ -17,7 +17,7 @@ public class ResultadoPrimeros10 implements Resultado  {
 	@Override
 	public Collection<Receta> resultar(Collection<Receta> recetas) {
 		Collection<Receta> recetasDiez = new ArrayList<>();
-		ArrayList<Receta> recetasTotales = new ArrayList<>();
+		ArrayList<Receta> recetasTotales = (ArrayList<Receta>) recetas;
 		for (int i=0;i<10;i++)
 		{
 			recetasDiez.add(recetasTotales.get(i));
