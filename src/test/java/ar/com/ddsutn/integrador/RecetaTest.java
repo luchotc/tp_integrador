@@ -81,6 +81,7 @@ public class RecetaTest {
 		lucho.addDisgusto("caca");
 		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
 		recetasTotales = recetasTotales.stream().filter(receta -> filtroCaro.filtrar(receta, lucho)).collect(Collectors.toList());
+
 		Collection<Receta> recetasFiltradas = new HashSet<>();
 		recetasFiltradas.add(bifes);
 		Collection<Receta> recetaFantasma= new HashSet<>();
@@ -90,6 +91,7 @@ public class RecetaTest {
 	
 		assertEquals(false,new HashSet(recetasTotales).equals(new HashSet(recetaFantasma)));
 		assertEquals(true,new HashSet(recetasTotales).equals(new HashSet(recetasFiltradas)));
+
 
 	}
 	
