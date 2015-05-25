@@ -98,8 +98,7 @@ public class RecetaTest {
 	
 	
 	
-	/*@Test
->>>>>>> 48cae9303a542076c4bc41e215f2e795ef727fe8
+	@Test
 	public void aplicarResultados()
 	{
 		lucho.addReceta(bifes);
