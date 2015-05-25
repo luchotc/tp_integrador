@@ -4,12 +4,16 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import filtros.Filtro;
+import filtros.FiltroCaro;
+import filtros.FiltroPosta;
 import ar.com.ddsutn.condicionesExistentes.Diabetico;
 import ar.com.ddsutn.condicionesExistentes.Hipertenso;
 import ar.com.ddsutn.condicionesExistentes.Vegano;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class RecetaTest {
 	
@@ -50,6 +54,20 @@ public class RecetaTest {
 	}
 	
 	@Test
+	public void filtroCaroCalorico()
+	{
+		//Filtro filtroso = new FiltroCaro(new FiltroCalorias(new FiltroGusto(new FiltroPosta())));
+		Filtro filtroCaro = new FiltroCaro(new FiltroPosta());
+		lucho.addReceta(bifes);
+		lucho.addReceta(recetas.getComidaTop());
+		lucho.addReceta(recetas.getSuperChori());
+		Collection<Receta> recetas = lucho.getRecetasTotales();
+		recetas.stream().filter(receta -> filtroCaro.filtrar(receta, lucho));
+		System.out.println(recetas);
+		assertEquals(true,true);
+	}
+	
+	@Test
 	public void unaRecetaEsCara()
 	{
 		bifes.addIngrediente(new Ingrediente("lomo",10.0));
@@ -62,11 +80,11 @@ public class RecetaTest {
 		assertEquals(false,bifes.esCara());
 	}
 	
-	@Test
+	/*@Test
 	public void unaRecetaPuedeSugerirseAUnUsuario()
 	{
 		assertEquals(true,lucho.puedeSugerir(bifes));
-	}
+	}*/
 	
 	@Test
 	public void unaRecetaNoPuedeSugerirseAUnUsuario()

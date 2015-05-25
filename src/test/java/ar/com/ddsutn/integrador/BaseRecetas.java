@@ -10,11 +10,14 @@ public class BaseRecetas {
 	public BaseRecetas()
 	{
 		crearBifes();
+		crearComidaTop();
+		crearSuperChori();
 		Receta.setIngredientesCaros();
 	}
 	
 	private void crearComidaTop()
 	{
+		//es cara
 		comidaTop = new Receta("Comida excesivamente cara y top", 594, "Invierno");
 		comidaTop.setDificultad("Media");
 		iniciarVariables(comidaTop);
@@ -24,6 +27,7 @@ public class BaseRecetas {
 	
 	private void crearSuperChori()
 	{
+		//disgutoso
 		superChori = new Receta("Super chori", 294, "Verano");
 		superChori.setDificultad("Media");
 		iniciarVariables(superChori);
@@ -104,6 +108,14 @@ public class BaseRecetas {
 	
 	public Receta getBifes() {
 		return bifes;
+	}
+
+	public Receta getComidaTop() {
+		return comidaTop;
+	}
+
+	public Receta getSuperChori() {
+		return superChori;
 	}
 	
 	

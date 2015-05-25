@@ -14,6 +14,7 @@ import ar.com.ddsutn.condicionesExistentes.Hipertenso;
 import ar.com.ddsutn.condicionesExistentes.Vegano;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class UsuarioTest {
 	
@@ -31,13 +32,6 @@ public class UsuarioTest {
 		fede = base.getFede();
 		nicoLuis = base.getNicoLuis();
 		rama = base.getRama();
-	}
-	
-	@Test
-	public void filtroCaroCalorico()
-	{
-		Filtro filtroso = new FiltroCaro(new FiltroCalorias(new FiltroGusto(new FiltroPosta())));
-		
 	}
 	
 	//Tests imc()
