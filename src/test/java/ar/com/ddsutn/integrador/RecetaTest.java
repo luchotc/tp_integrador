@@ -83,10 +83,14 @@ public class RecetaTest {
 		recetasTotales = recetasTotales.stream().filter(receta -> filtroCaro.filtrar(receta, lucho)).collect(Collectors.toList());
 		Collection<Receta> recetasFiltradas = new HashSet<>();
 		recetasFiltradas.add(bifes);
+		Collection<Receta> recetaFantasma= new HashSet<>();
+		recetaFantasma.add(recetas.getComidaTop());
 		
 		System.out.println(recetasTotales);
+	
+		assertEquals(false,new HashSet(recetasTotales).equals(new HashSet(recetaFantasma)));
+		assertEquals(true,new HashSet(recetasTotales).equals(new HashSet(recetasFiltradas)));
 
-		assertEquals(true,recetasTotales.equals(recetasFiltradas));
 	}
 	
 	
