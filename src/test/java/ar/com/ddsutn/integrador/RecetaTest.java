@@ -73,8 +73,6 @@ public class RecetaTest {
 		recetasFiltradas.add(bifes);
 		recetasFiltradas.add(recetas.getSuperChori());
 		
-		System.out.println(recetas);
-		
 		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(new HashSet<Receta>(recetasFiltradas)));
 	}
 	
@@ -93,14 +91,20 @@ public class RecetaTest {
 		recetasFiltradas.add(bifes);
 		
 		assertEquals(true,new HashSet(recetasTotales).equals(new HashSet(recetasFiltradas)));
-		System.out.println(recetasTotales);
 	
 		//assertEquals(false,new HashSet(recetasTotales).equals(new HashSet(recetaFantasma)));
 		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(new HashSet<Receta>(recetasFiltradas)));
+<<<<<<< HEAD
 
 	}
 	
 	@Test
+=======
+	}
+	
+	
+	/*@Test
+>>>>>>> 48cae9303a542076c4bc41e215f2e795ef727fe8
 	public void aplicarResultados()
 	{
 		lucho.addReceta(bifes);
