@@ -72,7 +72,7 @@ public class RecetaTest {
 		
 		System.out.println(recetas);
 		
-		assertEquals(true,new HashSet(recetasTotales).equals(new HashSet(recetasFiltradas)));
+		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(new HashSet<Receta>(recetasFiltradas)));
 	}
 	
 	@Test
