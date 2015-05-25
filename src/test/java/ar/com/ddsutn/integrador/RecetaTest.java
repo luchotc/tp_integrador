@@ -105,7 +105,12 @@ public class RecetaTest {
 		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
 		Resultado resultadoParOrdenado = new ResultadoPar(new ResultadoOrdenamiento(new ResultadoPosta(), new ComparadorAlfabetico())); 
 		recetasTotales = resultadoParOrdenado.resultar(recetasTotales);
-		System.out.println(recetasTotales);
+		
+		Collection<Receta> recetasFiltradas = new HashSet<>();
+		recetasFiltradas.add(recetas.getComidaTop());
+		recetasFiltradas.add(recetas.getSuperChori());
+		
+		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(new HashSet<Receta>(recetasFiltradas)));
 	}
 	
 	@Test
