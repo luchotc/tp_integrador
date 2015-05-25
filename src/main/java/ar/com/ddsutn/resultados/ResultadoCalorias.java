@@ -4,11 +4,11 @@ import java.util.Collection;
 
 import ar.com.ddsutn.integrador.Receta;
 
-public class ResultadoPar implements Resultado  {
+public class ResultadoCalorias implements Resultado {
 
 	private Resultado resultado;
 	
-	public ResultadoPar(Resultado resultado)
+	public ResultadoCalorias(Resultado resultado)
 	{
 		this.resultado = resultado;
 	}
