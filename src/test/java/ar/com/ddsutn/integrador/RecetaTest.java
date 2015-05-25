@@ -14,6 +14,7 @@ import ar.com.ddsutn.condicionesExistentes.Vegano;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class RecetaTest {
 	
@@ -62,7 +63,7 @@ public class RecetaTest {
 		lucho.addReceta(recetas.getComidaTop());
 		lucho.addReceta(recetas.getSuperChori());
 		Collection<Receta> recetas = lucho.getRecetasTotales();
-		recetas.stream().filter(receta -> filtroCaro.filtrar(receta, lucho));
+		recetas = recetas.stream().filter(receta -> filtroCaro.filtrar(receta, lucho)).collect(Collectors.toList());
 		System.out.println(recetas);
 		assertEquals(true,true);
 	}

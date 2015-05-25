@@ -141,7 +141,7 @@ public class Receta implements Cloneable{
 	}
 	
 	private boolean esIngredienteCaro(String ing) {
-		return ingredientesCaros.stream().anyMatch(caro -> caro.equals(ing));
+		return ingredientesCaros.stream().anyMatch(caro -> caro.equalsIgnoreCase(ing));
 	}
 
 	public static void setIngredientesCaros()
