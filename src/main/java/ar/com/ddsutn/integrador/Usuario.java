@@ -3,6 +3,8 @@ package ar.com.ddsutn.integrador;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import ar.com.ddsutn.condicionesExistentes.Celiaco;
 import ar.com.ddsutn.condicionesExistentes.Condicion;
@@ -118,6 +120,23 @@ public class Usuario {
 			{
 				receta.modificarSegun(recetaModificada);
 			}	
+	}
+	
+	public Set <Receta> getRecetasGrupo()
+	{
+		Set<Receta> recetasGrupo = new HashSet<Receta>();
+		grupos.stream().forEach(g -> recetasGrupo.addAll(g.getRecetasGrupo()));
+		return recetasGrupo;
+	}
+	
+	
+	public Set <Receta> getRecetasTotales()
+	{
+		Set<Receta> recetasTotales = new HashSet<Receta>();
+		recetasTotales.addAll(getRecetasGrupo());
+		recetasTotales.addAll(Receta.RecetasPublicas);
+		recetasTotales.addAll(recetas);
+		return recetasTotales;
 	}
 	
 	boolean puedeSugerir(Receta receta){
