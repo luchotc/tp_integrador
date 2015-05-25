@@ -16,12 +16,17 @@ public class ResultadoPar implements Resultado  {
 	
 	@Override
 	public Collection<Receta> resultar(Collection<Receta> recetas) {
+		
 		Collection<Receta> recetasPares = new ArrayList<>();
+		
 		ArrayList<Receta> recetasTotales = (ArrayList<Receta>) recetas;
+		
 		for (int i=0;i<recetasTotales.size();i=i+2)
 		{
 			recetasPares.add(recetasTotales.get(i));
+		
 		}
+		
 		return resultado.resultar(recetasPares);
 	}
 
