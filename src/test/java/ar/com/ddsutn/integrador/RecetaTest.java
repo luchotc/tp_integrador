@@ -90,17 +90,12 @@ public class RecetaTest {
 		Collection<Receta> recetasFiltradas = new HashSet<>();
 		recetasFiltradas.add(bifes);
 		
-		assertEquals(true,new HashSet(recetasTotales).equals(new HashSet(recetasFiltradas)));
+		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(new HashSet<Receta>(recetasFiltradas)));
 	
 		//assertEquals(false,new HashSet(recetasTotales).equals(new HashSet(recetaFantasma)));
 		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(new HashSet<Receta>(recetasFiltradas)));
-<<<<<<< HEAD
-
-	}
+}
 	
-	@Test
-=======
-	}
 	
 	
 	/*@Test
