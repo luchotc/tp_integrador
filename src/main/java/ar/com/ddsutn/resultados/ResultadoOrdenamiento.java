@@ -1,8 +1,8 @@
 package ar.com.ddsutn.resultados;
 
 import java.util.Collection;
-
 import java.util.Comparator;
+import java.util.stream.Collectors;
 
 import ar.com.ddsutn.integrador.Receta;
 
@@ -19,7 +19,7 @@ public class ResultadoOrdenamiento implements Resultado {
 	
 	@Override
 	public Collection<Receta> resultar(Collection<Receta> recetas) {
-		return null;
+		return resultado.resultar(recetas.stream().sorted(comparador).collect(Collectors.toList()));
 	}
 
 
