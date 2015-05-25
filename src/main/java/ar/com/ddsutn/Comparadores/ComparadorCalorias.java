@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import ar.com.ddsutn.integrador.Receta;
 
-class ComparadorCalorias implements Comparator<Receta> {
+public class ComparadorCalorias implements Comparator<Receta> {
     @Override
     public int compare(Receta a, Receta b) {
     	int caloriasA = a.getTotalCalorias();
