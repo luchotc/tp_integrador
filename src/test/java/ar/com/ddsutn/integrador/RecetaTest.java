@@ -98,9 +98,9 @@ public class RecetaTest {
 	@Test
 	public void aplicarResultados()
 	{
+		lucho.addReceta(recetas.getSuperChori());
 		lucho.addReceta(bifes);
 		lucho.addReceta(recetas.getComidaTop());
-		lucho.addReceta(recetas.getSuperChori());
 		lucho.addDisgusto("caca");
 		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
 		Resultado resultadoParOrdenado = new ResultadoPar(new ResultadoOrdenamiento(new ResultadoPosta(), new ComparadorAlfabetico())); 
