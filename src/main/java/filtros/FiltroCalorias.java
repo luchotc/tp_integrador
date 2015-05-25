@@ -14,7 +14,11 @@ public class FiltroCalorias implements Filtro{
 	@Override
 	public boolean filtrar(Receta receta, Usuario usuario) {
 		//no entendi bien como es lo de sobrepeso, falta esa parte
-		return filtro.filtrar(receta, usuario);
+		if(receta.getTotalCalorias()<500)
+		{
+			return filtro.filtrar(receta, usuario);
+		}
+		return false;
 	}
 
 }
