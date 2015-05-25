@@ -18,13 +18,5 @@ public class ResultadoAlfabetico implements Resultado  {
 	public Collection<Receta> resultar(Collection<Receta> recetas) {
 		return recetas.stream().sorted((x,y)-> x.getNombre().compareTo(y.getNombre())).collect(Collectors.toList());
 	}
-	
-	class comparadorAlfabetico implements Comparator<Receta>
-	{
-		@Override
-		public int compare(Receta r1, Receta r2) {
-			return (r1.getNombre().compareTo(r2.getNombre()));
-		}
-	}
 
 }
