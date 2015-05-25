@@ -8,6 +8,8 @@ import filtros.Filtro;
 import filtros.FiltroCaro;
 import filtros.FiltroGusto;
 import filtros.FiltroPosta;
+import ar.com.ddsutn.resultados.*;
+import ar.com.ddsutn.Comparadores.*;
 import ar.com.ddsutn.condicionesExistentes.Diabetico;
 import ar.com.ddsutn.condicionesExistentes.Hipertenso;
 import ar.com.ddsutn.condicionesExistentes.Vegano;
@@ -15,6 +17,7 @@ import ar.com.ddsutn.condicionesExistentes.Vegano;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
@@ -78,7 +81,6 @@ public class RecetaTest {
 	@Test
 	public void filtroCaroDisgustoso()
 	{
-		//Filtro filtroso = new FiltroCaro(new FiltroCalorias(new FiltroGusto(new FiltroPosta())));
 		Filtro filtroCaro = new FiltroCaro(new FiltroGusto(new FiltroPosta()));
 		lucho.addReceta(bifes);
 		lucho.addReceta(recetas.getComidaTop());
@@ -89,17 +91,22 @@ public class RecetaTest {
 
 		Collection<Receta> recetasFiltradas = new HashSet<>();
 		recetasFiltradas.add(bifes);
-		/*Collection<Receta> recetaFantasma= new HashSet<>();
-		recetaFantasma.add(recetas.getComidaTop());   probando funcionamiento de HashCode*/ 
 		
-		System.out.println(recetasTotales);
-	
-		//assertEquals(false,new HashSet(recetasTotales).equals(new HashSet(recetaFantasma)));
 		assertEquals(true,new HashSet(recetasTotales).equals(new HashSet(recetasFiltradas)));
-
-
 	}
 	
+	/*@Test
+	public void aplicarResultados()
+	{
+		lucho.addReceta(bifes);
+		lucho.addReceta(recetas.getComidaTop());
+		lucho.addReceta(recetas.getSuperChori());
+		lucho.addDisgusto("caca");
+		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
+		Resultado resultadoParOrdenado = new ResultadoPar(new ResultadoOrdenamiento(new ResultadoPosta(), new ComparadorAlfabetico())); 
+		recetasTotales = resultadoParOrdenado.resultar(recetasTotales);
+		System.out.println(recetasTotales);
+	}*/
 	
 	@Test
 	public void unaRecetaEsCara()
