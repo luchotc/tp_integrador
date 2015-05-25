@@ -18,7 +18,7 @@ public class ResultadoPar implements Resultado  {
 	public Collection<Receta> resultar(Collection<Receta> recetas) {
 		
 		Collection<Receta> recetasPares = new ArrayList<>();
-		ArrayList<Receta> recetasTotales = (ArrayList<Receta>) recetas;
+		ArrayList<Receta> recetasTotales = new ArrayList<>(recetas);
 		
 		for (int i=0;i<recetasTotales.size();i=i+2)
 		{

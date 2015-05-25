@@ -98,11 +98,9 @@ public class RecetaTest {
 		//assertEquals(false,new HashSet(recetasTotales).equals(new HashSet(recetaFantasma)));
 		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(new HashSet<Receta>(recetasFiltradas)));
 
-
->>>>>>> 6ac34f33fa7df375f9f25e01b1002755a504274c
 	}
 	
-	/*@Test
+	@Test
 	public void aplicarResultados()
 	{
 		lucho.addReceta(bifes);
@@ -113,7 +111,7 @@ public class RecetaTest {
 		Resultado resultadoParOrdenado = new ResultadoPar(new ResultadoOrdenamiento(new ResultadoPosta(), new ComparadorAlfabetico())); 
 		recetasTotales = resultadoParOrdenado.resultar(recetasTotales);
 		System.out.println(recetasTotales);
-	}*/
+	}
 	
 	@Test
 	public void unaRecetaEsCara()
