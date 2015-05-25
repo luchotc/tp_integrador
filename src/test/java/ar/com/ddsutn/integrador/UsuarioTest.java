@@ -4,6 +4,11 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import filtros.Filtro;
+import filtros.FiltroCalorias;
+import filtros.FiltroCaro;
+import filtros.FiltroGusto;
+import filtros.FiltroPosta;
 import ar.com.ddsutn.condicionesExistentes.Diabetico;
 import ar.com.ddsutn.condicionesExistentes.Hipertenso;
 import ar.com.ddsutn.condicionesExistentes.Vegano;
@@ -28,12 +33,20 @@ public class UsuarioTest {
 		rama = base.getRama();
 	}
 	
+	@Test
+	public void filtroCaroCalorico()
+	{
+	//	Filtro filtroso = new FiltroCaro(new FiltroCalorias(new FiltroGusto(new FiltroPosta())));
+		
+	}
+	
 	//Tests imc()
 	@Test
 	public void imcHaceBienLaCuenta()
 	{	
 		assertEquals ((Double) 25.0, lucho.imc()  )	;	
 	}
+	
 	
 	@Test
 	public void imcSeCalculaBienParaFede()
