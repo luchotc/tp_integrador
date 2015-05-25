@@ -98,6 +98,12 @@ public class Receta implements Cloneable{
 				temporada.equals(receta.temporada) &&
 				dificultad.equals(receta.dificultad);
 	}
+	
+	public int hashCode() {
+
+		return this.nombre.hashCode() + this.dificultad.hashCode()+this.temporada.hashCode()+totalCalorias;
+
+		}
 
     public Object clone(){
         Object obj=null;
@@ -147,9 +153,9 @@ public class Receta implements Cloneable{
 	public static void setIngredientesCaros()
 	{
 		ingredientesCaros = new ArrayList<>();
-		ingredientesCaros.add("lechón");
+		ingredientesCaros.add("lechï¿½n");
 		ingredientesCaros.add("lomo");
-		ingredientesCaros.add("salmón");
+		ingredientesCaros.add("salmï¿½n");
 		ingredientesCaros.add("alcaparras");
 	}
 	

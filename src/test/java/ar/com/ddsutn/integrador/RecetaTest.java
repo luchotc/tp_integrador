@@ -64,10 +64,15 @@ public class RecetaTest {
 		lucho.addReceta(bifes);
 		lucho.addReceta(recetas.getComidaTop());
 		lucho.addReceta(recetas.getSuperChori());
-		Collection<Receta> recetas = lucho.getRecetasTotales();
-		recetas = recetas.stream().filter(receta -> filtroCaro.filtrar(receta, lucho)).collect(Collectors.toList());
+		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
+		recetasTotales = recetasTotales.stream().filter(receta -> filtroCaro.filtrar(receta, lucho)).collect(Collectors.toList());
+		Collection<Receta> recetasFiltradas = new HashSet<>();
+		recetasFiltradas.add(bifes);
+		recetasFiltradas.add(recetas.getSuperChori());
+		
 		System.out.println(recetas);
-		assertEquals(true,true);
+		
+		assertEquals(true,new HashSet(recetasTotales).equals(new HashSet(recetasFiltradas)));
 	}
 	
 	@Test
@@ -81,8 +86,18 @@ public class RecetaTest {
 		lucho.addDisgusto("caca");
 		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
 		recetasTotales = recetasTotales.stream().filter(receta -> filtroCaro.filtrar(receta, lucho)).collect(Collectors.toList());
+
+		Collection<Receta> recetasFiltradas = new HashSet<>();
+		recetasFiltradas.add(bifes);
+		/*Collection<Receta> recetaFantasma= new HashSet<>();
+		recetaFantasma.add(recetas.getComidaTop());   probando funcionamiento de HashCode*/ 
 		
-		assertEquals(true,true);
+		System.out.println(recetasTotales);
+	
+		//assertEquals(false,new HashSet(recetasTotales).equals(new HashSet(recetaFantasma)));
+		assertEquals(true,new HashSet(recetasTotales).equals(new HashSet(recetasFiltradas)));
+
+
 	}
 	
 	
