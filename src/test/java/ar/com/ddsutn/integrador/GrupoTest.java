@@ -61,13 +61,6 @@ public class GrupoTest {
 		suricatas.agregarUsuario(rama);
 	}
 
-	@Test
-	public void elGrupoTieneLaRecetaDeUnMiembro()
-	{
-		nicoLuis.addReceta(bifes);
-		boolean retorno = (suricatas.getRecetasGrupo()).stream().anyMatch(r -> r.equals(bifes));
-		assertEquals(true, retorno);
-	}
 	
 	@Test
 	public void unUsuarioDeGrupoPuedeVerOModificarRecetaDeOtroMiembroDeGrupo()
