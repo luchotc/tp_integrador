@@ -140,8 +140,7 @@ public class Usuario {
 	}
 	
 	boolean puedeSugerir(Receta receta){
-		return !esInadecuada(receta) && !incluyeIngredienteQueDisgusta(receta);
-		//return puedeVerOModificar(receta) && !esInadecuada(receta) && !incluyeIngredienteQueDisgusta(receta);
+		return puedeVerOModificar(receta) && !esInadecuada(receta) && !incluyeIngredienteQueDisgusta(receta);
 	}
 	
 	public boolean incluyeIngredienteQueDisgusta(Receta receta)
@@ -158,15 +157,6 @@ public class Usuario {
     {
     	return nombre;
     }
-	
-	
-	/*public Collection <Receta> getRecetasDeLosGrupos()
-	{
-		Collection<Receta> recetasTotales = new ArrayList<Receta>();
-		grupos.stream().forEach(g -> recetasTotales.addAll(g.getRecetasGrupo()));
-		return recetasTotales;
-	} 
-	PUEDE LLEGAR A SERVIR*/
 	
 	  
 	public boolean perteneceAAlgunGrupo (Receta receta) //esta mal? En el enunciado dice que la puede ver
