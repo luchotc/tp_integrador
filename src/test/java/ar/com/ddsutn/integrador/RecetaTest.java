@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import filtros.Filtro;
 import filtros.FiltroCaro;
+import filtros.FiltroGusto;
 import filtros.FiltroPosta;
 import ar.com.ddsutn.condicionesExistentes.Diabetico;
 import ar.com.ddsutn.condicionesExistentes.Hipertenso;
@@ -55,7 +56,7 @@ public class RecetaTest {
 	}
 	
 	@Test
-	public void filtroCaroCalorico()
+	public void filtroCaro()
 	{
 		//Filtro filtroso = new FiltroCaro(new FiltroCalorias(new FiltroGusto(new FiltroPosta())));
 		Filtro filtroCaro = new FiltroCaro(new FiltroPosta());
@@ -67,6 +68,22 @@ public class RecetaTest {
 		System.out.println(recetas);
 		assertEquals(true,true);
 	}
+	
+	@Test
+	public void filtroCaroDisgustoso()
+	{
+		//Filtro filtroso = new FiltroCaro(new FiltroCalorias(new FiltroGusto(new FiltroPosta())));
+		Filtro filtroCaro = new FiltroCaro(new FiltroGusto(new FiltroPosta()));
+		lucho.addReceta(bifes);
+		lucho.addReceta(recetas.getComidaTop());
+		lucho.addReceta(recetas.getSuperChori());
+		lucho.addDisgusto("caca");
+		Collection<Receta> recetas = lucho.getRecetasTotales();
+		recetas = recetas.stream().filter(receta -> filtroCaro.filtrar(receta, lucho)).collect(Collectors.toList());
+		System.out.println(recetas);
+		assertEquals(true,true);
+	}
+	
 	
 	@Test
 	public void unaRecetaEsCara()

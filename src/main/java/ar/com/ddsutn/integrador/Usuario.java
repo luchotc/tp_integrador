@@ -149,7 +149,7 @@ public class Usuario {
 	}
 	
 	private boolean esDisgusto(String ing) {
-		return palabrasDisgustan.stream().anyMatch(dis -> dis.equals(ing));
+		return palabrasDisgustan.stream().anyMatch(dis -> dis.equalsIgnoreCase(ing));
 	}
 
 	
