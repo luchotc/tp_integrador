@@ -72,9 +72,6 @@ public class RecetaTest {
 		recetasFiltradas.add(bifes);
 		recetasFiltradas.add(recetas.getSuperChori());
 		
-		 System.out.println("Recetascaras:" + recetasFiltradas);
-		 System.out.println("Recetascaras2:" + recetasTotales);
-		
 		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
 	}
 	
