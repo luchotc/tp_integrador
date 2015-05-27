@@ -6,6 +6,8 @@ import ar.com.ddsutn.integrador.Usuario;
 public class FiltroCalorias implements Filtro{
 	private Filtro filtro;
 	
+	public FiltroCalorias(){}
+	
 	public FiltroCalorias(Filtro filtro)
 	{
 		this.filtro = filtro;
@@ -20,4 +22,13 @@ public class FiltroCalorias implements Filtro{
 		return false;
 	}
 	
+	@Override
+	public boolean filtrarStrategy(Receta receta, Usuario usuario) {
+		return receta.getTotalCalorias()<500;
+	}
+	
+	@Override
+	public void setFiltro(Filtro filtro){
+		this.filtro = filtro;
+	}
 }

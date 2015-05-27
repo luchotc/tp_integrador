@@ -72,6 +72,9 @@ public class RecetaTest {
 		recetasFiltradas.add(bifes);
 		recetasFiltradas.add(recetas.getSuperChori());
 		
+		 System.out.println("Recetascaras:" + recetasFiltradas);
+		 System.out.println("Recetascaras2:" + recetasTotales);
+		
 		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
 	}
 	
@@ -92,6 +95,27 @@ public class RecetaTest {
 		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
 	}
 	
+	@Test
+	public void filtroCaroDisgustosoStrategy()
+	{
+		lucho.addReceta(bifes);
+		lucho.addReceta(recetas.getComidaTop());
+		lucho.addReceta(recetas.getSuperChori());
+		lucho.addDisgusto("caca");
+		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
+		
+		Filtro filtroCaroStrategy = new FiltroCaro();
+		recetasTotales = recetasTotales.stream().filter(receta -> filtroCaroStrategy.filtrarStrategy(receta, lucho)).collect(Collectors.toList());
+		
+		filtroCaroStrategy.setFiltro(new FiltroGusto());
+		recetasTotales = recetasTotales.stream().filter(receta -> filtroCaroStrategy.filtrarStrategy(receta, lucho)).collect(Collectors.toList());
+		
+		Collection<Receta> recetasFiltradas = new HashSet<>();
+		recetasFiltradas.add(bifes);
+		recetasFiltradas.add(recetas.getSuperChori());
+		
+		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
+	}
 	
 	
 	@Test

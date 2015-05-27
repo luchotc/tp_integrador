@@ -6,6 +6,8 @@ import ar.com.ddsutn.integrador.Usuario;
 public class FiltroGusto implements Filtro {
 	private Filtro filtro;
 	
+	public FiltroGusto(){}
+	
 	public FiltroGusto(Filtro filtro)
 	{
 		this.filtro = filtro;
@@ -18,5 +20,15 @@ public class FiltroGusto implements Filtro {
 			return filtro.filtrar(receta, usuario);
 		}
 		return false;
+	}
+	
+	@Override
+	public boolean filtrarStrategy(Receta receta, Usuario usuario) {
+		return !usuario.incluyeIngredienteQueDisgusta(receta);
+	}
+	
+	@Override
+	public void setFiltro(Filtro filtro){
+		this.filtro = filtro;
 	}
 }
