@@ -120,15 +120,13 @@ public class Receta implements Cloneable{
     	return nombre;
     }
 	
-
-	public Collection<String> getNombreCondimentos() 
-	{	
-		return getCondimentos().stream().map( condimento -> condimento.getNombre()).collect(Collectors.toList());	
+	public boolean esCara()
+	{
+		return ingredientes.stream().anyMatch(ing -> esIngredienteCaro(ing.getNombre()));
 	}
-	
-	public Collection<String> getNombreIngredientes() 
-	{	
-		return getIngredientes().stream().map( condimento -> condimento.getNombre()).collect(Collectors.toList());
+
+	private boolean esIngredienteCaro(String ing) {
+		return ingredientesCaros.stream().anyMatch(caro -> caro.equalsIgnoreCase(ing));
 	}
 
 	/*	setters y getters	*/
@@ -141,14 +139,17 @@ public class Receta implements Cloneable{
 		}
 	}
 	
-	public boolean esCara()
-	{
-		return ingredientes.stream().anyMatch(ing -> esIngredienteCaro(ing.getNombre()));
+	public Collection<String> getNombreCondimentos() 
+	{	
+		return getCondimentos().stream().map( condimento -> condimento.getNombre()).collect(Collectors.toList());	
 	}
 	
-	private boolean esIngredienteCaro(String ing) {
-		return ingredientesCaros.stream().anyMatch(caro -> caro.equalsIgnoreCase(ing));
+	public Collection<String> getNombreIngredientes() 
+	{	
+		return getIngredientes().stream().map( condimento -> condimento.getNombre()).collect(Collectors.toList());
 	}
+	
+
 
 	public static void setIngredientesCaros()
 	{
@@ -252,4 +253,3 @@ public class Receta implements Cloneable{
 	}
 	
 }
-

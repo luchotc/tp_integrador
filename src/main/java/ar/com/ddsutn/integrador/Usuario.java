@@ -52,10 +52,6 @@ public class Usuario {
 		this.rutina = rutina;
 	}
 	
-	public void actualizarGruposPropios(Grupo grupo){
-		grupos.add(grupo);
-	}
-	
 	public Double imc ()
 	{
 	  return peso/Math.pow(altura, 2);
@@ -121,23 +117,7 @@ public class Usuario {
 				receta.modificarSegun(recetaModificada);
 			}	
 	}
-	
-	public Set <Receta> getRecetasGrupo()
-	{
-		Set<Receta> recetasGrupo = new HashSet<Receta>();
-		grupos.stream().forEach(g -> recetasGrupo.addAll(g.getRecetasGrupo()));
-		return recetasGrupo;
-	}
-	
-	
-	public Set <Receta> getRecetasTotales()
-	{
-		Set<Receta> recetasTotales = new HashSet<Receta>();
-		recetasTotales.addAll(getRecetasGrupo());
-		recetasTotales.addAll(Receta.RecetasPublicas);
-		recetasTotales.addAll(recetas);
-		return recetasTotales;
-	}
+
 	
 	boolean puedeSugerir(Receta receta){
 		return puedeVerOModificar(receta) && !esInadecuada(receta) && !incluyeIngredienteQueDisgusta(receta);
@@ -157,13 +137,16 @@ public class Usuario {
     {
     	return nombre;
     }
-	
 	  
 	public boolean perteneceAAlgunGrupo (Receta receta) //esta mal? En el enunciado dice que la puede ver
 														//si el creador comparte algun grupo con el usuario.
 	  {
 		return grupos.stream().anyMatch(grupo -> (grupo.getRecetasGrupo()).contains(receta));
 	  }
+	
+	public void actualizarGruposPropios(Grupo grupo){
+		grupos.add(grupo);
+	}
 	
 
 	/*	setters y getters	*/
@@ -258,6 +241,21 @@ public class Usuario {
 		this.grupos = grupos;
 	}
 	
+	public Set <Receta> getRecetasGrupo()
+	{
+		Set<Receta> recetasGrupo = new HashSet<Receta>();
+		grupos.stream().forEach(g -> recetasGrupo.addAll(g.getRecetasGrupo()));
+		return recetasGrupo;
+	}
+	
+	
+	public Set <Receta> getRecetasTotales()
+	{
+		Set<Receta> recetasTotales = new HashSet<Receta>();
+		recetasTotales.addAll(getRecetasGrupo());
+		recetasTotales.addAll(Receta.RecetasPublicas);
+		recetasTotales.addAll(recetas);
+		return recetasTotales;
+	}
+	
 }
-
-
