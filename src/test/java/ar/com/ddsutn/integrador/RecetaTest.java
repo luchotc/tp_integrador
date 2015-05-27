@@ -58,107 +58,7 @@ public class RecetaTest {
 		bifes.addSubReceta(recetas.subRecetaCualquiera());
 	}
 	
-	@Test
-	public void filtroCaro()
-	{
-		//Filtro filtroso = new FiltroCaro(new FiltroCalorias(new FiltroGusto(new FiltroPosta())));
-		Filtro filtroCaro = new FiltroCaro(new FiltroPosta());
-		lucho.addReceta(bifes);
-		lucho.addReceta(recetas.getComidaTop());
-		lucho.addReceta(recetas.getSuperChori());
-		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
-		recetasTotales = recetasTotales.stream().filter(receta -> filtroCaro.filtrar(receta, lucho)).collect(Collectors.toList());
-		Collection<Receta> recetasFiltradas = new HashSet<>();
-		recetasFiltradas.add(bifes);
-		recetasFiltradas.add(recetas.getSuperChori());
-		
-		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
-	}
 	
-	@Test
-	public void filtroCaroDisgustoso()
-	{
-		Filtro filtroCaro = new FiltroCaro(new FiltroGusto(new FiltroPosta()));
-		lucho.addReceta(bifes);
-		lucho.addReceta(recetas.getComidaTop());
-		lucho.addReceta(recetas.getSuperChori());
-		lucho.addDisgusto("caca");
-		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
-		recetasTotales = recetasTotales.stream().filter(receta -> filtroCaro.filtrar(receta, lucho)).collect(Collectors.toList());
-
-		Collection<Receta> recetasFiltradas = new HashSet<>();
-		recetasFiltradas.add(bifes);
-		
-		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
-	}
-	
-	@Test
-	public void filtroCaroDisgustosoStrategy()
-	{
-		lucho.addReceta(bifes);
-		lucho.addReceta(recetas.getComidaTop());
-		lucho.addReceta(recetas.getSuperChori());
-		lucho.addDisgusto("caca");
-		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
-		
-		Filtro filtroCaroStrategy = new FiltroCaro();
-		recetasTotales = recetasTotales.stream().filter(receta -> filtroCaroStrategy.filtrarStrategy(receta, lucho)).collect(Collectors.toList());
-		
-		filtroCaroStrategy.setFiltro(new FiltroGusto());
-		recetasTotales = recetasTotales.stream().filter(receta -> filtroCaroStrategy.filtrarStrategy(receta, lucho)).collect(Collectors.toList());
-		
-		Collection<Receta> recetasFiltradas = new HashSet<>();
-		recetasFiltradas.add(bifes);
-		recetasFiltradas.add(recetas.getSuperChori());
-		
-		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
-	}
-	
-	
-	@Test
-	public void aplicarResultados()
-	{
-		lucho.addReceta(recetas.getSuperChori());
-		lucho.addReceta(bifes);
-		lucho.addReceta(recetas.getComidaTop());
-		lucho.addDisgusto("caca");
-		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
-		Resultado resultadoParOrdenado = new ResultadoPar(new ResultadoOrdenamiento(new ResultadoPosta(), new ComparadorAlfabetico())); 
-		recetasTotales = resultadoParOrdenado.resultar(recetasTotales);
-		
-		Collection<Receta> recetasFiltradas = new HashSet<>();
-		recetasFiltradas.add(recetas.getComidaTop());
-		recetasFiltradas.add(recetas.getSuperChori());
-		
-		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
-	}
-	
-	@Test
-	public void unaRecetaEsCara()
-	{
-		bifes.addIngrediente(new Ingrediente("lomo",10.0));
-		assertEquals(true,bifes.esCara());
-	}
-	
-	@Test
-	public void unaRecetaNoEsCara()
-	{
-		assertEquals(false,bifes.esCara());
-	}
-	
-	/*@Test
-	public void unaRecetaPuedeSugerirseAUnUsuario()
-	{
-		assertEquals(true,lucho.puedeSugerir(bifes));
-	}*/
-	
-	@Test
-	public void unaRecetaNoPuedeSugerirseAUnUsuario()
-	{
-		fede.addDisgusto("paella");
-		bifes.addIngrediente(new Ingrediente ("paella",50.0));
-		assertEquals(false, fede.puedeSugerir(bifes));
-	}
 	
 	//Tests condimentos
 	@Test
@@ -320,6 +220,114 @@ public class RecetaTest {
 		recetaNueva.setNombre("Bifes");
 		Receta recetaModificada = fedeMock.devuelveRecetaModificada(bifes, recetaNueva);
 		assertEquals(true , recetaModificada.getNombre().equals("Bifes"));
+	}
+	
+	
+	// Tests sugerencia
+	@Test
+	public void unaRecetaNoPuedeSugerirseAUnUsuario()
+	{
+		fede.addDisgusto("paella");
+		bifes.addIngrediente(new Ingrediente ("paella",50.0));
+		assertEquals(false, fede.puedeSugerir(bifes));
+	}
+	/*@Test
+	public void unaRecetaPuedeSugerirseAUnUsuario()
+	{
+		assertEquals(true,lucho.puedeSugerir(bifes));
+	}*/
+	
+	// Es cara una receta
+	@Test
+	public void unaRecetaEsCara()
+	{
+		bifes.addIngrediente(new Ingrediente("lomo",10.0));
+		assertEquals(true,bifes.esCara());
+	}
+	
+	@Test
+	public void unaRecetaNoEsCara()
+	{
+		assertEquals(false,bifes.esCara());
+	}
+
+	
+	// Tests filtros por decorator
+	@Test
+	public void filtroCaro()
+	{
+		//Filtro filtroso = new FiltroCaro(new FiltroCalorias(new FiltroGusto(new FiltroPosta())));
+		Filtro filtroCaro = new FiltroCaro(new FiltroPosta());
+		lucho.addReceta(bifes);
+		lucho.addReceta(recetas.getComidaTop());
+		lucho.addReceta(recetas.getSuperChori());
+		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
+		recetasTotales = recetasTotales.stream().filter(receta -> filtroCaro.filtrar(receta, lucho)).collect(Collectors.toList());
+		Collection<Receta> recetasFiltradas = new HashSet<>();
+		recetasFiltradas.add(bifes);
+		recetasFiltradas.add(recetas.getSuperChori());
+		
+		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
+	}
+	
+	@Test
+	public void filtroCaroDisgustoso()
+	{
+		Filtro filtroCaro = new FiltroCaro(new FiltroGusto(new FiltroPosta()));
+		lucho.addReceta(bifes);
+		lucho.addReceta(recetas.getComidaTop());
+		lucho.addReceta(recetas.getSuperChori());
+		lucho.addDisgusto("caca");
+		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
+		recetasTotales = recetasTotales.stream().filter(receta -> filtroCaro.filtrar(receta, lucho)).collect(Collectors.toList());
+
+		Collection<Receta> recetasFiltradas = new HashSet<>();
+		recetasFiltradas.add(bifes);
+		
+		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
+	}
+	
+	
+	// Test filtro por strategy
+	@Test
+	public void filtroCaroDisgustosoStrategy()
+	{
+		lucho.addReceta(bifes);
+		lucho.addReceta(recetas.getComidaTop());
+		lucho.addReceta(recetas.getSuperChori());
+		lucho.addDisgusto("caca");
+		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
+		
+		Filtro filtroCaroStrategy = new FiltroCaro();
+		recetasTotales = recetasTotales.stream().filter(receta -> filtroCaroStrategy.filtrarStrategy(receta, lucho)).collect(Collectors.toList());
+		
+		filtroCaroStrategy.setFiltro(new FiltroGusto());
+		recetasTotales = recetasTotales.stream().filter(receta -> filtroCaroStrategy.filtrarStrategy(receta, lucho)).collect(Collectors.toList());
+		
+		Collection<Receta> recetasFiltradas = new HashSet<>();
+		recetasFiltradas.add(bifes);
+		recetasFiltradas.add(recetas.getSuperChori());
+		
+		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
+	}
+	
+	
+	@Test
+	public void aplicarResultados()
+	{
+		lucho.addReceta(recetas.getSuperChori());
+		lucho.addReceta(bifes);
+		lucho.addReceta(recetas.getComidaTop());
+		lucho.addDisgusto("caca");
+		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
+		Resultado resultadoParOrdenado = new ResultadoPar(new ResultadoOrdenamiento(new ResultadoPosta(), new ComparadorAlfabetico())); 
+		recetasTotales = resultadoParOrdenado.resultar(recetasTotales);
+		
+		Collection<Receta> recetasFiltradas = new HashSet<>();
+		recetasFiltradas.add(recetas.getComidaTop());
+		recetasFiltradas.add(recetas.getSuperChori());
+		
+		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
 	}
 }
 
