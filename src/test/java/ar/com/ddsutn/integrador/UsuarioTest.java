@@ -4,17 +4,11 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import filtros.Filtro;
-import filtros.FiltroCalorias;
-import filtros.FiltroCaro;
-import filtros.FiltroGusto;
-import filtros.FiltroPosta;
 import ar.com.ddsutn.condicionesExistentes.Diabetico;
 import ar.com.ddsutn.condicionesExistentes.Hipertenso;
 import ar.com.ddsutn.condicionesExistentes.Vegano;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class UsuarioTest {
 	
