@@ -33,7 +33,7 @@ public class Usuario {
 	private static Collection<Condicion> CondicionesExistentes = new ArrayList<>();
 	public Filtro filtro;
 	public Resultado resultado;
-	
+	public Collection <Filtro> filtros;
 	public static void SetCondicionesExistentes()
 	{
 		CondicionesExistentes.add(new Celiaco());
@@ -280,8 +280,7 @@ public class Usuario {
 		return recetasGrupo;
 	}
 	
-	
-	public Set <Receta> getRecetasTotales()
+		public Set <Receta> getRecetasTotales()
 	{
 		Set<Receta> recetasTotales = new HashSet<Receta>();
 		recetasTotales.addAll(getRecetasGrupo());
@@ -290,6 +289,13 @@ public class Usuario {
 		return recetasTotales;
 	}
 	
+	public Set <Receta> filtrarConStrategy2(Set <Receta> recetasRecibidas)
+		{
+			Set<Receta> recetasFiltradas = new HashSet<Receta>();
+			//recetasFiltradas= recetasRecibidas.stream().forEach(r->(filtros.stream().filter(f -> f.filtrarStrategy(r,this)).collect(Collectors.toSet())));
+			return recetasFiltradas;
+		}	
+		
 	public Set <Receta> filtrarConStrategy(Set <Receta> recetasRecibidas){
 		
 		Set<Receta> recetasFiltradas = new HashSet<Receta>();
