@@ -289,6 +289,17 @@ public class Usuario {
 		return recetasTotales;
 	}
 	
+	public Set <Receta> filtrarALoRama(Set <Receta> recetasRecibidas)
+		{
+			Set<Receta> recetasFiltradas = new HashSet<Receta>();
+			recetasFiltradas = recetasFiltradas.stream().filter(r -> cumpleConFiltros(r)).collect(Collectors.toSet());
+			return recetasFiltradas;
+		}	
+		
+	private boolean cumpleConFiltros(Receta r) {
+		return filtros.stream().allMatch(f -> f.filtrar(r, this));
+	}
+		
 	public Set <Receta> filtrarConStrategy2(Set <Receta> recetasRecibidas)
 		{
 			Set<Receta> recetasFiltradas = new HashSet<Receta>();
