@@ -18,21 +18,17 @@ import ar.com.ddsutn.resultados.Resultado;
 
 public class Usuario {
 	
-	private String nombre;
-	private String sexo;
+	private String nombre,sexo;
 	private LocalDate fechaNacimiento;
-	private Collection <String> preferenciasAlimenticias;
-	private Collection <String> palabrasDisgustan;
-	private Collection <Condicion> condiciones;	
-	private Double altura;
-	private Double peso;
+	private Double altura,peso;
 	private TipoRutina rutina;
-	private Collection <Receta> recetas;
-	private Collection <Receta> recetasFavoritas;
+	private Collection <String> preferenciasAlimenticias,palabrasDisgustan;
+	private Collection <Condicion> condiciones;	
+	private Collection <Receta> recetas,recetasFavoritas;
 	private Collection <Grupo> grupos;
-	private static Collection<Condicion> CondicionesExistentes = new ArrayList<>();
 	public Collection <Resultado> resultados;
 	public Collection <Filtro> filtros;
+	private static Collection<Condicion> CondicionesExistentes = new ArrayList<>();
 	
 	public Usuario(){}
 	

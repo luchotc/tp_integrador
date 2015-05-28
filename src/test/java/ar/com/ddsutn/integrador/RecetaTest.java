@@ -20,7 +20,6 @@ public class RecetaTest {
 	
 	private Usuario lucho;
 	private Usuario fede;
-	private UsuarioMock fedeMock ;
 	private Receta bifes;
 	private BaseUsuarios usuarios;
 	private BaseRecetas recetas;
@@ -42,7 +41,6 @@ public class RecetaTest {
 	private void crearUsuarios() {
 		lucho = usuarios.getLucho();
 		fede = usuarios.getFede();
-		fedeMock = new UsuarioMock("federico", 72.0, 1.20, LocalDate.of(1995,1,18), TipoRutina.LEVE, "Masculino");
 	}
 	
 	private void crearRecetas()
