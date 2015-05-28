@@ -266,8 +266,10 @@ public class RecetaTest {
 		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
 	}
 	
+	// Test Filtro por Decorator
+	
 	@Test
-	public void filtroCaroDisgustoso()
+	public void filtroCaroDisgustosoDecorator()
 	{
 		Filtro filtroCaro = new FiltroCaro(new FiltroGusto(new FiltroPosta()));
 		lucho.addReceta(bifes);
@@ -283,6 +285,7 @@ public class RecetaTest {
 		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
 	}
 	
+	// Test Filtro por Strategy
 	
 	@Test
 	public void filtroCaroDisgustosoStrategy()
@@ -308,7 +311,7 @@ public class RecetaTest {
 	
 	// Test Resultado por Decorator
 	@Test
-	public void aplicarResultados()
+	public void aplicarResultadosDecorator()
 	{
 		lucho.addReceta(recetas.getRecetinInadecuada());
 		lucho.addReceta(recetas.getSuperChori());
