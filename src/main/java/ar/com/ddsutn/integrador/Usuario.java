@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import filtros.Filtro;
 import ar.com.ddsutn.condicionesExistentes.Celiaco;
 import ar.com.ddsutn.condicionesExistentes.Condicion;
 import ar.com.ddsutn.condicionesExistentes.Diabetico;
 import ar.com.ddsutn.condicionesExistentes.Hipertenso;
 import ar.com.ddsutn.condicionesExistentes.Vegano;
+import ar.com.ddsutn.resultados.Resultado;
 
 
 public class Usuario {
@@ -28,6 +31,8 @@ public class Usuario {
 	private Collection <Receta> recetasFavoritas;
 	private Collection <Grupo> grupos;
 	private static Collection<Condicion> CondicionesExistentes = new ArrayList<>();
+	public Filtro filtro;
+	public Resultado resultado;
 	
 	public static void SetCondicionesExistentes()
 	{
@@ -43,6 +48,8 @@ public class Usuario {
 	}
 	
 	public Usuario(){}
+	
+
 	
 	public Usuario (String nombre, Double peso, Double altura, LocalDate fechaNacimiento, TipoRutina rutina, String sexo){
 		this.nombre = nombre;
@@ -156,6 +163,26 @@ public class Usuario {
 
 	/*	setters y getters	*/
 	
+	public Filtro getFiltro()
+	{
+		return filtro;
+	}
+	
+	public void setFiltro(Filtro filtro)
+	{
+		this.filtro = filtro;
+	}
+	
+	public Resultado getResultado()
+	{
+		return resultado;
+	}
+	
+	public void setResultado(Resultado resultado)
+	{
+		this.resultado = resultado;
+	}
+	
 	public Collection <Condicion> getCondiciones() 
 	{	
 		return condiciones;
@@ -261,6 +288,20 @@ public class Usuario {
 		recetasTotales.addAll(Receta.RecetasPublicas);
 		recetasTotales.addAll(recetas);
 		return recetasTotales;
+	}
+	
+	public Set <Receta> filtrarConStrategy(Set <Receta> recetasRecibidas){
+		
+		Set<Receta> recetasFiltradas = new HashSet<Receta>();
+		recetasFiltradas = recetasRecibidas.stream().filter(receta -> filtro.filtrarStrategy(receta, this)).collect(Collectors.toSet());
+		return recetasFiltradas;
+	}
+	
+	public Collection <Receta> resultarStrategy(Collection <Receta> recetas){
+		
+		Collection <Receta> recetasResultadas = new HashSet<Receta>(); 
+		recetasResultadas = resultado.resultarStrategy(recetas);
+		return recetasResultadas;
 	}
 	
 	public void setRecetasFavoritas(Collection <Receta> recetasFavoritas)

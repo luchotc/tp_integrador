@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class RecetaTest {
@@ -291,19 +292,22 @@ public class RecetaTest {
 		lucho.addReceta(recetas.getComidaTop());
 		lucho.addReceta(recetas.getSuperChori());
 		lucho.addDisgusto("caca");
-		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
+		Set <Receta> recetasTotales = new HashSet<Receta>();
+		recetasTotales = lucho.getRecetasTotales();
 		
-		FiltroGeneral filtro = new FiltroGeneral(new FiltroCaro());
-		recetasTotales = recetasTotales.stream().filter(receta -> filtro.filtrar(receta, lucho)).collect(Collectors.toList());
+		lucho.setFiltro(new FiltroCaro());
+		recetasTotales = lucho.filtrarConStrategy(recetasTotales);
 		
 		
-		filtro.setFiltro(new FiltroGusto());
-		recetasTotales = recetasTotales.stream().filter(receta -> filtro.filtrar(receta, lucho)).collect(Collectors.toList());
+		lucho.setFiltro(new FiltroGusto());
+		recetasTotales = lucho.filtrarConStrategy(recetasTotales);
 		
+		System.out.println(recetasTotales);
 		
 		Collection<Receta> recetasFiltradas = new HashSet<>();
 		recetasFiltradas.add(bifes);
 		
+		System.out.println(recetasFiltradas);
 		
 		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
 	}
@@ -339,12 +343,12 @@ public class RecetaTest {
 		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
 		
 
-		ResultadoGeneral resultado = new ResultadoGeneral(new ResultadoPar());
-		recetasTotales = resultado.resultar(recetasTotales);
+		lucho.setResultado(new ResultadoPar());
+		recetasTotales = lucho.resultarStrategy(recetasTotales);
 
 		
-		resultado.setResultado ( new ResultadoOrdenamiento(new ComparadorAlfabetico()) );
-		recetasTotales = resultado.resultar(recetasTotales);
+		lucho.setResultado ( new ResultadoOrdenamiento(new ComparadorAlfabetico()) );
+		recetasTotales = lucho.resultarStrategy(recetasTotales);
 
 	
 		Collection<Receta> recetasFiltradas = new HashSet<>();
