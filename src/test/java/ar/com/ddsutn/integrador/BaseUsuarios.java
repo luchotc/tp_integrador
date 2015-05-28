@@ -51,6 +51,7 @@ public class BaseUsuarios {
 		usuario.setPalabrasDisgustan(new ArrayList<String>());
 		usuario.setRecetas(new ArrayList<Receta>());
 		usuario.setGrupos(new ArrayList<Grupo>());
+		usuario.setRecetasFavoritas(new ArrayList<Receta>());
 	}
 	
 	public Usuario crearUsuarioTemporal()

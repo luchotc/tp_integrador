@@ -263,4 +263,14 @@ public class Usuario {
 		return recetasTotales;
 	}
 	
+	public void setRecetasFavoritas(Collection <Receta> recetasFavoritas)
+	{
+		this.recetasFavoritas= recetasFavoritas;
+	}
+	
+	public Collection <Receta> getRecetasFavoritas()
+	{
+		return recetasFavoritas;
+	}
+	
 }
