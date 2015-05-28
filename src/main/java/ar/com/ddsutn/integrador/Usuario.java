@@ -16,7 +16,7 @@ import ar.com.ddsutn.condicionesExistentes.Vegano;
 import ar.com.ddsutn.resultados.Resultado;
 
 
-public class Usuario {
+public class Usuario implements Sugerible{
 	
 	private String nombre,sexo;
 	private LocalDate fechaNacimiento;
@@ -77,10 +77,6 @@ public class Usuario {
 		return getRecetasTotales().contains(receta);
 	}
 	
-	public boolean puedeSugerir(Receta receta){
-		return puedeVerOModificar(receta) && !esInadecuada(receta) && !incluyeIngredienteQueDisgusta(receta);
-	}
-	
 	public boolean incluyeIngredienteQueDisgusta(Receta receta)
 	{
 		return receta.getIngredientes().stream().anyMatch(ing -> esDisgusto(ing.getNombre()));
@@ -88,7 +84,7 @@ public class Usuario {
 	
 	public boolean perteneceAAlgunGrupo (Receta receta)
 	{
-		return grupos.stream().anyMatch(grupo -> (grupo.getRecetasGrupo()).contains(receta));
+		return grupos.stream().anyMatch(grupo -> (grupo.getRecetas()).contains(receta));
 	}
 	
 	public void actualizarGruposPropios(Grupo grupo){
@@ -118,10 +114,15 @@ public class Usuario {
 			   rutina.equals(TipoRutina.MEDIANO);
 	}
 	
+	@Override
+	public boolean puedeSugerir(Receta receta){
+		return puedeVerOModificar(receta) && !esInadecuada(receta) && !incluyeIngredienteQueDisgusta(receta);
+	}
+	
 	public Set <Receta> getRecetasGrupo()
 	{
 		Set<Receta> recetasGrupo = new HashSet<Receta>();
-		grupos.stream().forEach(g -> recetasGrupo.addAll(g.getRecetasGrupo()));
+		grupos.stream().forEach(g -> recetasGrupo.addAll(g.getRecetas()));
 		return recetasGrupo;
 	}
 	

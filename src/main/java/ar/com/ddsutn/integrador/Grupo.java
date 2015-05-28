@@ -3,12 +3,11 @@ package ar.com.ddsutn.integrador;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class Grupo {
+public class Grupo implements Sugerible{
 	
 	private Collection <Usuario> usuarios;
 	private Collection <String> preferenciasAlimenticias;
 	private String nombre; 
-	
 
 	public Grupo (String nombre){
 		this.setNombre(nombre);
@@ -20,30 +19,29 @@ public class Grupo {
 		usuario.actualizarGruposPropios(this);
 	}
 
-	public Collection <Receta> getRecetasGrupo()
-	{
-		Collection<Receta> recetasGrupo = new ArrayList<Receta>();
-		usuarios.stream().forEach(u -> recetasGrupo.addAll(u.getRecetas()));
-		return recetasGrupo;
-	}
-
+	@Override
 	public boolean puedeSugerir(Receta receta)
 	{
 		return nombreQueGusta(receta) && esApropiadaParaGrupo(receta);
 	}
 	
-	private boolean esApropiadaParaGrupo(Receta receta) {
-		return usuarios.stream().allMatch(u -> !u.esInadecuada(receta));
-		//return !usuarios.stream().anyMatch(u -> u.esInadecuada(receta)); -> otra forma
-	}
-
 	public boolean nombreQueGusta(Receta receta)
 	{
 		String nombreReceta = (receta.getNombre()).toLowerCase();
 		return preferenciasAlimenticias.stream().anyMatch(pref -> nombreReceta.contains(pref.toLowerCase()));		
 	}
 	
-	
+	public Collection <Receta> getRecetas()
+	{
+		Collection<Receta> recetasGrupo = new ArrayList<Receta>();
+		usuarios.stream().forEach(u -> recetasGrupo.addAll(u.getRecetas()));
+		return recetasGrupo;
+	}
+
+	private boolean esApropiadaParaGrupo(Receta receta) {
+		return usuarios.stream().allMatch(u -> !u.esInadecuada(receta));
+	}
+
 	/*Getters y Setters*/
 	public Collection <String> getPreferenciasAlimenticias() 
 	{	
