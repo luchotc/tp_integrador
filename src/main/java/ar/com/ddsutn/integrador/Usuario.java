@@ -33,22 +33,8 @@ public class Usuario {
 	private static Collection<Condicion> CondicionesExistentes = new ArrayList<>();
 	public Collection <Resultado> resultados;
 	public Collection <Filtro> filtros;
-	public static void SetCondicionesExistentes()
-	{
-		CondicionesExistentes.add(new Celiaco());
-		CondicionesExistentes.add(new Hipertenso());
-		CondicionesExistentes.add(new Vegano());
-		CondicionesExistentes.add(new Diabetico());
-	}
-	
-	public static Collection <Condicion> GetCondicionesExistentes()
-	{
-		return CondicionesExistentes;
-	}
 	
 	public Usuario(){}
-	
-
 	
 	public Usuario (String nombre, Double peso, Double altura, LocalDate fechaNacimiento, TipoRutina rutina, String sexo){
 		this.nombre = nombre;
@@ -66,21 +52,6 @@ public class Usuario {
 	
 	public boolean esValido() {
 		return esValidoPorCampos() && condiciones.stream().allMatch(usuario -> usuario.validar(this));
-	}
-	public boolean esValidoPorCampos() {
-		return  nombre != null && 
-				peso != null && 
-				altura != null && 
-				fechaNacimiento != null && 
-				rutina != null &&
-				esValidoPorNombre() &&
-				esValidoPorFecha();
-	}
-	public boolean esValidoPorNombre(){
-		return nombre.length() > 4;
-	}
-	public boolean esValidoPorFecha(){
-		return LocalDate.now().isAfter(fechaNacimiento);
 	}
 	
 	public boolean sigueRutinaSaludable(){
@@ -107,26 +78,10 @@ public class Usuario {
 	
 	public boolean puedeVerOModificar (Receta receta)
 	{ 
-		return receta.esPublica() || esRecetaPropia(receta) || perteneceAAlgunGrupo(receta);
+		return getRecetasTotales().contains(receta);
 	}
 	
-	public void modificarRecetaGeneral(Receta receta, Receta recetaModificada)
-	{
-		if(puedeVerOModificar(receta))
-			if (receta.esPublica())
-			{
-				Receta recetaAgregada = agregarAPropias(receta);
-				recetaAgregada.modificarSegun(recetaModificada);
-				
-			}
-			else
-			{
-				receta.modificarSegun(recetaModificada);
-			}	
-	}
-
-	
-	boolean puedeSugerir(Receta receta){
+	public boolean puedeSugerir(Receta receta){
 		return puedeVerOModificar(receta) && !esInadecuada(receta) && !incluyeIngredienteQueDisgusta(receta);
 	}
 	
@@ -135,53 +90,102 @@ public class Usuario {
 		return receta.getIngredientes().stream().anyMatch(ing -> esDisgusto(ing.getNombre()));
 	}
 	
-	private boolean esDisgusto(String ing) {
-		return palabrasDisgustan.stream().anyMatch(dis -> dis.equalsIgnoreCase(ing));
-	}
-
-	
-    public String toString() //temporal para encontrar errores
-    {
-    	return nombre;
-    }
-	  
-	public boolean perteneceAAlgunGrupo (Receta receta) //esta mal? En el enunciado dice que la puede ver
-														//si el creador comparte algun grupo con el usuario.
-	  {
+	public boolean perteneceAAlgunGrupo (Receta receta)
+	{
 		return grupos.stream().anyMatch(grupo -> (grupo.getRecetasGrupo()).contains(receta));
-	  }
+	}
 	
 	public void actualizarGruposPropios(Grupo grupo){
 		grupos.add(grupo);
 	}
 	
-	public void aniadirAFavoritos(Receta receta){
-		recetasFavoritas.add(receta);
+	public Set <Receta> filtrarConStrategy(Set <Receta> recetasRecibidas)
+	{
+		Set<Receta> recetasFiltradas = new HashSet<Receta>();
+		recetasFiltradas = recetasRecibidas.stream().filter(r -> cumpleConFiltros(r)).collect(Collectors.toSet());
+		return recetasFiltradas;
+	}	
+		
+	public Collection<Receta> resultarConStrategy(Collection<Receta>recetas)
+	{
+	  ArrayList<Resultado>resultados = new ArrayList<>(this.resultados);
+	  for (int i= 0;i<resultados.size();i++)
+	  {
+		  recetas = resultados.get(i).resultarStrategy(recetas);
+	  }
+	  return recetas;
 	}
 	
+	public boolean esSedentario(){
+		return rutina.equals(TipoRutina.LEVE) ||
+			   rutina.equals(TipoRutina.NADA) ||
+			   rutina.equals(TipoRutina.MEDIANO);
+	}
+	
+	public Set <Receta> getRecetasGrupo()
+	{
+		Set<Receta> recetasGrupo = new HashSet<Receta>();
+		grupos.stream().forEach(g -> recetasGrupo.addAll(g.getRecetasGrupo()));
+		return recetasGrupo;
+	}
+	
+	public Set <Receta> getRecetasTotales()
+	{
+		Set<Receta> recetasTotales = new HashSet<Receta>();
+		recetasTotales.addAll(getRecetasGrupo());
+		recetasTotales.addAll(Receta.RecetasPublicas);
+		recetasTotales.addAll(recetas);
+		return recetasTotales;
+	}
+	
+    private boolean esDisgusto(String ing) {
+		return palabrasDisgustan.stream().anyMatch(dis -> dis.equalsIgnoreCase(ing));
+	}
 
-	/*	setters y getters	*/
-	
-	public void setFiltros(Collection <Filtro> filtros)
-	{
-		this.filtros = filtros;
+	private boolean cumpleConFiltros(Receta r) {
+		return filtros.stream().allMatch(f -> f.filtrarStrategy(r, this));
 	}
-	
-	public Collection <Filtro> getFiltros()
-	{
-		return filtros;
+
+	private boolean esValidoPorCampos() {
+		return  nombre != null && 
+				peso != null && 
+				altura != null && 
+				fechaNacimiento != null && 
+				rutina != null &&
+				esValidoPorNombre() &&
+				esValidoPorFecha();
 	}
-	
-	public void setResultados(Collection <Resultado> resultados)
-	{
-		this.resultados = resultados;
+
+	private boolean esValidoPorNombre(){
+		return nombre.length() > 4;
 	}
-	
-	public Collection <Resultado> getResultados()
-	{
-		return resultados;
+
+	private boolean esValidoPorFecha(){
+		return LocalDate.now().isAfter(fechaNacimiento);
 	}
+
+	public String toString()
+    {
+    	return nombre;
+    }
 	
+	/*--------------------GETTERS Y SETTERS----------------------*/
+	
+	public Double getPeso()
+	{	
+		return peso;	
+	}
+
+	public String getSexo()
+	{	
+		return sexo;	
+	}
+
+	public String getRutina()
+	{	
+		return rutina.name();	
+	}
+
 	public Collection <Condicion> getCondiciones() 
 	{	
 		return condiciones;
@@ -197,6 +201,19 @@ public class Usuario {
 		condiciones.add(condicion);
 	}
 	
+	public static Collection <Condicion> GetCondicionesExistentes()
+	{
+		return CondicionesExistentes;
+	}
+
+	public static void SetCondicionesExistentes()
+	{
+		CondicionesExistentes.add(new Celiaco());
+		CondicionesExistentes.add(new Hipertenso());
+		CondicionesExistentes.add(new Vegano());
+		CondicionesExistentes.add(new Diabetico());
+	}
+
 	public Collection <String> getPreferenciasAlimenticias() 
 	{	
 		return preferenciasAlimenticias;	
@@ -227,51 +244,20 @@ public class Usuario {
 		this.palabrasDisgustan.add(palabrasDisgustan);
 	}
 	
-	public void addFiltro(Filtro filtro) 
-	{	
-		this.filtros.add(filtro);
-	}
-	
-	public void addResultado(Resultado resultado) 
-	{	
-		this.resultados.add(resultado);
-	}
-	
 	public Collection <Receta> getRecetas() 
 	{	
 		return recetas;
 	}
-	
+
 	public void setRecetas(Collection <Receta> recetas) 
 	{	
 		this.recetas = recetas;	
 	}
-	
+
 	public void addReceta(Receta receta) 
 	{	
 		if(receta.esValida())
 		  recetas.add(receta);
-	}
-	
-	public Double getPeso()
-	{	
-		return peso;	
-	}
-	
-	public String getSexo()
-	{	
-		return sexo;	
-	}
-	
-	public String getRutina()
-	{	
-		return rutina.name();	
-	}
-	
-	public boolean esSedentario(){
-		return rutina.equals(TipoRutina.LEVE) ||
-			   rutina.equals(TipoRutina.NADA) ||
-			   rutina.equals(TipoRutina.MEDIANO);
 	}
 
 	public Collection <Grupo> getGrupos() {
@@ -281,53 +267,54 @@ public class Usuario {
 	public void setGrupos(Collection <Grupo> grupos) {
 		this.grupos = grupos;
 	}
-	
-	public Set <Receta> getRecetasGrupo()
+
+	public void addGrupo(Grupo grupo)
 	{
-		Set<Receta> recetasGrupo = new HashSet<Receta>();
-		grupos.stream().forEach(g -> recetasGrupo.addAll(g.getRecetasGrupo()));
-		return recetasGrupo;
+		grupos.add(grupo);
 	}
-	
-		public Set <Receta> getRecetasTotales()
+
+	public Collection <Filtro> getFiltros()
 	{
-		Set<Receta> recetasTotales = new HashSet<Receta>();
-		recetasTotales.addAll(getRecetasGrupo());
-		recetasTotales.addAll(Receta.RecetasPublicas);
-		recetasTotales.addAll(recetas);
-		return recetasTotales;
+		return filtros;
 	}
-	
-	public Set <Receta> filtrarConStrategy(Set <Receta> recetasRecibidas)
-		{
-			Set<Receta> recetasFiltradas = new HashSet<Receta>();
-			recetasFiltradas = recetasRecibidas.stream().filter(r -> cumpleConFiltros(r)).collect(Collectors.toSet());
-			return recetasFiltradas;
-		}	
-		
-	private boolean cumpleConFiltros(Receta r) {
-		return filtros.stream().allMatch(f -> f.filtrarStrategy(r, this));
+
+	public void setFiltros(Collection <Filtro> filtros)
+	{
+		this.filtros = filtros;
 	}
-		
-	
-	public Collection<Receta> resultarConStrategy(Collection<Receta>recetas)
-	 {
-	  ArrayList<Resultado>resultados = new ArrayList<>(this.resultados);
-	  for (int i= 0;i<resultados.size();i++)
-	  {
-	   recetas = resultados.get(i).resultarStrategy(recetas);
-	  }
-	  return recetas;
-	 }
-	
+
+	public void addFiltro(Filtro filtro) 
+	{	
+		this.filtros.add(filtro);
+	}
+
+	public Collection <Resultado> getResultados()
+	{
+		return resultados;
+	}
+
+	public void setResultados(Collection <Resultado> resultados)
+	{
+		this.resultados = resultados;
+	}
+
+	public void addResultado(Resultado resultado) 
+	{	
+		this.resultados.add(resultado);
+	}
+
+	public Collection <Receta> getRecetasFavoritas()
+	{
+		return recetasFavoritas;
+	}
+
 	public void setRecetasFavoritas(Collection <Receta> recetasFavoritas)
 	{
 		this.recetasFavoritas= recetasFavoritas;
 	}
 	
-	public Collection <Receta> getRecetasFavoritas()
-	{
-		return recetasFavoritas;
+	public void addFavorita(Receta receta){
+		recetasFavoritas.add(receta);
 	}
 	
 }

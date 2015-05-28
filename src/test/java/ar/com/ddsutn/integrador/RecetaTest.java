@@ -204,21 +204,6 @@ public class RecetaTest {
 		assertEquals ( true , lucho.puedeVerOModificar(bifes));	
 	}
 	
-	// Tests modificar Receta
-	@Test
-	public void usuarioModificaUnaRecetaPublica()
-	{	
-		Receta.addRecetasPublicas(bifes);
-		assertEquals ( true , bifes.esPublica());
-		
-		fedeMock.setRecetas(new ArrayList<Receta>());
-		Receta recetaNueva = new Receta ();
-		recetaNueva.setNombre("Bifes");
-		Receta recetaModificada = fedeMock.devuelveRecetaModificada(bifes, recetaNueva);
-		assertEquals(true , recetaModificada.getNombre().equals("Bifes"));
-	}
-	
-	
 	// Tests sugerencia
 	@Test
 	public void unaRecetaNoPuedeSugerirseAUnUsuario()
