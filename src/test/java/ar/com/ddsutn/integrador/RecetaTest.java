@@ -313,6 +313,7 @@ public class RecetaTest {
 	@Test
 	public void aplicarResultados()
 	{
+		lucho.addReceta(recetas.getRecetinInadecuada());
 		lucho.addReceta(recetas.getSuperChori());
 		lucho.addReceta(bifes);
 		lucho.addReceta(recetas.getComidaTop());
@@ -320,10 +321,13 @@ public class RecetaTest {
 		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
 		Resultado resultadoParOrdenado = new ResultadoPar(new ResultadoOrdenamiento(new ResultadoPosta(), new ComparadorAlfabetico())); 
 		recetasTotales = resultadoParOrdenado.resultar(recetasTotales);
+		System.out.println(recetasTotales);
 		
 		Collection<Receta> recetasFiltradas = new HashSet<>();
+		recetasFiltradas.add(bifes);
 		recetasFiltradas.add(recetas.getComidaTop());
-		recetasFiltradas.add(recetas.getSuperChori());
+
+		System.out.println(recetasFiltradas);
 		
 		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
 	}
@@ -347,13 +351,10 @@ public class RecetaTest {
 		lucho.setResultado ( new ResultadoOrdenamiento(new ComparadorAlfabetico()) );
 		recetasTotales = lucho.resultarStrategy(recetasTotales);
 		
-		System.out.println(recetasTotales);
-	
 		Collection<Receta> recetasFiltradas = new HashSet<>();
 		recetasFiltradas.add(recetas.getComidaTop());
 		recetasFiltradas.add(recetas.getSuperChori());	
 		
-		System.out.println(recetasFiltradas);
 		
 		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
 	}
