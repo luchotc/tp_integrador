@@ -302,12 +302,8 @@ public class RecetaTest {
 		lucho.setFiltro(new FiltroGusto());
 		recetasTotales = lucho.filtrarConStrategy(recetasTotales);
 		
-		System.out.println(recetasTotales);
-		
 		Collection<Receta> recetasFiltradas = new HashSet<>();
 		recetasFiltradas.add(bifes);
-		
-		System.out.println(recetasFiltradas);
 		
 		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
 	}
