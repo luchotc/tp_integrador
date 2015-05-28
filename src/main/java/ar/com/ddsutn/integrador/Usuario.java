@@ -31,7 +31,7 @@ public class Usuario {
 	private Collection <Receta> recetasFavoritas;
 	private Collection <Grupo> grupos;
 	private static Collection<Condicion> CondicionesExistentes = new ArrayList<>();
-	public Resultado resultado;
+	public Collection <Resultado> resultados;
 	public Collection <Filtro> filtros;
 	public static void SetCondicionesExistentes()
 	{
@@ -172,14 +172,14 @@ public class Usuario {
 		return filtros;
 	}
 	
-	public Resultado getResultado()
+	public void setResultados(Collection <Resultado> resultados)
 	{
-		return resultado;
+		this.resultados = resultados;
 	}
 	
-	public void setResultado(Resultado resultado)
+	public Collection <Resultado> getResultados()
 	{
-		this.resultado = resultado;
+		return resultados;
 	}
 	
 	public Collection <Condicion> getCondiciones() 
@@ -230,6 +230,11 @@ public class Usuario {
 	public void addFiltro(Filtro filtro) 
 	{	
 		this.filtros.add(filtro);
+	}
+	
+	public void addResultado(Resultado resultado) 
+	{	
+		this.resultados.add(resultado);
 	}
 	
 	public Collection <Receta> getRecetas() 
@@ -305,12 +310,15 @@ public class Usuario {
 	}
 		
 	
-	public Collection <Receta> resultarStrategy(Collection <Receta> recetas){
-		
-		Collection <Receta> recetasResultadas = new HashSet<Receta>(); 
-		recetasResultadas = resultado.resultarStrategy(recetas);
-		return recetasResultadas;
-	}
+	public Collection<Receta> resultarConStrategy(Collection<Receta>recetas)
+	 {
+	  ArrayList<Resultado>resultados = new ArrayList<>(this.resultados);
+	  for (int i= 0;i<resultados.size();i++)
+	  {
+	   recetas = resultados.get(i).resultarStrategy(recetas);
+	  }
+	  return recetas;
+	 }
 	
 	public void setRecetasFavoritas(Collection <Receta> recetasFavoritas)
 	{

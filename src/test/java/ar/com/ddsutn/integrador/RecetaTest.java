@@ -332,31 +332,30 @@ public class RecetaTest {
 		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
 	}
 	
+	
+	
 	// Test Resultado por Strategy
-	@Test
-	public void aplicarResultadosStrategy()
-	{
-		lucho.addReceta(bifes);
-		lucho.addReceta(recetas.getSuperChori());
-		lucho.addDisgusto("caca");
-		lucho.addReceta(recetas.getRecetinInadecuada());
-		lucho.addReceta(recetas.getComidaTop());
-		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
-		
-
-		lucho.setResultado(new ResultadoPar());
-		recetasTotales = lucho.resultarStrategy(recetasTotales);
-
-		
-		lucho.setResultado ( new ResultadoOrdenamiento(new ComparadorAlfabetico()) );
-		recetasTotales = lucho.resultarStrategy(recetasTotales);
-		
-		Collection<Receta> recetasFiltradas = new HashSet<>();
-		recetasFiltradas.add(recetas.getComidaTop());
-		recetasFiltradas.add(recetas.getSuperChori());	
-		
-		
-		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
-	}
+		@Test
+		public void aplicarResultadosStrategy()
+		{
+			lucho.setResultados(new HashSet<Resultado> ());
+			lucho.addReceta(bifes);
+			lucho.addReceta(recetas.getSuperChori());
+			lucho.addDisgusto("caca");
+			lucho.addReceta(recetas.getRecetinInadecuada());
+			lucho.addReceta(recetas.getComidaTop());
+			lucho.addResultado(new ResultadoPar() );
+			lucho.addResultado(new ResultadoOrdenamiento(new ComparadorAlfabetico()) );
+			
+			Collection<Receta> recetasTotales = lucho.getRecetasTotales();
+			
+			recetasTotales = lucho.resultarConStrategy(recetasTotales);
+			
+			Collection<Receta> recetasFiltradas = new HashSet<>();
+			recetasFiltradas.add(recetas.getComidaTop());
+			recetasFiltradas.add(recetas.getSuperChori());	
+			
+			assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
+		}
 }
 
