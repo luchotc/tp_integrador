@@ -25,6 +25,7 @@ public class Usuario {
 	private Double peso;
 	private TipoRutina rutina;
 	private Collection <Receta> recetas;
+	private Collection <Receta> recetasFavoritas;
 	private Collection <Grupo> grupos;
 	private static Collection<Condicion> CondicionesExistentes = new ArrayList<>();
 	
@@ -146,6 +147,10 @@ public class Usuario {
 	
 	public void actualizarGruposPropios(Grupo grupo){
 		grupos.add(grupo);
+	}
+	
+	public void aniadirAFavoritos(Receta receta){
+		recetasFavoritas.add(receta);
 	}
 	
 

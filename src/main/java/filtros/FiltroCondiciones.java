@@ -27,8 +27,4 @@ public class FiltroCondiciones implements Filtro {
 		return !usuario.esInadecuada(receta);
 	}
 	
-	@Override
-	public void setFiltro(Filtro filtro){
-		this.filtro = filtro;
-	}
 }

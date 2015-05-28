@@ -1,7 +1,6 @@
 package filtros;
 
-import ar.com.ddsutn.integrador.Receta;
-import ar.com.ddsutn.integrador.Usuario;
+import ar.com.ddsutn.integrador.*;
 
 public class FiltroCaro implements Filtro {
 	private Filtro filtro;
@@ -27,8 +26,4 @@ public class FiltroCaro implements Filtro {
 		return !receta.esCara();
 	}
 	
-	@Override
-	public void setFiltro(Filtro filtro){
-		this.filtro = filtro;
-	}
 }

@@ -15,7 +15,4 @@ public class FiltroPosta implements Filtro {
 	public boolean filtrarStrategy(Receta receta, Usuario usuario) {
 		return true;
 	}
-	
-	@Override
-	public void setFiltro(Filtro filtro){}
 }

@@ -4,15 +4,10 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import filtros.Filtro;
-import filtros.FiltroCaro;
-import filtros.FiltroGusto;
-import filtros.FiltroPosta;
+import filtros.*;
 import ar.com.ddsutn.resultados.*;
 import ar.com.ddsutn.Comparadores.*;
-import ar.com.ddsutn.condicionesExistentes.Diabetico;
-import ar.com.ddsutn.condicionesExistentes.Hipertenso;
-import ar.com.ddsutn.condicionesExistentes.Vegano;
+import ar.com.ddsutn.condicionesExistentes.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -298,20 +293,23 @@ public class RecetaTest {
 		lucho.addDisgusto("caca");
 		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
 		
-		Filtro filtroCaroStrategy = new FiltroCaro();
-		recetasTotales = recetasTotales.stream().filter(receta -> filtroCaroStrategy.filtrarStrategy(receta, lucho)).collect(Collectors.toList());
+		FiltroGeneral filtro = new FiltroGeneral(new FiltroCaro());
+		recetasTotales = recetasTotales.stream().filter(receta -> filtro.filtrar(receta, lucho)).collect(Collectors.toList());
 		
-		filtroCaroStrategy.setFiltro(new FiltroGusto());
-		recetasTotales = recetasTotales.stream().filter(receta -> filtroCaroStrategy.filtrarStrategy(receta, lucho)).collect(Collectors.toList());
+		
+		filtro.setFiltro(new FiltroGusto());
+		recetasTotales = recetasTotales.stream().filter(receta -> filtro.filtrar(receta, lucho)).collect(Collectors.toList());
+		
 		
 		Collection<Receta> recetasFiltradas = new HashSet<>();
 		recetasFiltradas.add(bifes);
-		recetasFiltradas.add(recetas.getSuperChori());
+		
 		
 		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
 	}
 	
 	
+	// Test Resultado por Decorator
 	@Test
 	public void aplicarResultados()
 	{
@@ -326,6 +324,32 @@ public class RecetaTest {
 		Collection<Receta> recetasFiltradas = new HashSet<>();
 		recetasFiltradas.add(recetas.getComidaTop());
 		recetasFiltradas.add(recetas.getSuperChori());
+		
+		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
+	}
+	
+	// Test Resultado por Strategy
+	@Test
+	public void aplicarResultadosStrategy()
+	{
+		lucho.addReceta(recetas.getSuperChori());
+		lucho.addReceta(bifes);
+		lucho.addReceta(recetas.getComidaTop());
+		lucho.addDisgusto("caca");
+		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
+		
+
+		ResultadoGeneral resultado = new ResultadoGeneral(new ResultadoPar());
+		recetasTotales = resultado.resultar(recetasTotales);
+
+		
+		resultado.setResultado ( new ResultadoOrdenamiento(new ComparadorAlfabetico()) );
+		recetasTotales = resultado.resultar(recetasTotales);
+
+	
+		Collection<Receta> recetasFiltradas = new HashSet<>();
+		recetasFiltradas.add(recetas.getComidaTop());
+		recetasFiltradas.add(recetas.getSuperChori());	
 		
 		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
 	}

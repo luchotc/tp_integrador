@@ -27,8 +27,4 @@ public class FiltroCalorias implements Filtro{
 		return receta.getTotalCalorias()<500;
 	}
 	
-	@Override
-	public void setFiltro(Filtro filtro){
-		this.filtro = filtro;
-	}
 }

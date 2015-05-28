@@ -26,9 +26,5 @@ public class FiltroGusto implements Filtro {
 	public boolean filtrarStrategy(Receta receta, Usuario usuario) {
 		return !usuario.incluyeIngredienteQueDisgusta(receta);
 	}
-	
-	@Override
-	public void setFiltro(Filtro filtro){
-		this.filtro = filtro;
-	}
+
 }
