@@ -31,7 +31,6 @@ public class Usuario {
 	private Collection <Receta> recetasFavoritas;
 	private Collection <Grupo> grupos;
 	private static Collection<Condicion> CondicionesExistentes = new ArrayList<>();
-	public Filtro filtro;
 	public Resultado resultado;
 	public Collection <Filtro> filtros;
 	public static void SetCondicionesExistentes()
@@ -163,14 +162,14 @@ public class Usuario {
 
 	/*	setters y getters	*/
 	
-	public Filtro getFiltro()
+	public void setFiltros(Collection <Filtro> filtros)
 	{
-		return filtro;
+		this.filtros = filtros;
 	}
 	
-	public void setFiltro(Filtro filtro)
+	public Collection <Filtro> getFiltros()
 	{
-		this.filtro = filtro;
+		return filtros;
 	}
 	
 	public Resultado getResultado()
@@ -226,6 +225,11 @@ public class Usuario {
 	public void addDisgusto(String palabrasDisgustan) 
 	{	
 		this.palabrasDisgustan.add(palabrasDisgustan);
+	}
+	
+	public void addFiltro(Filtro filtro) 
+	{	
+		this.filtros.add(filtro);
 	}
 	
 	public Collection <Receta> getRecetas() 
@@ -289,30 +293,17 @@ public class Usuario {
 		return recetasTotales;
 	}
 	
-	public Set <Receta> filtrarALoRama(Set <Receta> recetasRecibidas)
+	public Set <Receta> filtrarConStrategy(Set <Receta> recetasRecibidas)
 		{
 			Set<Receta> recetasFiltradas = new HashSet<Receta>();
-			recetasFiltradas = recetasFiltradas.stream().filter(r -> cumpleConFiltros(r)).collect(Collectors.toSet());
+			recetasFiltradas = recetasRecibidas.stream().filter(r -> cumpleConFiltros(r)).collect(Collectors.toSet());
 			return recetasFiltradas;
 		}	
 		
 	private boolean cumpleConFiltros(Receta r) {
-		return filtros.stream().allMatch(f -> f.filtrar(r, this));
+		return filtros.stream().allMatch(f -> f.filtrarStrategy(r, this));
 	}
 		
-	public Set <Receta> filtrarConStrategy2(Set <Receta> recetasRecibidas)
-		{
-			Set<Receta> recetasFiltradas = new HashSet<Receta>();
-			//recetasFiltradas= recetasRecibidas.stream().forEach(r->(filtros.stream().filter(f -> f.filtrarStrategy(r,this)).collect(Collectors.toSet())));
-			return recetasFiltradas;
-		}	
-		
-	public Set <Receta> filtrarConStrategy(Set <Receta> recetasRecibidas){
-		
-		Set<Receta> recetasFiltradas = new HashSet<Receta>();
-		recetasFiltradas = recetasRecibidas.stream().filter(receta -> filtro.filtrarStrategy(receta, this)).collect(Collectors.toSet());
-		return recetasFiltradas;
-	}
 	
 	public Collection <Receta> resultarStrategy(Collection <Receta> recetas){
 		

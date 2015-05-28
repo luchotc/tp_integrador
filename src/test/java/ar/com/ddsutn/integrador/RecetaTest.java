@@ -284,22 +284,19 @@ public class RecetaTest {
 	}
 	
 	
-	// Test filtro por strategy
 	@Test
 	public void filtroCaroDisgustosoStrategy()
 	{
+		lucho.setFiltros(new HashSet<Filtro> ());
 		lucho.addReceta(bifes);
 		lucho.addReceta(recetas.getComidaTop());
 		lucho.addReceta(recetas.getSuperChori());
 		lucho.addDisgusto("caca");
+		lucho.addFiltro(new FiltroCaro());
+		lucho.addFiltro(new FiltroGusto());
 		Set <Receta> recetasTotales = new HashSet<Receta>();
 		recetasTotales = lucho.getRecetasTotales();
 		
-		lucho.setFiltro(new FiltroCaro());
-		recetasTotales = lucho.filtrarConStrategy(recetasTotales);
-		
-		
-		lucho.setFiltro(new FiltroGusto());
 		recetasTotales = lucho.filtrarConStrategy(recetasTotales);
 		
 		Collection<Receta> recetasFiltradas = new HashSet<>();
@@ -321,13 +318,13 @@ public class RecetaTest {
 		Collection<Receta> recetasTotales = lucho.getRecetasTotales();
 		Resultado resultadoParOrdenado = new ResultadoPar(new ResultadoOrdenamiento(new ResultadoPosta(), new ComparadorAlfabetico())); 
 		recetasTotales = resultadoParOrdenado.resultar(recetasTotales);
-		System.out.println(recetasTotales);
+		
 		
 		Collection<Receta> recetasFiltradas = new HashSet<>();
 		recetasFiltradas.add(bifes);
 		recetasFiltradas.add(recetas.getComidaTop());
 
-		System.out.println(recetasFiltradas);
+		
 		
 		assertEquals(true,new HashSet<Receta>(recetasTotales).equals(recetasFiltradas));
 	}
