@@ -36,7 +36,7 @@ public class ResultadoPar implements Resultado  {
 		Collection<Receta> recetasPares = new ArrayList<>();
 		ArrayList<Receta> recetasTotales = new ArrayList<>(recetas);
 		
-		for (int i=0;i<recetasTotales.size();i=i+2)
+		for (int i=1;i<recetasTotales.size();i=i+2)
 		{
 			recetasPares.add(recetasTotales.get(i));
 		}
