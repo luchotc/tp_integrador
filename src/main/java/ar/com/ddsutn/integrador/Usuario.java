@@ -180,6 +180,11 @@ public class Usuario implements Sugerible{
 	
 	/*--------------------GETTERS Y SETTERS----------------------*/
 	
+	public String getNombre()
+	{
+		return nombre;
+	}
+	
 	public Double getPeso()
 	{	
 		return peso;	

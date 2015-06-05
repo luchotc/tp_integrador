@@ -21,14 +21,14 @@ public class RepoUsuarios {
 	
 	/*public Usuario get(Usuario usuario)//Debería encontrar el primero que cumpla con el nombre ese, pero no estaría andando
 	{
-		Usuario usuarioRetorno = usuarios.stream().findFirst(u -> (u.toString()).equals(usuario.toString()));
+		Usuario usuarioRetorno = usuarios.stream().findFirst(u -> (u.getNombre()).equals(usuario.getNombre()));
 		return usuarioRetorno;
 	}*/
 	
 	public Collection<Usuario> list (Usuario usuario)
 	{
 		Collection<Usuario> retorno = new ArrayList<Usuario>();
-		retorno = usuarios.stream().filter(u -> (u.toString()).equals(usuario.toString())).collect(Collectors.toList()); //Filtra por nombre, buscando los que cumplen
+		retorno = usuarios.stream().filter(u -> (u.getNombre()).equals(usuario.getNombre())).collect(Collectors.toList()); //Filtra por nombre, buscando los que cumplen
 		/*if(tieneCondPreexistentes)
 		{
 			retorno = retorno.stream().filter(u-> u.cumpleCondPreexistentes(condPreexistentes));
