@@ -166,6 +166,18 @@ public class Usuario implements Sugerible{
     	return nombre;
     }
 	
+	
+	//AGREGADO 05/06 - FEDE
+	
+	public boolean cumpleCondPreexistentes(Collection<Condicion> condPreexistentes)
+	{
+		boolean retorno = condPreexistentes.stream().allMatch(cond -> condiciones.contains(cond));
+		return retorno;
+	}
+		
+	//
+	
+	
 	/*--------------------GETTERS Y SETTERS----------------------*/
 	
 	public Double getPeso()
